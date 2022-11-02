@@ -10,63 +10,68 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $validator = Validator::make($request->only(['email', 'password']), [
-            'email' => 'required|unique:App\Models\User,email|max:255',
-            'password' => 'required|min:8'
-        ]);
+  public function register()
+  {
+    return Inertia::render('Auth/Register');
+  }
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+  public function postRegister(Request $request)
+  {
 
-        try {
-            $user = User::create([
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'role' => UserRoleEnum::CUSTOMER,
-            ]);
-        } catch (Exception $e) {
-            return response()->json($e, 200);
-        }
-        return response()->json($user, 200);
+    $validated = $request->validate([
+      'email' => 'required|unique:App\Models\User,email|max:255',
+      'password' => 'required|min:8|confirmed'
+    ]);
+
+    try {
+      $user = User::create([
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+        'role' => UserRoleEnum::CUSTOMER,
+      ]);
+    } catch (Exception $e) {
+      return response()->json($e, 200);
     }
 
-    public function postLogin(Request $request)
-    {
-        $validator = Validator::make($request->only(['email', 'password']), [
-            'email' => 'required|max:255',
-            'password' => 'required|min:8'
-        ]);
+    return redirect()->route('login');
+  }
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
-        }
+  public function login()
+  {
+    return Inertia::render('Auth/Login', [
+      'auth' => auth()->hasUser()
+    ]);
+  }
 
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $request->session()->regenerate();
-            return response()->json(auth()->user()->getAuthPassword(), 200);
-        }
+  public function postLogin(Request $request)
+  {
 
-        return response()->json([
-            'message' => 'Email atau Password salah'
-        ], 200);
+    $validated = $request->validate([
+      'email' => 'required|max:255',
+      'password' => 'required|min:8'
+    ]);
+    if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+      $request->session()->regenerate();
+      return Inertia::render('Dashboard', ['auth' => auth()->hasUser()]);
     }
 
-    public function logout(Request $request)
-    {
-        Auth::logout();
+    return back()->withErrors([
+      'wrong' => 'Wrong Email or Password'
+    ]);
+  }
 
-        $request->session()->invalidate();
+  public function logout(Request $request)
+  {
+    Auth::logout();
 
-        $request->session()->regenerateToken();
+    $request->session()->invalidate();
 
-        return response()->json([
-            'message' => 'Berhasil Logout'
-        ], 200);
-    }
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+  }
 }

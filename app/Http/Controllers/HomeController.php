@@ -8,9 +8,8 @@ use Inertia\Inertia;
 class HomeController extends Controller
 {
 
-    public function index() {
-        return Inertia::render('Home', [
-            "user" => "Arga Satya Mulyono"
-        ]);
+    public function index()
+    {
+        return Inertia::render('Dashboard');
     }
 }
