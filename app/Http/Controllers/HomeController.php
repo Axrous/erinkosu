@@ -8,8 +8,10 @@ use Inertia\Inertia;
 class HomeController extends Controller
 {
 
-    public function index()
-    {
-        return Inertia::render('Dashboard');
-    }
+  public function index()
+  {
+    return Inertia::render('Dashboard', [
+      'auth' => auth()->hasUser(),
+    ]);
+  }
 }

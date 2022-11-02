@@ -6,7 +6,7 @@ import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 import CustomersLayout from "@/Layouts/CustomersLayout";
 
-export default function Login({ auth }) {
+export default function Login() {
   const { data, setData, post, processing, errors, reset } = useForm({
     email: "",
     password: "",
@@ -34,7 +34,7 @@ export default function Login({ auth }) {
 
   return (
     <>
-      <CustomersLayout auth={auth}>
+      <CustomersLayout>
         <Head title="Log in" />
         <div className="mx-auto w-3/12 border p-10 mt-52 rounded-xl shadow-2xl bg-[#ede0d4]">
           <h1 className="text-2xl text-center mb-10">Login Dulu Bos!</h1>

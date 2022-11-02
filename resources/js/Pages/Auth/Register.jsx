@@ -43,10 +43,9 @@ export default function Register() {
         <div>
           <InputError message={errors.wrong} className="mb-2" />
         </div>
-        <form onSubmit={submit} className>
+        <form onSubmit={submit}>
           <div>
             <InputLabel forInput="email" value="Email" />
-
             <TextInput
               type="text"
               name="email"
@@ -62,7 +61,6 @@ export default function Register() {
 
           <div className="mt-4">
             <InputLabel forInput="password" value="Password" />
-
             <TextInput
               type="password"
               name="password"
@@ -77,7 +75,6 @@ export default function Register() {
 
           <div className="mt-4">
             <InputLabel forInput="password" value="Confirm Password" />
-
             <TextInput
               type="password"
               name="password_confirmation"

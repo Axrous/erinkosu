@@ -1,7 +1,6 @@
 import { Link, useState } from "@inertiajs/inertia-react";
 
 export default function Navbar({ auth }) {
-  console.log(auth);
   return (
     <nav className="flex container mx-auto text-white py-2">
       <span className="w-3/12 text-2xl my-auto font-semibold tracking-widest">
