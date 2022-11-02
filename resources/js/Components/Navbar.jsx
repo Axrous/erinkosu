@@ -4,7 +4,7 @@ export default function Navbar({ auth }) {
   return (
     <nav className="flex container mx-auto text-white py-2">
       <span className="w-3/12 text-2xl my-auto font-semibold tracking-widest">
-        ErinKosu
+        <Link href="/">ErinKosu</Link>
       </span>
       <div className="w-6/12 my-auto">
         <ul className="flex justify-evenly text-base">

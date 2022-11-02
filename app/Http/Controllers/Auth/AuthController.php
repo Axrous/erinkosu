@@ -42,6 +42,11 @@ class AuthController extends Controller
 
   public function login()
   {
+
+    // if (auth()->check()) {
+    //   return redirect('/');
+    // }
+
     return Inertia::render('Auth/Login', [
       'auth' => auth()->hasUser()
     ]);
