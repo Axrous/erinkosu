@@ -11,6 +11,10 @@ export default function Register() {
     email: "",
     password: "",
     password_confirmation: "",
+    photo_profile: undefined,
+    first_name: "",
+    last_name: "",
+    phone_number: "",
   });
 
   useEffect(() => {
@@ -38,13 +42,13 @@ export default function Register() {
     <CustomersLayout>
       <Head title="Register" />
 
-      <div className="mx-auto w-3/12 border p-10 mt-52 rounded-xl shadow-2xl bg-[#ede0d4]">
+      <div className="mx-auto w-3/12 border p-10 mt-32 rounded-xl shadow-2xl bg-[#ede0d4]">
         <h1 className="text-2xl text-center mb-10">Daftar Dulu Ya!</h1>
         <div>
           <InputError message={errors.wrong} className="mb-2" />
         </div>
         <form onSubmit={submit}>
-          <div>
+          <div className="mt-4">
             <InputLabel forInput="email" value="Email" />
             <TextInput
               type="text"
@@ -55,8 +59,60 @@ export default function Register() {
               isFocused={true}
               handleChange={onHandleChange}
             />
-
             <InputError message={errors.email} className="mt-2" />
+          </div>
+
+          <div className="mt-4">
+            <InputLabel forInput="first_name" value="First Name" />
+            <TextInput
+              type="text"
+              name="first_name"
+              value={data.first_name}
+              className="mt-1 block w-full"
+              autoComplete="username"
+              isFocused={true}
+              handleChange={onHandleChange}
+            />
+            <InputError message={errors.first_name} className="mt-2" />
+          </div>
+
+          <div className="mt-4">
+            <InputLabel forInput="last_name" value="Last Name" />
+            <TextInput
+              type="text"
+              name="last_name"
+              value={data.last_name}
+              className="mt-1 block w-full"
+              autoComplete="username"
+              isFocused={true}
+              handleChange={onHandleChange}
+            />
+            <InputError message={errors.last_name} className="mt-2" />
+          </div>
+
+          <div className="mt-4">
+            <InputLabel forInput="phone_number" value="Phone Number" />
+            <TextInput
+              type="text"
+              name="phone_number"
+              value={data.phone_number}
+              className="mt-1 block w-full"
+              autoComplete="username"
+              isFocused={true}
+              handleChange={onHandleChange}
+            />
+            <InputError message={errors.phone_number} className="mt-2" />
+          </div>
+
+          <div className="mt-4">
+            <InputLabel forInput="first_name" value="Photo Profile" />
+            <input
+              type="file"
+              name="photo_profile"
+              className="block w-full text-sm text-gray-900 bg-white rounded-lg border p-2 border-gray-300 cursor-pointer"
+              onChange={(e) => setData("photo_profile", e.target.files[0])}
+            />
+            <InputError message={errors.photo_profile} className="mt-2" />
           </div>
 
           <div className="mt-4">
