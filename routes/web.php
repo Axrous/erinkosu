@@ -38,3 +38,4 @@ Route::post('/login', [AuthController::class, 'postLogin'])->name("postLogin");
 Route::get('login', [AuthController::class, 'login'])->name('login')->middleware(['guest']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth']);
 Route::get('/', [HomeController::class,  'index']);
+Route::get('/about', [HomeController::class,  'about']);

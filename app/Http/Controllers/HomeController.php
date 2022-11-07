@@ -14,4 +14,11 @@ class HomeController extends Controller
       'auth' => auth()->hasUser(),
     ]);
   }
+
+  public function about()
+  {
+    return Inertia::render('About', [
+      'auth' => auth()->hasUser()
+    ]);
+  }
 }
