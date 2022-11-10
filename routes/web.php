@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,9 +34,11 @@ use Inertia\Inertia;
 // require __DIR__.'/auth.php';
 
 Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware(['guest']);
 Route::post('/login', [AuthController::class, 'postLogin'])->name("postLogin");
 Route::get('login', [AuthController::class, 'login'])->name('login')->middleware(['guest']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth']);
 Route::get('/', [HomeController::class,  'index']);
 Route::get('/about', [HomeController::class,  'about']);
+Route::get('/services', [ServiceController::class,  'index']);
+Route::get('/services/room', [ServiceController::class,  'detailService']);

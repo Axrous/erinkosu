@@ -14,7 +14,9 @@ export default function Navbar({ auth }) {
           <li>
             <Link href="/about">About</Link>
           </li>
-          <li>Services</li>
+          <li>
+            <Link href="/services">Services</Link>
+          </li>
           <li>Contact</li>
         </ul>
       </div>

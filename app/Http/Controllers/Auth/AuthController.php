@@ -15,9 +15,12 @@ use Inertia\Inertia;
 
 class AuthController extends Controller
 {
+
   public function register()
   {
-    return Inertia::render('Auth/Register');
+    return Inertia::render('Auth/Register', [
+      'auth' => auth()->check()
+    ]);
   }
 
   public function postRegister(Request $request)
@@ -54,7 +57,7 @@ class AuthController extends Controller
       return response()->json($e, 200);
     }
 
-    return redirect()->route('login');
+    return redirect()->route('login')->with('message', 'Berhasil Registrasi');
   }
 
   public function login()
