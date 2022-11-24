@@ -12,12 +12,11 @@ export default function Navbar({ auth }) {
             <Link href="/">Home</Link>
           </li>
           <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
             <Link href="/services">Services</Link>
           </li>
-          <li>Contact</li>
+          <li>
+            <Link href="/about">About</Link>
+          </li>
         </ul>
       </div>
       <div className="w-3/12 text-end">

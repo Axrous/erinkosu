@@ -6,6 +6,11 @@ import nero from "../../../public/photos/nero.jpg";
 import paimon from "../../../public/photos/paimon.png";
 import "react-slideshow-image/dist/styles.css";
 import { Slide } from "react-slideshow-image";
+import {
+  BsFillTelephoneFill,
+  BsEnvelopeFill,
+  BsFillPinMapFill,
+} from "react-icons/bs";
 
 export default function About() {
   const properties = {
@@ -80,6 +85,60 @@ export default function About() {
                 <div className="bg-imgOne h-full bg-cover"></div>
               </div>
             </Slide>
+          </div>
+        </section>
+
+        <section className="h-96 bg-red-500 mb-20 container mx-auto">
+          <div className="flex h-full  relative items-center">
+            <div className="w-6/12 pl-20 tracking-wider my-auto text-white">
+              <h3 className="text-4xl mb-6">Get In Touch!</h3>
+              <ul>
+                <li className="flex items-center mb-3">
+                  <BsFillTelephoneFill className="mr-4" /> +6287811008278
+                </li>
+                <li className="flex items-center mb-3">
+                  <BsEnvelopeFill className="mr-4" /> argasatya16@gmail.com
+                </li>
+                <li className="flex items-center mb-3">
+                  <BsFillPinMapFill className="mr-4" /> Jl. Kenangan no. 10 &
+                  Jl. Kekasih no. 3 Garut.
+                </li>
+              </ul>
+            </div>
+            <div className="w-5/12 mx-auto h-[450px] bg-white rounded-sm drop-shadow-2xl">
+              <div className=" w-11/12 mx-auto mt-10 pl-16">
+                <h3 className="text-2xl uppercase">Say Something :)</h3>
+                <form action="post">
+                  <input
+                    type="text"
+                    name="name"
+                    id=""
+                    placeholder="Your Name..."
+                    className="w-10/12 border-red-600 mt-6"
+                  />
+                  <input
+                    type="text"
+                    name="name"
+                    id=""
+                    placeholder="Your Email..."
+                    className="w-10/12 border-red-600 mt-6"
+                  />
+                  <textarea
+                    name=""
+                    id=""
+                    rows={4}
+                    placeholder="Message.."
+                    className="mt-6 w-10/12 border-red-600"
+                  ></textarea>
+                  <button
+                    type="submit"
+                    className="w-10/12 border text-white text-xl p-2 bg-red-500"
+                  >
+                    Send
+                  </button>
+                </form>
+              </div>
+            </div>
           </div>
         </section>
       </CustomersLayout>
