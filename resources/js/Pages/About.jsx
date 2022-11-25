@@ -38,7 +38,7 @@ export default function About() {
           </div>
         </div>
 
-        <section className=" bg-[#fcf3ea]  py-10 mt-20">
+        <section className=" bg-[#EEE]  py-10 mt-20">
           <div className="container mx-auto">
             <h2 className="uppercase text-center text-4xl ">penjaga kost</h2>
             <div className="flex mt-20 text-center">
@@ -88,7 +88,7 @@ export default function About() {
           </div>
         </section>
 
-        <section className="h-96 bg-red-500 mb-20 container mx-auto">
+        <section className="h-96 bg-[#548CA8] mb-20 container mx-auto">
           <div className="flex h-full  relative items-center">
             <div className="w-6/12 pl-20 tracking-wider my-auto text-white">
               <h3 className="text-4xl mb-6">Get In Touch!</h3>
@@ -114,25 +114,25 @@ export default function About() {
                     name="name"
                     id=""
                     placeholder="Your Name..."
-                    className="w-10/12 border-red-600 mt-6"
+                    className="w-10/12 border-[#B2C8DF] mt-6"
                   />
                   <input
                     type="text"
                     name="name"
                     id=""
                     placeholder="Your Email..."
-                    className="w-10/12 border-red-600 mt-6"
+                    className="w-10/12 border-[#B2C8DF] mt-6"
                   />
                   <textarea
                     name=""
                     id=""
                     rows={4}
                     placeholder="Message.."
-                    className="mt-6 w-10/12 border-red-600"
+                    className="mt-6 w-10/12 border-[#B2C8DF] resize-none"
                   ></textarea>
                   <button
                     type="submit"
-                    className="w-10/12 border text-white text-xl p-2 bg-red-500"
+                    className="w-10/12 border text-white text-xl p-2 bg-[#B2C8DF] hover:bg-[#334257]"
                   >
                     Send
                   </button>

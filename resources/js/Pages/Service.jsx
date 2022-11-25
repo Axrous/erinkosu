@@ -15,7 +15,7 @@ export default function Service() {
     <>
       <Head title="Services" />
       <CustomersLayout>
-        <div className="container mx-auto">
+        <div className="container mx-auto h-screen">
           <h1 className="text-4xl text-center mt-6 tracking-wider">
             Kamar Kost
           </h1>

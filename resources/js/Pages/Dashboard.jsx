@@ -41,7 +41,7 @@ export default function Dashboard({ auth }) {
             </div>
           </div>
 
-          <section className="rounded-2xl w-full text-center mt-20 bg-[#ede0d4] container mx-auto">
+          <section className="rounded-2xl w-full text-center mt-20 bg-[#EEEEEE] container mx-auto">
             <h2 className="text-4xl tracking-wider py-2">ErinKosu!</h2>
             <p className="w-7/12 mx-auto leading-normal italic mb-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
@@ -63,7 +63,7 @@ export default function Dashboard({ auth }) {
               </p>
             </div>
             <div className="flex flex-wrap justify-evenly mt-16">
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#fcf3ea] py-10 m-4">
+              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <BsBuilding size={70} />
                 </div>
@@ -74,7 +74,7 @@ export default function Dashboard({ auth }) {
                   Universitas tersebut.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#fcf3ea] py-10 m-4">
+              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <BsGenderAmbiguous size={70} />
                 </div>
@@ -84,7 +84,7 @@ export default function Dashboard({ auth }) {
                   juga.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#fcf3ea] py-10 m-4">
+              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <BiBath size={70} />
                 </div>
@@ -94,7 +94,7 @@ export default function Dashboard({ auth }) {
                   di dalem. bisa brot brot brot sepuasnya wkwkw.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#fcf3ea] py-10 m-4">
+              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <ImEnlarge2 size={70} />
                 </div>
@@ -104,7 +104,7 @@ export default function Dashboard({ auth }) {
                   contohnya PC, Tv, Lemari, Dokumen Super Semar, dll.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#fcf3ea] py-10 m-4">
+              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <MdAttachMoney size={70} />
                 </div>
@@ -118,7 +118,7 @@ export default function Dashboard({ auth }) {
             </div>
           </section>
 
-          <section className="bg-[#5e3719] text-white py-20">
+          <section className="bg-[#548CA8] text-white py-20">
             <div className="container mx-auto flex">
               <div className="w-7/12">
                 <img src={inviteImage} alt="" className="w-2/3" />
@@ -139,10 +139,6 @@ export default function Dashboard({ auth }) {
                 </PrimaryButton>
               </div>
             </div>
-          </section>
-
-          <section className="container mx-auto bg bg-[#b08968] mt-10 h-96">
-            <footer></footer>
           </section>
         </div>
       </CustomersLayout>
