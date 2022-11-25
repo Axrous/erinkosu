@@ -1,7 +1,7 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { Head } from "@inertiajs/inertia-react";
 import React from "react";
-import rimuru from "../../../public/photos/rimuru1.jpg";
+import yor from "../../../public/photos/yor2.jpg";
 import nero from "../../../public/photos/nero.jpg";
 import paimon from "../../../public/photos/paimon.png";
 import "react-slideshow-image/dist/styles.css";
@@ -23,18 +23,24 @@ export default function About() {
     <>
       <Head title="About Us" />
       <CustomersLayout>
-        <h2 className="uppercase text-center text-4xl mt-10">pemilik kost</h2>
-        <div className="flex container mx-auto mt-20 justify-evenly">
-          <div className="w-3/12 ">
-            <img src={rimuru} alt="" width={350} className="rounded-full" />
-          </div>
-          <div className="w-6/12 my-auto">
-            <h3 className="text-4xl tracking-wide mb-4">Rimuru Tempest</h3>
-            <p className="w-7/12 text-lg leading-normal tracking-wide">
-              Rimuru adalah pendiri dan Raja dari Federasi Jura Tempest di Hutan
-              Jura. Dia adalah salah satu Raja Iblis dari Octagram. Dia tinggal
-              di Kota Rimuru, yang merupakan Ibu kota Federasi Tempest Jura
-            </p>
+        <h2 className="uppercase text-center text-4xl mt-20">pemilik kost</h2>
+        <div className="w-full">
+          <div className="flex w-8/12 mx-auto mt-16 border rounded-3xl shadow-2xl drop-shadow-xl">
+            <div className="w-5/12">
+              <img src={yor} alt="" className="rounded-l-3xl" />
+            </div>
+            <div className="w-6/12 my-auto pl-20">
+              <h3 className="text-4xl tracking-wide mb-4">Yor Forger</h3>
+              <p className=" text-lg leading-normal tracking-wide">
+                Yor is a very beautiful, graceful and fairly tall young woman
+                with fair skin, long black hair, and upturned red eyes. She
+                splits her hair into two parts and crosses it over her head,
+                securing it with a headband and forming two thick locks of hair
+                that reach below her chest. When her hair is down, she lacks the
+                usual two thick locks of hair, and her hair reaches about
+                mid-back.
+              </p>
+            </div>
           </div>
         </div>
 
