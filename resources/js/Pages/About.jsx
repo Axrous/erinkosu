@@ -24,51 +24,61 @@ export default function About() {
       <Head title="About Us" />
       <CustomersLayout>
         <h2 className="uppercase text-center text-4xl mt-20">pemilik kost</h2>
-        <div className="w-full">
-          <div className="flex w-8/12 mx-auto mt-16 border rounded-3xl shadow-2xl drop-shadow-xl">
-            <div className="w-5/12">
-              <img src={yor} alt="" className="rounded-l-3xl" />
+        <div className="container mx-auto px-10 lg:px-0">
+          <div className="flex flex-col md:flex-row lg:w-10/12 mx-auto mt-10 md:mt-16 border rounded-3xl shadow-2xl drop-shadow-xl">
+            <div className="md:w-5/12">
+              <img
+                src={yor}
+                alt=""
+                className="rounded-t-3xl md:rounded-l-3xl"
+              />
             </div>
-            <div className="w-6/12 my-auto pl-20">
-              <h3 className="text-4xl tracking-wide mb-4">Yor Forger</h3>
-              <p className=" text-lg leading-normal tracking-wide">
+            <div className="md:w-7/12 lg:w-6/12 my-auto md:pl-10 xl:pl-20 px-2 pb-4 md:px-0">
+              <h3 className=" text-center md:text-left text-4xl tracking-wide mb-4">
+                Yor Forger
+              </h3>
+              <p className="text-center text-lg leading-normal tracking-wide">
                 Yor is a very beautiful, graceful and fairly tall young woman
                 with fair skin, long black hair, and upturned red eyes. She
                 splits her hair into two parts and crosses it over her head,
                 securing it with a headband and forming two thick locks of hair
-                that reach below her chest. When her hair is down, she lacks the
-                usual two thick locks of hair, and her hair reaches about
-                mid-back.
+                that reach below her chest.
               </p>
             </div>
           </div>
         </div>
 
-        <section className=" bg-[#EEE]  py-10 mt-20">
+        <section className=" bg-[#EEE]  py-4 md:py-10 mt-20">
           <div className="container mx-auto">
             <h2 className="uppercase text-center text-4xl ">penjaga kost</h2>
-            <div className="flex mt-20 text-center">
-              <div className="w-6/12">
+            <div className="flex flex-col md:flex-row mt-10 md:mt-20 text-center justify-evenly align-middle">
+              <div className="md:w-4/12 lg:w-6/12 flex md:block mb-2">
                 <img
                   src={nero}
                   width={350}
                   alt=""
-                  className="rounded-full mx-auto mb-8"
+                  className="rounded-full mx-auto md:mb-8 w-4/12 md:w-10/12 lg:w-6/12"
                 />
-                <h3 className="text-4xl tracking-wide mb-4">
-                  Secre Swallowtail
-                </h3>
-                <span className="italic">-Penjaga Kost Putra-</span>
+                <div className="my-auto md:my-0 mx-auto md:mx-0 w-6/12 md:w-full">
+                  <h3 className="text-2xl md:text-4xl tracking-wide md:mb-4">
+                    Secre Swallowtail
+                  </h3>
+                  <span className="italic">-Penjaga Kost Putra-</span>
+                </div>
               </div>
-              <div className="w-6/12">
+              <div className="md:w-4/12 lg:w-6/12 flex md:block mb-2">
                 <img
                   src={paimon}
                   alt=""
                   width={350}
-                  className="rounded-full mx-auto mb-8"
+                  className="rounded-full mx-auto md:mb-8 w-4/12 md:w-10/12 lg:w-6/12"
                 />
-                <h3 className="text-4xl tracking-wide mb-4">Clown Paimon</h3>
-                <span className="italic">-Penjaga Kost Putri-</span>
+                <div className="my-auto md:my-0 mx-auto md:mx-0 w-6/12 md:w-full">
+                  <h3 className="text-2xl md:text-4xl tracking-wide md:mb-4">
+                    Clown Paimon
+                  </h3>
+                  <span className="italic">-Penjaga Kost Putri-</span>
+                </div>
               </div>
             </div>
           </div>
@@ -79,7 +89,7 @@ export default function About() {
           <p className="text-center mt-4">
             Berikut adalah beberapa foto dari kamar dan lingkungan ErinKosu.
           </p>
-          <div className="w-8/12 mx-auto mt-10">
+          <div className="w-10/12 xl:w-8/12 mx-auto mt-10">
             <Slide {...properties}>
               <div className="h-[600px]">
                 <div className="bg-imgOne h-full bg-cover"></div>
@@ -94,9 +104,9 @@ export default function About() {
           </div>
         </section>
 
-        <section className="h-96 bg-[#548CA8] mb-20 container mx-auto">
-          <div className="flex h-full  relative items-center">
-            <div className="w-6/12 pl-20 tracking-wider my-auto text-white">
+        <section className="md:h-96 bg-[#548CA8] md:mb-20 container mx-auto md:px-10 lg:px-0 relative">
+          <div className="flex h-full flex-col-reverse md:flex-row items-center">
+            <div className="md:w-6/12 lg:pl-20 tracking-wider text-white mt-10 pb-4 md:my-auto md:pb-0 px-10">
               <h3 className="text-4xl mb-6">Get In Touch!</h3>
               <ul>
                 <li className="flex items-center mb-3">
@@ -111,10 +121,12 @@ export default function About() {
                 </li>
               </ul>
             </div>
-            <div className="w-5/12 mx-auto h-[450px] bg-white rounded-sm drop-shadow-2xl">
-              <div className=" w-11/12 mx-auto mt-10 pl-16">
-                <h3 className="text-2xl uppercase">Say Something :)</h3>
-                <form action="post">
+            <div className="md:w-6/12 lg:w-5/12 h-[450px] bg-white rounded-sm drop-shadow-2xl">
+              <div className="w-11/12 mx-auto mt-10">
+                <h3 className="text-2xl uppercase text-center">
+                  Say Something :)
+                </h3>
+                <form action="post" className="text-center">
                   <input
                     type="text"
                     name="name"
