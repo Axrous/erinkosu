@@ -33,8 +33,8 @@ export default function Service() {
               <div className="w-8/12 shadow-xl rounded-lg mx-auto">
                 <img
                   src={images[3]}
-                  alt=""
-                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
+                  alt="gambar"
+                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500 overflow-hidden"
                 />
                 <div className="pl-4 pb-4 mt-4">
                   <h3 className="text-xl">Kamar No. 1</h3>
@@ -51,7 +51,7 @@ export default function Service() {
               <div className="w-8/12 shadow-xl rounded-lg mx-auto">
                 <img
                   src={images[2]}
-                  alt=""
+                  alt="gambar"
                   className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
                 />
                 <div className="pl-4 pb-4 mt-4">

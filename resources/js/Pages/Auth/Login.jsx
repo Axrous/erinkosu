@@ -35,10 +35,9 @@ export default function Login() {
   };
 
   return (
-    <>
-      <CustomersLayout>
-        <Head title="Log in" />
-        <div className="container mx-auto w-3/12"></div>
+    <CustomersLayout>
+      <Head title="Log in" />
+      <div className="h-screen">
         <div className="mx-auto w-3/12 border p-10 mt-52 rounded-xl shadow-2xl bg-[#ede0d4]">
           {flash.message && (
             <div className="p-2 bg-white rounded-lg text-white">
@@ -91,7 +90,7 @@ export default function Login() {
             </div>
           </form>
         </div>
-      </CustomersLayout>
-    </>
+      </div>
+    </CustomersLayout>
   );
 }

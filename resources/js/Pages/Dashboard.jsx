@@ -20,13 +20,13 @@ export default function Dashboard({ auth }) {
       <Head title="Dashboard" />
       <CustomersLayout auth={auth}>
         <div className="">
-          <div className="container mx-auto flex mt-24">
-            <div className="w-6/12 my-auto">
-              <h1 className="text-6xl mb-4 leading-snug">
+          <div className="container mx-auto flex mt-10 lg:mt-24 2xl:px-0 px-10 lg:flex-row flex-col-reverse">
+            <div className="w-full lg:w-6/12 my-auto lg:text-left text-center">
+              <h1 className="text-4xl md:text-6xl mb-4 leading-snug">
                 Rebahan 24/7? <br />
                 Siapa bilang gabisa.
               </h1>
-              <p className="w-8/12">
+              <p className="w-full md:w-10/12 xl:w-8/12 lg:mx-0 mx-auto">
                 Daripada di rumah terus keliatan beban & dimarahin Orang Tua,
                 mending nge-kost bisa rebahan sepuasnya 24/7. Tapi bayar ya!
                 hehehe.
@@ -36,14 +36,14 @@ export default function Dashboard({ auth }) {
                 <BsArrowRight size={20} className="ml-2" />
               </PrimaryButton>
             </div>
-            <div className="w-6/12">
+            <div className="lg:w-6/12 ">
               <img src={heroImage} />
             </div>
           </div>
 
-          <section className="rounded-2xl w-full text-center mt-20 bg-[#EEEEEE] container mx-auto">
+          <section className="xl:rounded-2xl w-full text-center mt-20 bg-[#EEEEEE] container mx-auto">
             <h2 className="text-4xl tracking-wider py-2">ErinKosu!</h2>
-            <p className="w-7/12 mx-auto leading-normal italic mb-2">
+            <p className="w-full md:w-10/12 lg:w-7/12 mx-auto leading-normal italic mb-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
               itaque rem, delectus architecto debitis quam neque animi
               asperiores at sed veritatis doloremque deleniti, vero quaerat
@@ -62,8 +62,8 @@ export default function Dashboard({ auth }) {
                 sih keuntungannya?
               </p>
             </div>
-            <div className="flex flex-wrap justify-evenly mt-16">
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
+            <div className="flex flex-wrap flex-col md:flex-row  justify-evenly mt-16">
+              <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <BsBuilding size={70} />
                 </div>
@@ -74,7 +74,7 @@ export default function Dashboard({ auth }) {
                   Universitas tersebut.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
+              <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <BsGenderAmbiguous size={70} />
                 </div>
@@ -84,7 +84,7 @@ export default function Dashboard({ auth }) {
                   juga.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
+              <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <BiBath size={70} />
                 </div>
@@ -94,7 +94,7 @@ export default function Dashboard({ auth }) {
                   di dalem. bisa brot brot brot sepuasnya wkwkw.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
+              <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <ImEnlarge2 size={70} />
                 </div>
@@ -104,7 +104,7 @@ export default function Dashboard({ auth }) {
                   contohnya PC, Tv, Lemari, Dokumen Super Semar, dll.
                 </p>
               </div>
-              <div className=" w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
+              <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
                 <div className="flex justify-center">
                   <MdAttachMoney size={70} />
                 </div>
@@ -119,15 +119,19 @@ export default function Dashboard({ auth }) {
           </section>
 
           <section className="bg-[#548CA8] text-white py-20">
-            <div className="container mx-auto flex">
-              <div className="w-7/12">
-                <img src={inviteImage} alt="" className="w-2/3" />
+            <div className="container mx-auto flex md:flex-row flex-col justify-evenly lg:justify-center px-10 xl:px-0">
+              <div className="md:w-5/12">
+                <img
+                  src={inviteImage}
+                  alt=""
+                  className="w-full lg:w-3/4 xl:w-2/3 mx-auto"
+                />
               </div>
-              <div className="w-5/12 h-full my-auto">
-                <h2 className="text-4xl tracking-wider mb-10 border-x-2 pl-3 w-6/12">
+              <div className="mt-10 md:mt-0 md:w-5/12 h-full my-auto">
+                <h2 className="text-4xl text-center tracking-wider mx-auto md:mx-0 mb-10 border-x-2 md:w-10/12 xl:w-7/12 2xl:w-6/12">
                   Tunggu Apalagi!
                 </h2>
-                <p className="w-2/3 text-base leading-relaxed mb-10">
+                <p className="w-full xl:w-2/3 text-base leading-relaxed mb-10">
                   Ayo Nge-Kost di Erinkosu, Lorem ipsum dolor sit amet
                   consectetur adipisicing elit. Quos, eos commodi animi tempora
                   illum, expedita sed ratione quidem cum in quo recusandae natus

@@ -19,7 +19,7 @@ export default function DetailService() {
     <>
       <Head title="Kamar x" />
       <CustomersLayout>
-        <div className="container mx-auto">
+        <div className="container mx-auto h-screen">
           <div className="w-8/12 mx-auto">
             <div className="border-b-2  mt-4">
               <BsArrowLeft size={35} />
