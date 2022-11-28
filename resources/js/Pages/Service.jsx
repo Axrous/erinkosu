@@ -15,7 +15,7 @@ export default function Service() {
     <>
       <Head title="Services" />
       <CustomersLayout>
-        <div className="container mx-auto h-screen">
+        <div className="container mx-auto">
           <h1 className="text-4xl text-center mt-6 tracking-wider">
             Kamar Kost
           </h1>
@@ -29,7 +29,7 @@ export default function Service() {
           </ul>
 
           <div className="flex justify-evenly mt-20 flex-wrap">
-            <div className="w-3/12 mb-16">
+            <div className="lg:w-4/12 xl:w-3/12 mb-16">
               <div className="w-8/12 shadow-xl rounded-lg mx-auto">
                 <img
                   src={images[3]}
@@ -47,7 +47,53 @@ export default function Service() {
               </div>
             </div>
 
-            <div className="w-3/12 mb-16">
+            <div className="lg:w-4/12 xl:w-3/12 mb-16">
+              <div className="w-8/12 shadow-xl rounded-lg mx-auto">
+                <img
+                  src={images[2]}
+                  alt="gambar"
+                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
+                />
+                <div className="pl-4 pb-4 mt-4">
+                  <h3 className="text-xl">Kamar No. 1</h3>
+                  <p>Luas 3 x 3</p>
+                  <span className="flex">
+                    Status: Booked <FcCancel className="ml-2 my-auto" />
+                  </span>
+                  <PrimaryButton
+                    className="mt-4 hover:cursor-not-allowed"
+                    processing={true}
+                  >
+                    Detail
+                  </PrimaryButton>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:w-4/12 xl:w-3/12 mb-16">
+              <div className="w-8/12 shadow-xl rounded-lg mx-auto">
+                <img
+                  src={images[2]}
+                  alt="gambar"
+                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
+                />
+                <div className="pl-4 pb-4 mt-4">
+                  <h3 className="text-xl">Kamar No. 1</h3>
+                  <p>Luas 3 x 3</p>
+                  <span className="flex">
+                    Status: Booked <FcCancel className="ml-2 my-auto" />
+                  </span>
+                  <PrimaryButton
+                    className="mt-4 hover:cursor-not-allowed"
+                    processing={true}
+                  >
+                    Detail
+                  </PrimaryButton>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:w-4/12 xl:w-3/12 mb-16">
               <div className="w-8/12 shadow-xl rounded-lg mx-auto">
                 <img
                   src={images[2]}
