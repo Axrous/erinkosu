@@ -9,9 +9,7 @@ class ServiceController extends Controller
 {
   public function index()
   {
-    return Inertia::render('Service', [
-      'auth' => auth()->hasUser()
-    ]);
+    return Inertia::render('Service', []);
   }
 
   public function detailService()

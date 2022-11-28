@@ -10,15 +10,11 @@ class HomeController extends Controller
 
   public function index()
   {
-    return Inertia::render('Dashboard', [
-      'auth' => auth()->hasUser(),
-    ]);
+    return Inertia::render('Dashboard', []);
   }
 
   public function about()
   {
-    return Inertia::render('About', [
-      'auth' => auth()->hasUser()
-    ]);
+    return Inertia::render('About', []);
   }
 }
