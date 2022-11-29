@@ -4,13 +4,8 @@ import { Head } from "@inertiajs/inertia-react";
 import React from "react";
 import { FcOk, FcCancel } from "react-icons/fc";
 
-export default function Service() {
-  const images = [
-    "https://source.unsplash.com/random",
-    "https://source.unsplash.com/user/wsanter",
-    "https://source.unsplash.com/random/?room",
-    "https://source.unsplash.com/random/?bedroom",
-  ];
+export default function Service({ rooms }) {
+  console.log(rooms);
   return (
     <>
       <Head title="Services" />
@@ -29,92 +24,31 @@ export default function Service() {
           </ul>
 
           <div className="flex justify-evenly mt-20 flex-wrap">
-            <div className="lg:w-4/12 xl:w-3/12 mb-16">
-              <div className="w-8/12 shadow-xl rounded-lg mx-auto">
-                <img
-                  src={images[3]}
-                  alt="gambar"
-                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500 overflow-hidden"
-                />
-                <div className="pl-4 pb-4 mt-4">
-                  <h3 className="text-xl">Kamar No. 1</h3>
-                  <p>Luas 3 x 3</p>
-                  <span className="flex">
-                    Status: Available <FcOk className="ml-2 my-auto" />
-                  </span>
-                  <PrimaryButton className="mt-4">Detail</PrimaryButton>
+            {rooms.map((room, index) => (
+              <div className="lg:w-4/12 xl:w-3/12 mb-16">
+                <div className="w-8/12 shadow-xl rounded-lg mx-auto">
+                  <img
+                    src={room.url}
+                    alt="gambar"
+                    className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500 overflow-hidden"
+                  />
+                  <div className="pl-4 pb-4 mt-4">
+                    <h3 className="text-xl" key={index}>
+                      Kamar No. {room.no}
+                    </h3>
+                    <span className="flex">
+                      Status: {room.status}{" "}
+                      {room.status == "available" ? (
+                        <FcOk className="ml-2 my-auto" />
+                      ) : (
+                        <FcCancel className="ml-2 my-auto" />
+                      )}
+                    </span>
+                    <PrimaryButton className="mt-4">Detail</PrimaryButton>
+                  </div>
                 </div>
               </div>
-            </div>
-
-            <div className="lg:w-4/12 xl:w-3/12 mb-16">
-              <div className="w-8/12 shadow-xl rounded-lg mx-auto">
-                <img
-                  src={images[2]}
-                  alt="gambar"
-                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
-                />
-                <div className="pl-4 pb-4 mt-4">
-                  <h3 className="text-xl">Kamar No. 1</h3>
-                  <p>Luas 3 x 3</p>
-                  <span className="flex">
-                    Status: Booked <FcCancel className="ml-2 my-auto" />
-                  </span>
-                  <PrimaryButton
-                    className="mt-4 hover:cursor-not-allowed"
-                    processing={true}
-                  >
-                    Detail
-                  </PrimaryButton>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:w-4/12 xl:w-3/12 mb-16">
-              <div className="w-8/12 shadow-xl rounded-lg mx-auto">
-                <img
-                  src={images[2]}
-                  alt="gambar"
-                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
-                />
-                <div className="pl-4 pb-4 mt-4">
-                  <h3 className="text-xl">Kamar No. 1</h3>
-                  <p>Luas 3 x 3</p>
-                  <span className="flex">
-                    Status: Booked <FcCancel className="ml-2 my-auto" />
-                  </span>
-                  <PrimaryButton
-                    className="mt-4 hover:cursor-not-allowed"
-                    processing={true}
-                  >
-                    Detail
-                  </PrimaryButton>
-                </div>
-              </div>
-            </div>
-
-            <div className="lg:w-4/12 xl:w-3/12 mb-16">
-              <div className="w-8/12 shadow-xl rounded-lg mx-auto">
-                <img
-                  src={images[2]}
-                  alt="gambar"
-                  className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500"
-                />
-                <div className="pl-4 pb-4 mt-4">
-                  <h3 className="text-xl">Kamar No. 1</h3>
-                  <p>Luas 3 x 3</p>
-                  <span className="flex">
-                    Status: Booked <FcCancel className="ml-2 my-auto" />
-                  </span>
-                  <PrimaryButton
-                    className="mt-4 hover:cursor-not-allowed"
-                    processing={true}
-                  >
-                    Detail
-                  </PrimaryButton>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </CustomersLayout>
