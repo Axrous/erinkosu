@@ -7,7 +7,7 @@ export default function CustomersLayout({ children }) {
   const { auth } = usePage().props;
   return (
     <>
-      <div className="top-0 left-0 sticky bg-[#476072] z-10 px-10">
+      <div className="top-0 left-0 sticky bg-[#476072] z-10 px-4 xl:px-0">
         <Navbar auth={auth} />
       </div>
       <div className="">{children}</div>
