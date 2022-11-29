@@ -43,14 +43,17 @@ export default function Register({ auth }) {
     <CustomersLayout>
       <Head title="Register" />
 
-      <div className="mx-auto container justify-between border p-10 mt-32 rounded-xl shadow-2xl bg-[#ede0d4]">
+      <div className="mx-auto container lg:w-8/12 justify-between border p-10 mt-20 md:mt-32 rounded-xl shadow-2xl bg-[#ede0d4] mb-20">
         <h1 className="text-2xl text-center mb-10">Daftar Dulu Ya!</h1>
         <div>
           <InputError message={errors.wrong} className="mb-2" />
         </div>
 
-        <form onSubmit={submit} className="flex justify-evenly pb-8">
-          <div className="w-4/12">
+        <form
+          onSubmit={submit}
+          className="flex justify-evenly flex-col md:flex-row pb-8"
+        >
+          <div className="md:w-4/12">
             <div className="mt-4">
               <InputLabel forInput="email" value="Email" />
               <TextInput
@@ -108,7 +111,7 @@ export default function Register({ auth }) {
             </div>
           </div>
 
-          <div className="w-4/12">
+          <div className="md:w-4/12">
             <div className="mt-4">
               <InputLabel forInput="first_name" value="Photo Profile" />
               <input
