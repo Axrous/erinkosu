@@ -10,7 +10,7 @@ export default function CustomersLayout({ children }) {
       <div className="top-0 left-0 sticky bg-[#476072] z-10 px-4 xl:px-0">
         <Navbar auth={auth} />
       </div>
-      <div className="">{children}</div>
+      <div className="min-h-screen">{children}</div>
       <Footer />
     </>
   );

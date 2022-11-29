@@ -7,7 +7,7 @@ export default function Navbar({ auth }) {
   const [navbar, setNavbar] = useState(false);
 
   return (
-    <nav className=" flex container mx-auto text-white py-2 pt-2">
+    <nav className=" flex container mx-auto text-white py-2">
       <span className="w-6/12 md:w-3/12 text-2xl my-auto font-semibold tracking-widest">
         <Link href="/">ErinKosu</Link>
       </span>

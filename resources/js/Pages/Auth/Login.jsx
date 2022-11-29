@@ -37,7 +37,7 @@ export default function Login() {
   return (
     <CustomersLayout>
       <Head title="Log in" />
-      <div className="h-screen">
+      <div className="">
         <div className="mx-auto w-11/12 md:w-7/12 lg:w-5/12 xl:w-3/12 border p-10 mt-20 md:mt-52 rounded-xl shadow-2xl bg-[#ede0d4]">
           {flash.message && (
             <div className="p-2 bg-white rounded-lg text-white">
