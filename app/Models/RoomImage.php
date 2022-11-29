@@ -15,6 +15,6 @@ class RoomImage extends Model
 
   public function room()
   {
-    return $this->belongsTo('App\Room', 'room_id');
+    return $this->belongsTo('App\Room', 'room_no');
   }
 }
