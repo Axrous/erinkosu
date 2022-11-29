@@ -25,7 +25,7 @@ export default function Navbar({ auth }) {
           <li className="mb-4 md:mb-0">
             <Link href="/about">About</Link>
           </li>
-          <li>
+          <li className="md:hidden">
             <button type="button" className="border rounded-full text-base">
               {auth ? (
                 <Link href="/logout" className="py-2 px-10 inline-block">
