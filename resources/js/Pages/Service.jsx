@@ -1,11 +1,12 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { Head } from "@inertiajs/inertia-react";
-import React from "react";
+import React, { useState } from "react";
 import { FcOk, FcCancel } from "react-icons/fc";
 
 export default function Service({ rooms }) {
-  console.log(rooms);
+  const [isBooked, setIsBooked] = useState(false);
+
   return (
     <>
       <Head title="Services" />
@@ -24,8 +25,8 @@ export default function Service({ rooms }) {
           </ul>
 
           <div className="flex justify-evenly mt-20 flex-wrap">
-            {rooms.map((room, index) => (
-              <div className="lg:w-4/12 xl:w-3/12 mb-16">
+            {rooms.map((room) => (
+              <div className="lg:w-4/12 xl:w-3/12 mb-16" key={room.no}>
                 <div className="w-8/12 shadow-xl rounded-lg mx-auto">
                   <img
                     src={room.url}
@@ -33,20 +34,25 @@ export default function Service({ rooms }) {
                     className="object-cover h-48 w-96 rounded-t-lg hover:scale-105 transition-all duration-500 overflow-hidden"
                   />
                   <div className="pl-4 pb-4 mt-4">
-                    <h3 className="text-xl" key={index}>
-                      Kamar No. {room.no}
-                    </h3>
+                    <h3 className="text-xl">Kamar No. {room.no}</h3>
                     <span className="flex">
-                      Status: {room.status}{" "}
+                      Status: {room.status}
                       {room.status == "available" ? (
                         <FcOk className="ml-2 my-auto" />
                       ) : (
                         <FcCancel className="ml-2 my-auto" />
                       )}
                     </span>
-                    <PrimaryButton className="mt-4">
-                      <a href={`/services/${room.no}`}>Detail</a>
-                    </PrimaryButton>
+                    <a
+                      href={`/services/${room.no}`}
+                      className={`py-2 px-6 bg-black text-white rounded-lg inline-block mt-4 ${
+                        room.status == "booked"
+                          ? "pointer-events-none opacity-25 "
+                          : ""
+                      }`}
+                    >
+                      Detail
+                    </a>
                   </div>
                 </div>
               </div>
