@@ -2,11 +2,33 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { Head } from "@inertiajs/inertia-react";
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 
 export default function DetailService({ room, images }) {
   const [Image, setImage] = useState(images[0].url);
+
+  useEffect(() => {
+    //change this to the script source you want to load, for example this is snap.js sandbox env
+    const midtransScriptUrl =
+      "https://api.midtrans.com/v2/assets/js/midtrans-new-3ds.min.js";
+    //change this according to your client-key
+    const myMidtransClientKey = "SB-Mid-client-YYeDdwZBGAL0y1vY";
+
+    let scriptTag = document.createElement("script");
+    scriptTag.setAttribute("id", "midtrans-script");
+    scriptTag.setAttribute("type", "text/javascript");
+    scriptTag.src = midtransScriptUrl;
+    // optional if you want to set script attribute
+    // for example snap.js have data-client-key attribute
+    scriptTag.setAttribute("data-environment", "sandbox");
+    scriptTag.setAttribute("data-client-key", myMidtransClientKey);
+
+    document.body.appendChild(scriptTag);
+    return () => {
+      document.body.removeChild(scriptTag);
+    };
+  }, []);
   return (
     <>
       <Head title="Kamar x" />
@@ -54,7 +76,7 @@ export default function DetailService({ room, images }) {
                   </ul>
                 </div>
                 <div className="w-6/12 mt-10">
-                  <PrimaryButton>Pesan Sekarang</PrimaryButton>
+                  <a href={`/services/${room.no}/payment`}>Pesan sekarang</a>
                 </div>
               </div>
             </section>

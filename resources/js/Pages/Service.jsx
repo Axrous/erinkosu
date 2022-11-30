@@ -1,4 +1,3 @@
-import PrimaryButton from "@/Components/PrimaryButton";
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { Head } from "@inertiajs/inertia-react";
 import React, { useState } from "react";
