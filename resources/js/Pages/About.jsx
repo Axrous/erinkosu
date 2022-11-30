@@ -12,7 +12,7 @@ import {
   BsFillPinMapFill,
 } from "react-icons/bs";
 
-export default function About() {
+export default function About({ images }) {
   const properties = {
     arrows: false,
     indicators: true,
@@ -91,15 +91,16 @@ export default function About() {
           </p>
           <div className="w-10/12 xl:w-8/12 mx-auto mt-10">
             <Slide {...properties}>
-              <div className="h-[600px]">
-                <div className="bg-imgOne h-full bg-cover"></div>
-              </div>
-              <div className="h-[600px]">
-                <div className="bg-imgTwo h-full bg-cover"></div>
-              </div>
-              <div className="h-[600px]">
-                <div className="bg-imgOne h-full bg-cover"></div>
-              </div>
+              {images.map((image, index) => {
+                return (
+                  <div className="h-[600px]" key={index}>
+                    <div
+                      style={{ backgroundImage: `url(${image.url})` }}
+                      className="h-full bg-cover bg-center"
+                    ></div>
+                  </div>
+                );
+              })}
             </Slide>
           </div>
         </section>
