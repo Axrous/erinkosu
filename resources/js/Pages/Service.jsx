@@ -44,7 +44,9 @@ export default function Service({ rooms }) {
                         <FcCancel className="ml-2 my-auto" />
                       )}
                     </span>
-                    <PrimaryButton className="mt-4">Detail</PrimaryButton>
+                    <PrimaryButton className="mt-4">
+                      <a href={`/services/${room.no}`}>Detail</a>
+                    </PrimaryButton>
                   </div>
                 </div>
               </div>

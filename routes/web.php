@@ -42,6 +42,6 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth']);
 Route::get('/', [HomeController::class,  'index']);
 Route::get('/about', [HomeController::class,  'about']);
 Route::get('/services', [ServiceController::class,  'index']);
-Route::get('/services/room', [ServiceController::class,  'detailService']);
+Route::get('/services/{room_no}', [ServiceController::class,  'detailService']);
 
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);

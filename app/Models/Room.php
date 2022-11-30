@@ -19,4 +19,9 @@ class Room extends Model
   protected $cast = [
     'status' => RoomStatusEnum::class
   ];
+
+  public function images()
+  {
+    return $this->hasMany(RoomImage::class, 'room_no');
+  }
 }

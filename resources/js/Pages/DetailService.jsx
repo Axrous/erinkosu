@@ -5,57 +5,42 @@ import React from "react";
 import { useState } from "react";
 import { BsArrowLeft } from "react-icons/bs";
 
-export default function DetailService() {
-  const images = [
-    "https://source.unsplash.com/random",
-    "https://source.unsplash.com/user/wsanter",
-    "https://source.unsplash.com/random/?room",
-    "https://source.unsplash.com/random/?bedroom",
-  ];
-
-  const [Image, setImage] = useState(images[0]);
-
+export default function DetailService({ room, images }) {
+  const [Image, setImage] = useState(images[0].url);
   return (
     <>
       <Head title="Kamar x" />
       <CustomersLayout>
         <div className="container mx-auto h-screen">
           <div className="w-8/12 mx-auto">
-            <div className="border-b-2  mt-4">
-              <BsArrowLeft size={35} />
-            </div>
             <section className="flex mt-10">
               <div className="w-6/12">
                 <div className=" border-2 rounded-2xl p-2">
                   <img
-                    src={Image}
+                    src={`/${Image}`}
                     alt=""
                     className=" w-full h-96 object-contain"
                   />
                 </div>
                 <ul className="flex mt-6">
-                  <li className="w-2/12">
-                    <img
-                      src={images[0]}
-                      alt=""
-                      className="border h-20 w-full object-cover hover:cursor-pointer"
-                      onClick={(e) => setImage(images[0])}
-                    />
-                  </li>
-                  <li className="w-2/12">
-                    <img
-                      src={images[1]}
-                      alt=""
-                      className="border h-20 w-full object-cover hover:cursor-pointer"
-                      onClick={(e) => setImage(images[1])}
-                    />
-                  </li>
+                  {images.map((image) => {
+                    return (
+                      <li className="w-2/12" key={image.id}>
+                        <img
+                          src={`/${image.url}`}
+                          alt=""
+                          className="border h-20 w-full object-cover hover:cursor-pointer"
+                          onClick={() => setImage(image.url)}
+                        />
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
               <div className="w-6/12 border-x-2 ml-16  border-black pl-4 my-auto">
-                <h2 className="text-4xl tracking-wider">Kamar No. X</h2>
+                <h2 className="text-4xl tracking-wider">Kamar No. {room.no}</h2>
                 <span className="block mt-2 tracking-wider text-xl">
-                  Rp. 300.000/bulan
+                  Rp. {room.price}/bulan
                 </span>
                 <div>
                   <span className="mt-4">Fasilitas:</span>
