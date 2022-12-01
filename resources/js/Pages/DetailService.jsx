@@ -75,9 +75,16 @@ export default function DetailService({ room, images }) {
                     <li className="w-6/12">Meja & kursi</li>
                   </ul>
                 </div>
-                <div className="w-6/12 mt-10">
+                {/* <div className="w-6/12 mt-10">
                   <a href={`/services/${room.no}/payment`}>Pesan sekarang</a>
-                </div>
+                </div> */}
+                <form
+                  action={`/services/${room.no}/payment`}
+                  method="post"
+                  className="w-6/12 mt-10"
+                >
+                  <button type="submit">Pesan Sekarang</button>
+                </form>
               </div>
             </section>
           </div>

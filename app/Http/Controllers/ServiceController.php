@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\TransactionStatusEnum;
+use App\Models\Payment;
 use App\Models\Room;
 use App\Models\RoomImage;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
+use sirajcse\UniqueIdGenerator\UniqueIdGenerator;
 
 class ServiceController extends Controller
 {
@@ -37,8 +40,10 @@ class ServiceController extends Controller
     return Inertia::render('Payment', []);
   }
 
-  public function postPayment()
+  public function postPayment($room_no)
   {
+    $room = Room::where('no', $room_no)->first();
+
     $client = new Client([
       "headers" => [
         "Accept" => "application/json",
@@ -46,12 +51,13 @@ class ServiceController extends Controller
         "Authorization" => base64_encode('SB-Mid-server-cxHsqHyzBbhHzgk8-zWGGhJ0')
       ]
     ]);
-    $response = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
+    // $order_id = UniqueIdGenerator::generate(['table' => 'payments', 'length' => 10, 'prefix' => 'TR-']);
+    $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
         "payment_type" => "bank_transfer",
         "transaction_details" => [
-          "order_id" => "order-4",
-          "gross_amount" => 10000
+          "order_id" => uniqid('TR-'),
+          "gross_amount" => $room->price
         ],
         "bank_transfer" => [
           "bank" => "bca"
@@ -59,6 +65,31 @@ class ServiceController extends Controller
       ])
     ]);
 
-    return $response->getBody();
+
+    $response = json_decode($charge->getBody());
+
+    $payment = new Payment();
+    $payment->user_id = auth()->id();
+    $payment->transaction_id = $response->transaction_id;
+    $payment->room_no = $room_no;
+    $payment->va_number = $response->va_numbers[0]->va_number;
+    $payment->status = TransactionStatusEnum::PENDING;
+
+    if (!$payment->save()) {
+      return false;
+    }
+
+    return $response;
   }
+
+  // public function notifHandle(Request $request)
+  // {
+  //   $notification = json_decode($request->getContent(), true);
+
+  //   $invoice = $notification['order_id'];
+  //   $transactionId = $notification['transaction_id'];
+  //   $statusCode = $notification['status_code'];
+
+  //   $order = Payment::where('invoice')
+  // }
 }

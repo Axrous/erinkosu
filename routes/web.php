@@ -42,8 +42,8 @@ Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth']);
 Route::get('/', [HomeController::class,  'index']);
 Route::get('/about', [HomeController::class,  'about']);
 Route::get('/services', [ServiceController::class,  'index']);
-// Route::get('/services/{room_no}', [ServiceController::class,  'detailService']);
-// Route::get('/services/{room_no}/payment', [ServiceController::class,  'postPayment']);
-Route::post('/services/payment', [ServiceController::class,  'postPayment']);
+Route::get('/services/{room_no}', [ServiceController::class,  'detailService']);
+Route::post('/services/{room_no}/payment', [ServiceController::class,  'postPayment'])->middleware(['auth']);
+// Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 
-Route::get('admin/create-room', [RoomController::class, 'addRoom']);
+Route::post('admin/create-room', [RoomController::class, 'addRoom']);
