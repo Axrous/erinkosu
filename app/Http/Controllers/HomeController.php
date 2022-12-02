@@ -19,4 +19,9 @@ class HomeController extends Controller
     $images = RoomImage::select('url')->take(5)->get();
     return Inertia::render('About', ['images' => $images]);
   }
+
+  public function historyTransactionCustomer()
+  {
+    return Inertia::render('HistoryTransaction', []);
+  }
 }
