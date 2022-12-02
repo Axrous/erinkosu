@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\RoomStatusEnum;
 use App\Enum\TransactionStatusEnum;
 use App\Models\Payment;
 use App\Models\Room;
@@ -51,12 +52,14 @@ class ServiceController extends Controller
         "Authorization" => base64_encode('SB-Mid-server-cxHsqHyzBbhHzgk8-zWGGhJ0')
       ]
     ]);
+
+    $order_id = uniqid('TR-');
     // $order_id = UniqueIdGenerator::generate(['table' => 'payments', 'length' => 10, 'prefix' => 'TR-']);
     $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
         "payment_type" => "bank_transfer",
         "transaction_details" => [
-          "order_id" => uniqid('TR-'),
+          "order_id" => $order_id,
           "gross_amount" => $room->price
         ],
         "bank_transfer" => [
@@ -69,6 +72,7 @@ class ServiceController extends Controller
     $response = json_decode($charge->getBody());
 
     $payment = new Payment();
+    $payment->id = $response->order_id;
     $payment->user_id = auth()->id();
     $payment->transaction_id = $response->transaction_id;
     $payment->room_no = $room_no;
@@ -82,14 +86,45 @@ class ServiceController extends Controller
     return $response;
   }
 
-  // public function notifHandle(Request $request)
-  // {
-  //   $notification = json_decode($request->getContent(), true);
+  public function notifHandle(Request $request)
+  {
+    try {
 
-  //   $invoice = $notification['order_id'];
-  //   $transactionId = $notification['transaction_id'];
-  //   $statusCode = $notification['status_code'];
+      $notification = json_decode($request->getContent(), true);
 
-  //   $order = Payment::where('invoice')
-  // }
+      $orderId = $notification['order_id'];
+      $transactionId = $notification['transaction_id'];
+      $statusCode = $notification['status_code'];
+
+      $order = Payment::where('transaction_id', $transactionId)->where('id', $orderId)->first();
+      if (!$order) {
+        return response()->json(["message" => "Failed"], 400);
+      }
+
+      switch ($statusCode) {
+        case '200':
+          $order->status = TransactionStatusEnum::SUCCESS;
+          break;
+        case '201':
+          $order->status = TransactionStatusEnum::PENDING;
+          break;
+        case '202':
+          $order->status = TransactionStatusEnum::CANCEL;
+          break;
+        default:
+          break;
+      }
+      $order->save();
+
+      $room = Room::where('no', $order->room_no)->first();
+
+      if ($order->status == TransactionStatusEnum::SUCCESS) {
+        $room->status = RoomStatusEnum::BOOKED;
+      }
+      $room->save();
+      return response()->json(['message' => "OK"], 200);
+    } catch (\Throwable $th) {
+      return response()->json(['message' => "Error"], 404);
+    }
+  }
 }
