@@ -14,7 +14,7 @@ return new class extends Migration
   public function up()
   {
     Schema::create('payments', function (Blueprint $table) {
-      $table->string('id');
+      $table->string('id')->primary();
       $table->string('invoice', '10')->nullable();
       $table->unsignedBigInteger('room_no');
       $table->unsignedBigInteger('user_id');
