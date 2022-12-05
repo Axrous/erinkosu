@@ -8,8 +8,13 @@ export default function DetailService({ room, images }) {
   const [showModal, setShowModal] = useState(false);
 
   const { data, setData, post, processing, errors } = useForm({
-    durations: "",
+    totalPrice: "",
   });
+
+  function radioHandleChange(e) {
+    let price = e.target.value * room.price;
+    setData("totalPrice", e.target.value);
+  }
 
   function submit(e) {
     e.preventDefault();
@@ -79,21 +84,17 @@ export default function DetailService({ room, images }) {
                         {/*content*/}
                         <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                           {/*header*/}
-                          <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
+                          <div className="flex flex-col justify-between p-5 border-b border-solid border-slate-200 rounded-t">
                             <h3 className="text-3xl font-semibold">
                               Pesan Kamar No {room.no}
                             </h3>
                             <button
                               className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                               onClick={() => setShowModal(false)}
-                            >
-                              <span className="text-black h-10 w-10 text-2xl ">
-                                ×
-                              </span>
-                            </button>
+                            ></button>
                           </div>
                           {/*body*/}
-                          <h4 className="text-center">Lama waktu Nge-Kost :</h4>
+                          <h4 className="text-center">Lama waktu nge-Kost :</h4>
                           <form onSubmit={submit}>
                             <div className="relative p-6 flex justify-between">
                               {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
@@ -104,9 +105,7 @@ export default function DetailService({ room, images }) {
                                   name="durations"
                                   value="3"
                                   className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
-                                  onChange={(e) =>
-                                    setData("durations", e.target.value)
-                                  }
+                                  onChange={radioHandleChange}
                                 />
                                 <label
                                   htmlFor="option-1"
@@ -122,9 +121,7 @@ export default function DetailService({ room, images }) {
                                   name="durations"
                                   value="6"
                                   className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
-                                  onChange={(e) =>
-                                    setData("durations", e.target.value)
-                                  }
+                                  onChange={radioHandleChange}
                                 />
                                 <label
                                   htmlFor="option-2"
@@ -140,9 +137,7 @@ export default function DetailService({ room, images }) {
                                   name="durations"
                                   value="12"
                                   className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
-                                  onChange={(e) =>
-                                    setData("durations", e.target.value)
-                                  }
+                                  onChange={radioHandleChange}
                                 />
                                 <label
                                   htmlFor="option-3"
@@ -152,12 +147,20 @@ export default function DetailService({ room, images }) {
                                 </label>
                               </div>
                             </div>
+                            {errors.totalPrice && (
+                              <p className="text-red-500">
+                                {errors.totalPrice}
+                              </p>
+                            )}
                             {/*footer*/}
                             <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
                               <button
                                 className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                 type="button"
-                                onClick={() => setShowModal(false)}
+                                onClick={(e) => {
+                                  setShowModal(false);
+                                  setData("totalPrice", "");
+                                }}
                               >
                                 Close
                               </button>

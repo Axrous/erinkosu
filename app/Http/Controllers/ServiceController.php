@@ -127,4 +127,14 @@ class ServiceController extends Controller
       return response()->json(['message' => "Error"], 404);
     }
   }
+
+  public function getFormData(Request $request)
+  {
+    $data = $request->validate([
+      'totalPrice' => 'required|in:3,6,12'
+    ]);
+    return response()->json([
+      "totalPrice" => $request->totalPrice
+    ]);
+  }
 }
