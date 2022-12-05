@@ -1,5 +1,5 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, useForm } from "@inertiajs/inertia-react";
 import React from "react";
 import { useState, useEffect } from "react";
 
@@ -7,6 +7,15 @@ export default function DetailService({ room, images }) {
   const [Image, setImage] = useState(images[0].url);
   const [showModal, setShowModal] = useState(false);
 
+  const { data, setData, post, processing, errors } = useForm({
+    durations: "",
+  });
+
+  function submit(e) {
+    e.preventDefault();
+    // post(`/services/${room.no}/payment`);
+    console.log(data);
+  }
   return (
     <>
       <Head title={`Kamar No. ${room.no}`} />
@@ -57,11 +66,11 @@ export default function DetailService({ room, images }) {
                   <a href={`/services/${room.no}/payment`}>Pesan sekarang</a>
                 </div> */}
                 <button
-                  class="block w-full mt-10 md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  className="block w-full mt-10 md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
                   type="button"
                   onClick={() => setShowModal(true)}
                 >
-                  Small modal
+                  Pesan Kamar
                 </button>
 
                 {showModal ? (
@@ -85,40 +94,88 @@ export default function DetailService({ room, images }) {
                             </button>
                           </div>
                           {/*body*/}
-                          <div className="relative p-6 flex-auto">
-                            <p className="my-4 text-slate-500 text-lg leading-relaxed"></p>
-                          </div>
-                          {/*footer*/}
-                          <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                            <button
-                              className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                              type="button"
-                              onClick={() => setShowModal(false)}
-                            >
-                              Close
-                            </button>
-                            <button
-                              className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                              type="button"
-                              onClick={() => setShowModal(false)}
-                            >
-                              Save Changes
-                            </button>
-                          </div>
+                          <h4 className="text-center">Lama waktu Nge-Kost :</h4>
+                          <form onSubmit={submit}>
+                            <div className="relative p-6 flex justify-between">
+                              {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
+                              <div className="flex items-center mb-4">
+                                <input
+                                  id="option-1"
+                                  type="radio"
+                                  name="durations"
+                                  value="3"
+                                  className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                  onChange={(e) =>
+                                    setData("durations", e.target.value)
+                                  }
+                                />
+                                <label
+                                  htmlFor="option-1"
+                                  className="block ml-2 text-sm font-medium text-gray-900 "
+                                >
+                                  3 Bulan
+                                </label>
+                              </div>
+                              <div className="flex items-center mb-4">
+                                <input
+                                  id="option-2"
+                                  type="radio"
+                                  name="durations"
+                                  value="6"
+                                  className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                  onChange={(e) =>
+                                    setData("durations", e.target.value)
+                                  }
+                                />
+                                <label
+                                  htmlFor="option-2"
+                                  className="block ml-2 text-sm font-medium text-gray-900 "
+                                >
+                                  6 Bulan
+                                </label>
+                              </div>
+                              <div className="flex items-center mb-4">
+                                <input
+                                  id="option-3"
+                                  type="radio"
+                                  name="durations"
+                                  value="12"
+                                  className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                                  onChange={(e) =>
+                                    setData("durations", e.target.value)
+                                  }
+                                />
+                                <label
+                                  htmlFor="option-3"
+                                  className="block ml-2 text-sm font-medium text-gray-900 "
+                                >
+                                  12 Bulan
+                                </label>
+                              </div>
+                            </div>
+                            {/*footer*/}
+                            <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                              <button
+                                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                                type="button"
+                                onClick={() => setShowModal(false)}
+                              >
+                                Close
+                              </button>
+                              <button
+                                className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
+                                type="submit"
+                              >
+                                Pesan
+                              </button>
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </div>
                     <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
                   </>
                 ) : null}
-
-                <form
-                  action={`/services/${room.no}/payment`}
-                  method="post"
-                  className="w-6/12"
-                >
-                  <button type="submit">Pesan Sekarang</button>
-                </form>
               </div>
             </section>
           </div>

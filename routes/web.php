@@ -43,7 +43,7 @@ Route::get('/', [HomeController::class,  'index']);
 Route::get('/about', [HomeController::class,  'about']);
 Route::get('/services', [ServiceController::class,  'index']);
 Route::get('/services/{room_no}', [ServiceController::class,  'detailService']);
-Route::post('/services/{room_no}/payment', [ServiceController::class,  'postPayment'])->middleware(['auth']);
+Route::post('/services/{room_no}/payment', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
 Route::get('transaction', [HomeController::class, 'historyTransactionCustomer']);
