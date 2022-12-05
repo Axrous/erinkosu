@@ -13,8 +13,7 @@ export default function DetailService({ room, images }) {
 
   function submit(e) {
     e.preventDefault();
-    // post(`/services/${room.no}/payment`);
-    console.log(data);
+    post(`/try/services/${room.no}/payment`);
   }
   return (
     <>
