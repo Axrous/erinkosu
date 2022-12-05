@@ -19,7 +19,7 @@ export default function DetailService({ room, images }) {
 
   function submit(e) {
     e.preventDefault();
-    post(`/try/services/${room.no}/payment`);
+    post(`/services/${room.no}/payment`);
   }
   return (
     <>

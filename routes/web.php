@@ -50,4 +50,4 @@ Route::get('transaction', [HomeController::class, 'historyTransactionCustomer'])
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);
 
 
-Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
+// Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);

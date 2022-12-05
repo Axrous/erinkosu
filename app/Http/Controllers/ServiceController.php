@@ -41,7 +41,7 @@ class ServiceController extends Controller
     return Inertia::render('Payment', []);
   }
 
-  public function postPayment($room_no)
+  public function postPayment(Request $request, $room_no)
   {
     $room = Room::where('no', $room_no)->first();
 
@@ -54,13 +54,17 @@ class ServiceController extends Controller
     ]);
 
     $order_id = uniqid('TR-');
+    $request->validate([
+      'amount' => 'required|in:3,6,12'
+    ]);
+    $totalPrice = $room->price * $request->amount;
     // $order_id = UniqueIdGenerator::generate(['table' => 'payments', 'length' => 10, 'prefix' => 'TR-']);
     $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
         "payment_type" => "bank_transfer",
         "transaction_details" => [
           "order_id" => $order_id,
-          "gross_amount" => $room->price
+          "gross_amount" => $totalPrice
         ],
         "bank_transfer" => [
           "bank" => "bca"
@@ -131,10 +135,10 @@ class ServiceController extends Controller
   public function getFormData(Request $request)
   {
     $data = $request->validate([
-      'totalPrice' => 'required|in:3,6,12'
+      'amount' => 'required|in:3,6,12'
     ]);
     return response()->json([
-      "totalPrice" => $request->totalPrice
+      "amount" => $request->amount
     ]);
   }
 }
