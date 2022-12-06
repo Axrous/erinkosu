@@ -132,13 +132,8 @@ class ServiceController extends Controller
     }
   }
 
-  public function getFormData(Request $request)
+  public function detailHistory()
   {
-    $data = $request->validate([
-      'amount' => 'required|in:3,6,12'
-    ]);
-    return response()->json([
-      "amount" => $request->amount
-    ]);
+    return Inertia::render('HistoryTransactionDetail', []);
   }
 }

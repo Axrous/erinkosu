@@ -48,6 +48,7 @@ Route::post('/services/{room_no}/payment', [ServiceController::class,  'postPaym
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
 Route::get('transaction', [HomeController::class, 'historyTransactionCustomer']);
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);
+Route::get('/transaction/detail', [ServiceController::class, 'detailHistory']);
 
 
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
