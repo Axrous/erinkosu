@@ -43,12 +43,12 @@ Route::get('/', [HomeController::class,  'index']);
 Route::get('/about', [HomeController::class,  'about']);
 Route::get('/services', [ServiceController::class,  'index']);
 Route::get('/services/{room_no}', [ServiceController::class,  'detailService']);
-Route::post('/services/{room_no}/payment', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
+Route::post('/services/transaction/{room_no}', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
 Route::get('transaction', [HomeController::class, 'historyTransactionCustomer']);
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);
-Route::get('/transaction/detail', [ServiceController::class, 'detailHistory']);
+Route::get('/services/transaction/{transactionId}', [ServiceController::class, 'detailHistory'])->name("detailPayment");
 
 
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);

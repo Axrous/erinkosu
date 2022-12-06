@@ -87,7 +87,7 @@ class ServiceController extends Controller
       return false;
     }
 
-    return $response;
+    return redirect()->route('detailPayment', ['transactionId' => $response->order_id]);
   }
 
   public function notifHandle(Request $request)
@@ -132,8 +132,9 @@ class ServiceController extends Controller
     }
   }
 
-  public function detailHistory()
+  public function detailHistory($transactionId)
   {
-    return Inertia::render('HistoryTransactionDetail', []);
+    $transaction = Payment::where('id', $transactionId)->first();
+    return Inertia::render('HistoryTransactionDetail', ['transaction' => $transaction, 'transactionId' => $transactionId]);
   }
 }
