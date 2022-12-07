@@ -135,6 +135,6 @@ class ServiceController extends Controller
   public function detailHistory($transactionId)
   {
     $transaction = Payment::where('id', $transactionId)->first();
-    return Inertia::render('HistoryTransactionDetail', ['transaction' => $transaction, 'transactionId' => $transactionId]);
+    return Inertia::render('HistoryTransactionDetail', ['transaction' => $transaction]);
   }
 }

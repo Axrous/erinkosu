@@ -1,16 +1,13 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { useState } from "react";
 
-export default function HistoryTransactionDetail({
-  transaction,
-  transactionId,
-}) {
+export default function HistoryTransactionDetail({ transaction }) {
   const [showVA, setShowVA] = useState(false);
   return (
     <CustomersLayout>
       <div className="container border border-black mx-auto h-screen flex items-center justify-center">
         <div className="w-7/12 border p-4 border-teal-400 rounded-3xl relative">
-          <h2 className="text-center mb-4">{transactionId}</h2>
+          <h2 className="text-center mb-4">{transaction.id}</h2>
           <div className="flex justify-between mx-auto items-center">
             <h3 className="">{transaction.created_at}</h3>
             <span className="py-2 px-5 bg-yellow-400 rounded-2xl">PENDING</span>
