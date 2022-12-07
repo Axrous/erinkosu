@@ -11,6 +11,7 @@ class Payment extends Model
   use HasFactory;
 
   protected $table = "payments";
+  public $incrementing = false;
 
   protected $cast = [
     'status' => TransactionStatusEnum::class
