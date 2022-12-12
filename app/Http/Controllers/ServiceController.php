@@ -100,11 +100,13 @@ class ServiceController extends Controller
       $transactionId = $notification['transaction_id'];
       $statusCode = $notification['status_code'];
 
+
+
       $order = Payment::where('transaction_id', $transactionId)->where('id', $orderId)->first();
+
       if (!$order) {
         return response()->json(["message" => "Failed"], 400);
       }
-
       switch ($statusCode) {
         case '200':
           $order->status = TransactionStatusEnum::SUCCESS;
@@ -115,13 +117,16 @@ class ServiceController extends Controller
         case '202':
           $order->status = TransactionStatusEnum::CANCEL;
           break;
-        default:
-          break;
       }
       $order->save();
 
-      $room = Room::where('no', $order->room_no)->first();
 
+      $room = Room::where('no', $order->room_no)->first();
+      if ($room->status == 'booked') {
+        return response()->json([
+          "message" => "Kamar sudah dibooking orang, mohon hubungi admin untuk pengembalian dana"
+        ]);
+      }
       if ($order->status == TransactionStatusEnum::SUCCESS) {
         $room->status = RoomStatusEnum::BOOKED;
       }
