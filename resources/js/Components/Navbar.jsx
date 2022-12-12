@@ -74,32 +74,21 @@ export default function Navbar({ auth }) {
               aria-labelledby="dropdownLargeButton"
             >
               <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Dashboard
-                </a>
+                <Link href="#" className="block px-4 py-2">
+                  Profile
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                <Link
+                  href="/services/transaction-history"
+                  className="block px-4 py-2"
                 >
-                  Settings
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                >
-                  Earnings
-                </a>
+                  Transaction
+                </Link>
               </li>
             </ul>
             <div className="py-1">
-              <Link href="/logout" className="py-2 px-10 inline-block">
+              <Link href="/logout" className="py-2 px-4 inline-block">
                 Logout
               </Link>
             </div>
