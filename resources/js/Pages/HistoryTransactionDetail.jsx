@@ -1,8 +1,11 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { useState } from "react";
-
+import { useNavigate } from "react-dom";
 export default function HistoryTransactionDetail({ transaction }) {
   const [showVA, setShowVA] = useState(false);
+  function goBack() {
+    window.history.back();
+  }
   return (
     <CustomersLayout>
       <div className="container border border-black mx-auto h-screen flex items-center justify-center">
@@ -10,7 +13,9 @@ export default function HistoryTransactionDetail({ transaction }) {
           <h2 className="text-center mb-4">{transaction.id}</h2>
           <div className="flex justify-between mx-auto items-center">
             <h3 className="">{transaction.created_at}</h3>
-            <span className="py-2 px-5 bg-yellow-400 rounded-2xl">PENDING</span>
+            <span className="py-2 px-5 bg-yellow-400 rounded-2xl uppercase">
+              {transaction.status}
+            </span>
           </div>
           <div className=" items-center mt-10">
             <h3 className="text-3xl">Kamar No. {transaction.room_no}</h3>
@@ -30,6 +35,7 @@ export default function HistoryTransactionDetail({ transaction }) {
             </div>
           ) : null}
         </div>
+        <button onClick={() => history.back()}>Back Coy</button>
       </div>
     </CustomersLayout>
   );
