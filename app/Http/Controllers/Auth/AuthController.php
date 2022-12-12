@@ -62,9 +62,7 @@ class AuthController extends Controller
 
   public function login()
   {
-    return Inertia::render('Auth/Login', [
-      'auth' => auth()->hasUser()
-    ]);
+    return Inertia::render('Auth/Login', []);
   }
 
   public function postLogin(Request $request)
@@ -76,7 +74,8 @@ class AuthController extends Controller
     ]);
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
       $request->session()->regenerate();
-      return Inertia::render('Dashboard', ['auth' => auth()->hasUser()]);
+      // return Inertia::render('Dashboard', []);
+      return Inertia::location('/');
     }
 
     return back()->withErrors([
