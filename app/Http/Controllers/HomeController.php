@@ -27,4 +27,9 @@ class HomeController extends Controller
     $transactions = Payment::where('user_id', $userId)->get();
     return Inertia::render('HistoryTransaction', ['transactions' => $transactions]);
   }
+
+  public function userProfile()
+  {
+    return Inertia::render('UserProfile', []);
+  }
 }

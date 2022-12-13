@@ -14,11 +14,11 @@ import { BiBath } from "react-icons/bi";
 import { ImEnlarge2 } from "react-icons/im";
 import { MdAttachMoney } from "react-icons/md";
 
-export default function Dashboard({ auth }) {
+export default function Dashboard() {
   return (
     <>
       <Head title="Dashboard" />
-      <CustomersLayout auth={auth}>
+      <CustomersLayout>
         <div className="">
           <div className="container mx-auto flex mt-10 lg:mt-24 2xl:px-0 px-10 lg:flex-row flex-col-reverse">
             <div className="w-full lg:w-6/12 my-auto lg:text-left text-center">
