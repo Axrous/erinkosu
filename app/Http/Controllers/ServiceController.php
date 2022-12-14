@@ -57,7 +57,8 @@ class ServiceController extends Controller
     $request->validate([
       'amount' => 'required|in:3,6,12'
     ]);
-    $totalPrice = $room->price * $request->amount;
+    $amount = $request->amount;
+    $totalPrice = $room->price * $amount;
     // $order_id = UniqueIdGenerator::generate(['table' => 'payments', 'length' => 10, 'prefix' => 'TR-']);
     $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
@@ -74,14 +75,19 @@ class ServiceController extends Controller
 
 
     $response = json_decode($charge->getBody());
+    $today = time();
+    $bookedUntil = strtotime("+${amount} month", $today);
 
     $payment = new Payment();
     $payment->id = $response->order_id;
     $payment->user_id = auth()->id();
     $payment->transaction_id = $response->transaction_id;
     $payment->room_no = $room_no;
+    $payment->amount = $response->gross_amount;
     $payment->va_number = $response->va_numbers[0]->va_number;
     $payment->status = TransactionStatusEnum::PENDING;
+    $payment->booked_at = $today;
+    $payment->booked_until = $bookedUntil;
 
     if (!$payment->save()) {
       return false;
