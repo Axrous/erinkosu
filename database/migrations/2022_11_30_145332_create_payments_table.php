@@ -20,7 +20,10 @@ return new class extends Migration
       $table->unsignedBigInteger('user_id');
       $table->string('transaction_id', '255')->nullable();
       $table->string('va_number');
+      $table->string('amount');
       $table->string('status');
+      $table->integer('booked_at');
+      $table->integer('booked_until')->nullable();
       $table->timestamps();
     });
   }
