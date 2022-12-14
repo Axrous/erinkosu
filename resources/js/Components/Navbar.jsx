@@ -6,8 +6,6 @@ import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 export default function Navbar({ auth }) {
   const [navbar, setNavbar] = useState(false);
   const [dropDown, setDropDown] = useState(false);
-
-  console.log(auth);
   return (
     <nav className=" flex container mx-auto text-white py-2 items-center">
       <span className="w-6/12 md:w-3/12 text-2xl my-auto font-semibold tracking-widest">
