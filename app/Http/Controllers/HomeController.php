@@ -25,7 +25,7 @@ class HomeController extends Controller
   public function historyTransactionCustomer()
   {
     $userId = auth()->id();
-    $transactions = Payment::where('user_id', $userId)->get();
+    $transactions = Payment::select('booked_at', 'id', 'amount', 'status')->where('user_id', $userId)->get();
     return Inertia::render('HistoryTransaction', ['transactions' => $transactions]);
   }
 
