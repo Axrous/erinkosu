@@ -72,7 +72,7 @@ export default function Navbar({ auth }) {
               aria-labelledby="dropdownLargeButton"
             >
               <li>
-                <Link href="#" className="block px-4 py-2">
+                <Link href="/user" className="block px-4 py-2">
                   Profile
                 </Link>
               </li>
