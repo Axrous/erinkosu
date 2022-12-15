@@ -2,9 +2,8 @@ import CustomersLayout from "@/Layouts/CustomersLayout";
 import React from "react";
 
 export default function HistoryTransaction({ transactions }) {
-  let timestamp = 1670392223895;
   function date(timestamp) {
-    const dateTime = new Date(timestamp);
+    const dateTime = new Date(timestamp * 1000);
     return dateTime;
   }
   return (
@@ -42,11 +41,11 @@ export default function HistoryTransaction({ transactions }) {
                   key={transaction.id}
                 >
                   <td className="py-4 px-6">
-                    {date(timestamp).toLocaleDateString()}
+                    {date(transaction.booked_at).toLocaleDateString()}
                   </td>
                   <td className="py-4 px-6">{transaction.id}</td>
                   <td className="py-4 px-6 uppercase">{transaction.status}</td>
-                  <td className="py-4 px-6">300000</td>
+                  <td className="py-4 px-6">{transaction.amount}</td>
                   <td className="py-4 px-6">
                     <a
                       href={`/services/transaction-history/${transaction.id}`}
