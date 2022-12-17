@@ -8,9 +8,9 @@ export default function UserProfile({ user, transaction }) {
   return (
     <CustomersLayout>
       <div className="container mx-auto">
-        <div className="flex mt-20">
-          <div className="w-6/12 ">
-            <div className="w-6/12 mx-auto p-5 rounded-2xl shadow-2xl">
+        <div className="flex mt-20 flex-col lg:flex-row">
+          <div className="w-11/12 md:w-6/12 lg:w-7/12 mx-auto mb-10">
+            <div className="w-full lg:w-7/12 mx-auto p-5 rounded-2xl shadow-2xl">
               <img
                 src={`../../../storage/users/${user.photo_profile}`}
                 alt="gambar"
@@ -47,8 +47,8 @@ export default function UserProfile({ user, transaction }) {
               </div>
             </div>
           </div>
-          <div className="w-6/12">
-            <div className="w-10/12 border rounded-2xl shadow-xl pb-7">
+          <div className="mx-auto w-10/12 lg:w-6/12 mb-10">
+            <div className="lg:w-10/12 border rounded-2xl shadow-xl pb-7">
               <h3 className="text-2xl text-center my-4">Kamar Kost</h3>
               <div className="flex border-b-2 pb-1 mb-3 w-8/12 mx-auto">
                 <span className="w-8/12">Kamar No. </span>
