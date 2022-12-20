@@ -25,12 +25,16 @@ export default function Navbar({ auth }) {
           <li className="mb-3 md:mb-0">
             <Link href="/about">About</Link>
           </li>
-          <li className="mb-3 md:hidden">
-            <Link href="/user">Profile</Link>
-          </li>
-          <li className="mb-3 md:hidden">
-            <Link href="/services/transaction-history">Transaction</Link>
-          </li>
+          {auth ? (
+            <>
+              <li className="mb-3 md:hidden">
+                <Link href="/user">Profile</Link>
+              </li>
+              <li className="mb-3 md:hidden">
+                <Link href="/services/transaction-history">Transaction</Link>
+              </li>
+            </>
+          ) : null}
           <li className="md:hidden">
             <button type="button" className="border rounded-full text-base">
               {auth ? (
