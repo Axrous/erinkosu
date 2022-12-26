@@ -1,8 +1,8 @@
 import React from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import heroImage from "../../../public/build/assets/anime-tidur.png";
-import inviteImage from "../../../public/build/assets/letmein.png";
+// import heroImage from "../../../public/build/assets/anime-tidur.png";
+// import inviteImage from "../../../public/build/assets/letmein.png";
 import PrimaryButton from "@/Components/PrimaryButton";
 import {
   BsArrowRight,
@@ -37,7 +37,7 @@ export default function Dashboard() {
               </PrimaryButton>
             </div>
             <div className="lg:w-6/12 ">
-              <img src={heroImage} />
+              <img src="" />
             </div>
           </div>
 
@@ -122,7 +122,7 @@ export default function Dashboard() {
             <div className="container mx-auto flex md:flex-row flex-col justify-evenly lg:justify-center px-10 xl:px-0">
               <div className="md:w-5/12">
                 <img
-                  src={inviteImage}
+                  src=""
                   alt=""
                   className="w-full lg:w-3/4 xl:w-2/3 mx-auto"
                 />

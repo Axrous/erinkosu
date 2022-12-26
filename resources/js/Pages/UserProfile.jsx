@@ -50,6 +50,8 @@ export default function UserProfile({ user, transaction }) {
           <div className="mx-auto w-10/12 lg:w-6/12 mb-10">
             <div className="lg:w-10/12 border rounded-2xl shadow-xl pb-7">
               <h3 className="text-2xl text-center my-4">Kamar Kost</h3>
+              {transaction != null ? 
+              <>
               <div className="flex border-b-2 pb-1 mb-3 w-8/12 mx-auto">
                 <span className="w-8/12">Kamar No. </span>
                 <span className="w-4/12 text-start">{transaction.room_no}</span>
@@ -71,6 +73,7 @@ export default function UserProfile({ user, transaction }) {
                   Perpanjangan
                 </button>
               </div>
+              </> : null}
             </div>
           </div>
         </div>
