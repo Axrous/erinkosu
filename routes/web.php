@@ -39,11 +39,11 @@ Route::get('/register', [AuthController::class, 'register'])->name('register')->
 Route::post('/login', [AuthController::class, 'postLogin'])->name("postLogin");
 Route::get('login', [AuthController::class, 'login'])->name('login')->middleware(['guest']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware(['auth']);
-Route::get('/', [HomeController::class,  'index']);
-Route::get('/about', [HomeController::class,  'about']);
+Route::get('/', [HomeController::class,  'index'])->name('dashboard');
+Route::get('/about', [HomeController::class,  'about'])->name('about');
 Route::get('/services', [ServiceController::class,  'index']);
 Route::get('/services/transaction-history', [HomeController::class, 'historyTransactionCustomer'])->name('transactionPage')->middleware(['auth']);
-Route::get('/services/{room_no}', [ServiceController::class,  'detailService']);
+Route::get('/services/{room_no}', [ServiceController::class,  'detailService'])->middleware('isBooked');
 Route::post('/services/transaction/{room_no}', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
