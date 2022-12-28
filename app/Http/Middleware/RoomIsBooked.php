@@ -23,7 +23,7 @@ class RoomIsBooked
         if($room->status != 'booked') {
             return $next($request);
         }
-        return redirect('about');
+        return redirect()->route('dashboard');
     }
 }
 
