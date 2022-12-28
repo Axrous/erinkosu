@@ -16,13 +16,14 @@ class RoomIsBooked
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $room_no)
+    public function handle(Request $request, Closure $next)
     {
-        $room = Room::where('no', '=', $room_no)->first();
-        if($room->status == RoomStatusEnum::BOOKED) {
+        $roomId = $request->route('room_no');
+        $room = Room::where('no', '=', $roomId)->first();
+        if($room->status != 'booked') {
             return $next($request);
         }
-        return route('dashboard');
+        return redirect('about');
     }
 }
 
