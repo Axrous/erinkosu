@@ -35,8 +35,8 @@ export default function Service({ rooms }) {
                   <div className="pl-4 pb-4 mt-4">
                     <h3 className="text-xl">Kamar No. {room.no}</h3>
                     <span className="flex">
-                      Status: {room.status}
-                      {room.status == "available" ? (
+                      Status: {room.isbook ? "booked" : "available"}
+                      {!room.is_booked ? (
                         <FcOk className="ml-2 my-auto" />
                       ) : (
                         <FcCancel className="ml-2 my-auto" />
@@ -45,9 +45,7 @@ export default function Service({ rooms }) {
                     <a
                       href={`/services/${room.no}`}
                       className={`py-2 px-6 bg-black text-white rounded-lg inline-block mt-4 ${
-                        room.status == "booked"
-                          ? "pointer-events-none opacity-25 "
-                          : ""
+                        room.is_booked ? "pointer-events-none opacity-25 " : ""
                       }`}
                     >
                       Detail

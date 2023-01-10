@@ -16,7 +16,7 @@ return new class extends Migration
     Schema::create('rooms', function (Blueprint $table) {
       $table->bigIncrements('id');
       $table->integer('no');
-      $table->string('status');
+      $table->boolean('is_booked');
       $table->string('price');
       $table->timestamps();
     });

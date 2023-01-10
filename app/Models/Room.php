@@ -12,13 +12,13 @@ class Room extends Model
 
   protected $fillable = [
     'no',
-    'status',
+    'is_booked',
     'price'
   ];
 
-  protected $cast = [
-    'status' => RoomStatusEnum::class
-  ];
+  // protected $cast = [
+  //   'status' => RoomStatusEnum::class
+  // ];
 
   public function images()
   {

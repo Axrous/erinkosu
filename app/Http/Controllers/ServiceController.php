@@ -23,7 +23,7 @@ class ServiceController extends Controller
     // $rooms = Room::leftJoin('room_images', function ($join) {
     //   $join->on('rooms.no', '=', 'room_images.room_id');
     // })->orderBy('no')->get();
-    $rooms = Room::join('room_images', 'rooms.no', '=', 'room_images.room_no')->select('rooms.no', 'room_images.url', 'rooms.status')->groupBy('no')->get();
+    $rooms = Room::join('room_images', 'rooms.no', '=', 'room_images.room_no')->select('rooms.no', 'room_images.url', 'rooms.is_booked')->groupBy('no')->get();
 
     return Inertia::render('Service', ['rooms' => $rooms]);
   }
@@ -76,7 +76,7 @@ class ServiceController extends Controller
 
     $response = json_decode($charge->getBody());
     $today = time();
-    $bookedUntil = strtotime("+${amount} month", $today);
+    $bookedUntil = strtotime("+{$amount} month", $today);
 
     $payment = new Payment();
     $payment->id = $response->order_id;
@@ -128,13 +128,13 @@ class ServiceController extends Controller
 
 
       $room = Room::where('no', $order->room_no)->first();
-      if ($room->status == 'booked') {
+      if ($room->is_booked) {
         return response()->json([
           "message" => "Kamar sudah dibooking orang, mohon hubungi admin untuk pengembalian dana"
         ]);
       }
       if ($order->status == TransactionStatusEnum::SUCCESS) {
-        $room->status = RoomStatusEnum::BOOKED;
+        $room->is_booked = true;
       }
       $room->save();
       return response()->json(['message' => "OK"], 200);

@@ -21,7 +21,7 @@ class RoomController extends Controller
 
     $room = Room::create([
       'no' => $request->no,
-      'status' => RoomStatusEnum::AVAILABLE,
+      'is_booked' => false,
       'price' => $request->price
     ]);
 
