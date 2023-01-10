@@ -41,7 +41,7 @@ class HomeController extends Controller
 
     $idUser = auth()->id();
     $user = User::select('first_name', 'last_name', 'email', 'phone_number', 'photo_profile')->where('id', $idUser)->first();
-    $transaction = Payment::select('room_no', 'booked_at', 'booked_until')->where('user_id', 1)->orderBy('created_at', 'desc')->first();
+    $transaction = Payment::select('room_no', 'booked_at', 'booked_until')->where('user_id', $idUser)->orderBy('created_at', 'desc')->first();
     return Inertia::render('UserProfile', ['user' => $user, 'transaction' => $transaction]);
   }
 }
