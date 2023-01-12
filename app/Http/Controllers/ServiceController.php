@@ -75,7 +75,7 @@ class ServiceController extends Controller
 
 
     $response = json_decode($charge->getBody());
-    $today = time();
+    $today = strtotime(date('Y-m-d', time()));
     $bookedUntil = strtotime("+{$amount} month", $today);
 
     $payment = new Payment();
