@@ -34,8 +34,8 @@ export default function Service({ rooms }) {
                   />
                   <div className="pl-4 pb-4 mt-4">
                     <h3 className="text-xl">Kamar No. {room.no}</h3>
-                    <span className="flex">
-                      Status: {room.isbook ? "booked" : "available"}
+                    <span className="flex ">
+                      Status: {room.is_booked ? "booked" : "available"}
                       {!room.is_booked ? (
                         <FcOk className="ml-2 my-auto" />
                       ) : (
