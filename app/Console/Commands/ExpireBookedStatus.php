@@ -32,7 +32,7 @@ class ExpireBookedStatus extends Command
   {
     // return Command::SUCCESS;
     $today = strtotime(date('Y-m-d', time()));
-    // $today = 1681257600;
+    // $today = 1681344000;
     $idRoom = Payment::select('room_no')->where('booked_until', $today)->where(function ($query) {
       $query->where('status', TransactionStatusEnum::SUCCESS);
     })->get()->toArray();
@@ -45,7 +45,5 @@ class ExpireBookedStatus extends Command
     Room::whereIn('no', $id)->update([
       'is_booked' => false
     ]);
-
-    var_dump($id);
   }
 }
