@@ -37,7 +37,7 @@ class ExpireBookedStatus extends Command
       $query->where('status', TransactionStatusEnum::SUCCESS);
     })->get()->toArray();
 
-    //json to array
+    //collection to array
     // $idPaymentArray = json_decode($idRoom);
     // //get room_no
     $id = array_column($idRoom, 'room_no');
