@@ -45,5 +45,9 @@ class ExpireBookedStatus extends Command
     Room::whereIn('no', $id)->update([
       'is_booked' => false
     ]);
+
+    Payment::whereIn('room_no', $id)->update([
+      'status' => TransactionStatusEnum::DONE
+    ]);
   }
 }
