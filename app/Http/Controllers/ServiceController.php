@@ -31,7 +31,8 @@ class ServiceController extends Controller
   public function detailService($room_no)
   {
     $room = Room::where('rooms.no', $room_no)->first();
-    $images = Room::find($room_no)->images;
+    // $images = Room::find($room_no)->images;
+    $images = RoomImage::where('room_no', $room_no)->get();
 
     return Inertia::render('DetailService', ['room' => $room, 'images' => $images]);
   }

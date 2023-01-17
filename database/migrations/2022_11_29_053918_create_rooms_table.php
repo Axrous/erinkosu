@@ -14,8 +14,9 @@ return new class extends Migration
   public function up()
   {
     Schema::create('rooms', function (Blueprint $table) {
-      $table->bigIncrements('id');
-      $table->integer('no');
+      // $table->bigIncrements('id');
+      // $table->dropPrimary();
+      $table->integer('no')->primary();
       $table->boolean('is_booked');
       $table->string('price');
       $table->timestamps();
