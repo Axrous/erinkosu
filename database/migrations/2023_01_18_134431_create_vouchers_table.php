@@ -18,7 +18,7 @@ return new class extends Migration
       $table->string("voucher_name");
       $table->integer("discount_amount");
       $table->integer("voucher_limit");
-      $table->integer("voucher_limit");
+      $table->integer("expires_at");
       $table->timestamps();
     });
   }
