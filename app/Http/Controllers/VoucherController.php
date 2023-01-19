@@ -20,4 +20,20 @@ class VoucherController extends Controller
 
     return response()->json($voucher, 200);
   }
+
+  public function checkVoucher(Request $request)
+  {
+
+    $voucher = Voucher::where('voucher_name', $request->voucher_name)->first();
+
+
+    if (!$voucher) {
+      return response()->json(["message" => "Voucher tidak ada"], 200);
+    }
+    if ($voucher->voucher_limit < 1) {
+      return response()->json(["message" => "Voucher sudah habis/tidak bisa digunakan"], 200);
+    }
+
+    return response()->json(["message" => "Voucher siap digunakan"], 200);
+  }
 }

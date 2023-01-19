@@ -52,5 +52,6 @@ Route::post('admin/create-room', [RoomController::class, 'addRoom']);
 Route::get('/services/transaction-history/{transactionId}', [ServiceController::class, 'detailHistory'])->name("detailPayment");
 Route::get('/user', [HomeController::class, 'userProfile']);
 Route::post('/create-voucher', [VoucherController::class, 'createVoucher']);
+Route::post('/check-voucher', [VoucherController::class, 'checkVoucher']);
 
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
