@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\VoucherController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -50,6 +51,6 @@ Route::post('services/notification-handle', [ServiceController::class, 'notifHan
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);
 Route::get('/services/transaction-history/{transactionId}', [ServiceController::class, 'detailHistory'])->name("detailPayment");
 Route::get('/user', [HomeController::class, 'userProfile']);
-
+Route::post('/create-voucher', [VoucherController::class, 'createVoucher']);
 
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
