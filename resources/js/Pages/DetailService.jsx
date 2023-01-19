@@ -1,14 +1,16 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import { Head, useForm } from "@inertiajs/inertia-react";
+import { Head, useForm, usePage } from "@inertiajs/inertia-react";
 import React from "react";
 import { useState, useEffect } from "react";
 
 export default function DetailService({ room, images }) {
+  const { flash, setFlash } = usePage().props;
   const [Image, setImage] = useState(images[0].url);
   const [showModal, setShowModal] = useState(false);
 
   const { data, setData, post, processing, errors } = useForm({
     amount: "",
+    voucher: "",
   });
   const [price, setPrice] = useState(data.amount * room.price);
 
@@ -20,6 +22,11 @@ export default function DetailService({ room, images }) {
   function submit(e) {
     e.preventDefault();
     post(`/services/transaction/${room.no}`);
+  }
+
+  function checkVoucher(e) {
+    e.preventDefault();
+    post(`/check-voucher`);
   }
   return (
     <>
@@ -96,6 +103,10 @@ export default function DetailService({ room, images }) {
                           </div>
                           {/*body*/}
                           <h4 className="text-center">Lama waktu nge-Kost :</h4>
+                          <form
+                            onSubmit={checkVoucher}
+                            id="check_voucher"
+                          ></form>
                           <form onSubmit={submit}>
                             <div className="relative p-6 flex justify-between">
                               {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
@@ -147,6 +158,25 @@ export default function DetailService({ room, images }) {
                                   12 Bulan
                                 </label>
                               </div>
+                            </div>
+                            <div>
+                              {flash.message && (
+                                <div className="p-2 bg-white rounded-lg">
+                                  {flash.message}
+                                </div>
+                              )}
+                              <input
+                                type="text"
+                                name="voucher_name"
+                                id=""
+                                form="check_voucher"
+                                onChange={(e) =>
+                                  setData("voucher", e.target.value)
+                                }
+                              />
+                              <button type="submit" form="check_voucher">
+                                check
+                              </button>
                             </div>
                             <div className="text-right mr-4">
                               Total Bayar : {price}
