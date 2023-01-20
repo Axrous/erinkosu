@@ -35,8 +35,6 @@ class VoucherController extends Controller
       // return response()->json(["message" => "Voucher sudah habis/tidak bisa digunakan"], 200);
       return redirect()->back()->with("message", "Voucher sudah habis/tidak bisa digunakan");
     }
-
-    // return response()->json(["message" => "Voucher siap digunakan"], 200);
-    return redirect()->back()->with("message", "Voucher siap digunakan!");
+    return redirect()->back()->with("message", "Voucher bisa digunakan");
   }
 }

@@ -7,6 +7,7 @@ use App\Enum\TransactionStatusEnum;
 use App\Models\Payment;
 use App\Models\Room;
 use App\Models\RoomImage;
+use App\Models\Voucher;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
@@ -44,8 +45,9 @@ class ServiceController extends Controller
 
   public function postPayment(Request $request, $room_no)
   {
+    $discount = 0;
     $room = Room::where('no', $room_no)->first();
-
+    $voucher = Voucher::where('voucher_name', $request->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
     $client = new Client([
       "headers" => [
         "Accept" => "application/json",
@@ -58,8 +60,13 @@ class ServiceController extends Controller
     $request->validate([
       'amount' => 'required|in:3,6,12'
     ]);
+    if ($voucher) {
+      $discount = $voucher->discount_amount / 100;
+    }
     $amount = $request->amount;
-    $totalPrice = $room->price * $amount;
+    $price = $room->price * $amount;
+    $discountPrice = $price * $discount;
+    $totalPrice = $price - $discountPrice;
     // $order_id = UniqueIdGenerator::generate(['table' => 'payments', 'length' => 10, 'prefix' => 'TR-']);
     $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
