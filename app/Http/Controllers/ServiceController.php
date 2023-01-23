@@ -43,11 +43,42 @@ class ServiceController extends Controller
     return Inertia::render('Payment', []);
   }
 
-  public function postPayment(Request $request, $room_no)
+  public function checkout(Request $request)
   {
     $discount = 0;
-    $room = Room::where('no', $room_no)->first();
-    $voucher = Voucher::where('voucher_name', $request->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
+    $room = Room::where('no', $request->cookie("roomId"))->first();
+    $voucher = Voucher::where('voucher_name', $request->cookie("voucher"))->where('voucher_limit', ">", 0)->select("discount_amount")->first();
+
+    $order_id = uniqid('TR-');
+    // $request->validate([
+    //   'amount' => 'required|in:3,6,12'
+    // ]);
+    if ($voucher) {
+      $discount = $voucher->discount_amount / 100;
+    }
+    $amount = $request->cookie("amount");
+    $price = $room->price * $amount;
+    $discountPrice = $price * $discount;
+    $totalPrice = $price - $discountPrice;
+
+    return Inertia::render('Checkout', [
+      "order_id" => $order_id,
+      "amount" => $amount,
+      "price" => $price,
+      "discount" => $discountPrice,
+      "totalPrice" => $totalPrice
+    ]);
+
+    // $roomId = $request->cookie("roomId");
+    // $amount = $request->cookie("amount");
+    // $voucher = $request->cookie("voucher");
+
+    // return response()->json([$roomId, $amount, $voucher], 200);
+  }
+
+  public function postPayment(Request $request)
+  {
+
     $client = new Client([
       "headers" => [
         "Accept" => "application/json",
@@ -56,24 +87,12 @@ class ServiceController extends Controller
       ]
     ]);
 
-    $order_id = uniqid('TR-');
-    $request->validate([
-      'amount' => 'required|in:3,6,12'
-    ]);
-    if ($voucher) {
-      $discount = $voucher->discount_amount / 100;
-    }
-    $amount = $request->amount;
-    $price = $room->price * $amount;
-    $discountPrice = $price * $discount;
-    $totalPrice = $price - $discountPrice;
-    // $order_id = UniqueIdGenerator::generate(['table' => 'payments', 'length' => 10, 'prefix' => 'TR-']);
     $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
         "payment_type" => "bank_transfer",
         "transaction_details" => [
-          "order_id" => $order_id,
-          "gross_amount" => $totalPrice
+          "order_id" => $request->order_id,
+          "gross_amount" => $request->totalPrice
         ],
         "bank_transfer" => [
           "bank" => "bca"
@@ -81,16 +100,15 @@ class ServiceController extends Controller
       ])
     ]);
 
-
     $response = json_decode($charge->getBody());
     $today = strtotime(date('Y-m-d', time()));
-    $bookedUntil = strtotime("+{$amount} month", $today);
+    $bookedUntil = strtotime("+{$request->amount} month", $today);
 
     $payment = new Payment();
     $payment->id = $response->order_id;
     $payment->user_id = auth()->id();
     $payment->transaction_id = $response->transaction_id;
-    $payment->room_no = $room_no;
+    $payment->room_no = $request->room_no;
     $payment->amount = $response->gross_amount;
     $payment->va_number = $response->va_numbers[0]->va_number;
     $payment->status = TransactionStatusEnum::PENDING;

@@ -1,12 +1,16 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import { Head, useForm, usePage } from "@inertiajs/inertia-react";
+import { Head, useForm, usePage, Link } from "@inertiajs/inertia-react";
+import { get } from "lodash";
 import React from "react";
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+// import { Link } from "@inertiajs/react";
 
 export default function DetailService({ room, images }) {
   const { flash, setFlash } = usePage().props;
   const [Image, setImage] = useState(images[0].url);
   const [showModal, setShowModal] = useState(false);
+  const [cookies, setCookie] = useCookies(["roomId", "amount", "voucher"]);
 
   const { data, setData, post, processing, errors } = useForm({
     amount: "",
@@ -20,8 +24,11 @@ export default function DetailService({ room, images }) {
   }
 
   function submit(e) {
-    e.preventDefault();
-    post(`/services/transaction/${room.no}`);
+    // e.preventDefault();
+    setCookie("roomId", room.no, { path: "/" });
+    setCookie("amount", data.amount, { path: "/" });
+    setCookie("voucher", data.voucher, { path: "/" });
+    // get(`/service/checkout`);
   }
 
   function checkVoucher(e) {
@@ -107,7 +114,7 @@ export default function DetailService({ room, images }) {
                             onSubmit={checkVoucher}
                             id="check_voucher"
                           ></form>
-                          <form onSubmit={submit}>
+                          <form>
                             <div className="relative p-6 flex justify-between">
                               {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
                               <div className="flex items-center mb-4">
@@ -198,12 +205,19 @@ export default function DetailService({ room, images }) {
                               >
                                 Close
                               </button>
-                              <button
+                              {/* <button
                                 className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
                                 type="submit"
                               >
                                 Pesan
-                              </button>
+                              </button> */}
+                              <Link
+                                href="/service/checkout"
+                                className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
+                                onClick={submit}
+                              >
+                                Pesan
+                              </Link>
                             </div>
                           </form>
                         </div>
