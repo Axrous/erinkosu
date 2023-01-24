@@ -56,6 +56,12 @@ class ServiceController extends Controller
     if ($voucher) {
       $discount = $voucher->discount_amount / 100;
     }
+
+    if (!$room) {
+      //return response redirect to service page with message "belum mengcheckout kamar"
+      return redirect()->route('dashboard',);
+    }
+
     $amount = $request->cookie("amount");
     $price = $room->price * $amount;
     $discountPrice = $price * $discount;
