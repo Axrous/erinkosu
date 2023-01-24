@@ -8,6 +8,7 @@ use App\Enum\UserRoleEnum;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -88,9 +89,9 @@ class AuthController extends Controller
     Auth::logout();
 
     $request->session()->invalidate();
-
     $request->session()->regenerateToken();
+    // Cookie::forget("roomId");
 
-    return redirect('/');
+    return redirect('/')->withCookie(Cookie::forget("roomId"));
   }
 }

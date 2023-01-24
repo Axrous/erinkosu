@@ -2,10 +2,15 @@ import { React } from "react";
 import { Link } from "@inertiajs/inertia-react";
 import { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
+// import { removeCookie } from "react-cookie";
 
 export default function Navbar({ auth }) {
   const [navbar, setNavbar] = useState(false);
   const [dropDown, setDropDown] = useState(false);
+
+  function deleteCookies() {
+    removeCookie("roomId", { path: "/" });
+  }
   return (
     <nav className=" flex container mx-auto text-white py-2 items-center">
       <span className="w-6/12 md:w-3/12 text-2xl my-auto font-semibold tracking-widest">
@@ -38,7 +43,11 @@ export default function Navbar({ auth }) {
           <li className="md:hidden">
             <button type="button" className="border rounded-full text-base">
               {auth ? (
-                <Link href="/logout" className="py-2 px-10 inline-block">
+                <Link
+                  href="/logout"
+                  className="py-2 px-10 inline-block"
+                  onClick={deleteCookies}
+                >
                   Logout
                 </Link>
               ) : (
@@ -96,7 +105,11 @@ export default function Navbar({ auth }) {
               </li>
             </ul>
             <div className="py-1">
-              <Link href="/logout" className="py-2 px-4 inline-block">
+              <Link
+                href="/logout"
+                className="py-2 px-4 inline-block"
+                onClick={deleteCookies}
+              >
                 Logout
               </Link>
             </div>
