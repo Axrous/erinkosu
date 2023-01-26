@@ -22,13 +22,21 @@ export default function Checkout({
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
     setChecked(!checked);
-    setData("amount", amount);
-    setData("discount", discount);
-    setData("orderId", order_id);
-    // setOrderId(order_id);
-    setData("price", price);
-    setData("totalPrice", totalPrice);
-    setData("room_no", room_no);
+    // setData("amount", amount);
+    // setData("discount", discount);
+    // setData("orderId", order_id);
+    // // setOrderId(order_id);
+    // setData("price", price);
+    // setData("totalPrice", totalPrice);
+    // setData("room_no", room_no);
+    setData({
+      amount: amount,
+      discount: discount,
+      orderId: order_id,
+      price: price,
+      totalPrice: totalPrice,
+      romm_no: room_no,
+    });
   };
 
   // const [orderId, setOrderId] = useState("");
