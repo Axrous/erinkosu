@@ -45,7 +45,7 @@ Route::get('/about', [HomeController::class,  'about'])->name('about');
 Route::get('/services', [ServiceController::class,  'index']);
 Route::get('/services/transaction-history', [HomeController::class, 'historyTransactionCustomer'])->name('transactionPage')->middleware(['auth']);
 Route::get('/services/{room_no}', [ServiceController::class,  'detailService'])->middleware('isBooked');
-Route::post('/services/transaction/{room_no}', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
+Route::post('/services/transaction/', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);

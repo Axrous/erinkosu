@@ -72,7 +72,8 @@ class ServiceController extends Controller
       "amount" => $amount,
       "price" => $price,
       "discount" => $discountPrice,
-      "totalPrice" => $totalPrice
+      "room_no" => $room->no,
+      "totalPrice" => $totalPrice,
     ]);
 
     // $roomId = $request->cookie("roomId");
@@ -93,39 +94,45 @@ class ServiceController extends Controller
       ]
     ]);
 
-    $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
-      "body" => json_encode([
-        "payment_type" => "bank_transfer",
-        "transaction_details" => [
-          "order_id" => $request->order_id,
-          "gross_amount" => $request->totalPrice
-        ],
-        "bank_transfer" => [
-          "bank" => "bca"
-        ]
-      ])
-    ]);
+    return response()->json([
+      $request->order_id,
+      $request->totalPrice,
+      $request->room_no
+    ], 200);
 
-    $response = json_decode($charge->getBody());
-    $today = strtotime(date('Y-m-d', time()));
-    $bookedUntil = strtotime("+{$request->amount} month", $today);
+    // $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
+    //   "body" => json_encode([
+    //     "payment_type" => "bank_transfer",
+    //     "transaction_details" => [
+    //       "order_id" => $request->order_id,
+    //       "gross_amount" => $request->totalPrice
+    //     ],
+    //     "bank_transfer" => [
+    //       "bank" => "bca"
+    //     ]
+    //   ])
+    // ]);
 
-    $payment = new Payment();
-    $payment->id = $response->order_id;
-    $payment->user_id = auth()->id();
-    $payment->transaction_id = $response->transaction_id;
-    $payment->room_no = $request->room_no;
-    $payment->amount = $response->gross_amount;
-    $payment->va_number = $response->va_numbers[0]->va_number;
-    $payment->status = TransactionStatusEnum::PENDING;
-    $payment->booked_at = $today;
-    $payment->booked_until = $bookedUntil;
+    // $response = json_decode($charge->getBody());
+    // $today = strtotime(date('Y-m-d', time()));
+    // $bookedUntil = strtotime("+{$request->amount} month", $today);
 
-    if (!$payment->save()) {
-      return false;
-    }
+    // $payment = new Payment();
+    // $payment->id = $response->order_id;
+    // $payment->user_id = auth()->id();
+    // $payment->transaction_id = $response->transaction_id;
+    // $payment->room_no = $request->room_no;
+    // $payment->amount = $response->gross_amount;
+    // $payment->va_number = $response->va_numbers[0]->va_number;
+    // $payment->status = TransactionStatusEnum::PENDING;
+    // $payment->booked_at = $today;
+    // $payment->booked_until = $bookedUntil;
 
-    return redirect()->route('detailPayment', ['transactionId' => $response->order_id]);
+    // if (!$payment->save()) {
+    //   return false;
+    // }
+
+    // return redirect()->route('detailPayment', ['transactionId' => $response->order_id]);
   }
 
   public function notifHandle(Request $request)
