@@ -16,7 +16,7 @@ export default function Checkout({
     discount: "",
     totalPrice: "",
     room_no: "",
-    orderId: "",
+    order_id: "",
   });
 
   const [checked, setChecked] = useState(false);
@@ -32,10 +32,10 @@ export default function Checkout({
     setData({
       amount: amount,
       discount: discount,
-      orderId: order_id,
+      order_id: order_id,
       price: price,
       totalPrice: totalPrice,
-      romm_no: room_no,
+      room_no: room_no,
     });
   };
 
@@ -55,8 +55,8 @@ export default function Checkout({
 
   function submit(e) {
     e.preventDefault();
-    // post("/services/transaction");
-    console.log(data);
+    post("/services/transaction");
+    // console.log(data);
   }
   // console.log(data);
   return (
