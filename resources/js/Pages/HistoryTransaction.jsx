@@ -1,4 +1,5 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
+import { Link } from "@inertiajs/inertia-react";
 import React from "react";
 
 export default function HistoryTransaction({ transactions }) {
@@ -31,12 +32,12 @@ export default function HistoryTransaction({ transactions }) {
                 <h2 className="text-sm md:text-md uppercase">
                   Status: {transaction.status}
                 </h2>
-                <a
+                <Link
                   href={`/services/transaction-history/${transaction.id}`}
                   className="py-2 px-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   Detail
-                </a>
+                </Link>
               </div>
             </div>
           ))}

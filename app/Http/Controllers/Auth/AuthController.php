@@ -92,6 +92,6 @@ class AuthController extends Controller
     $request->session()->regenerateToken();
     // Cookie::forget("roomId");
 
-    return redirect('/')->withCookie(Cookie::forget("roomId"));
+    return redirect('/');
   }
 }
