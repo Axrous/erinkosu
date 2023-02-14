@@ -15,6 +15,7 @@ export default function DetailService({ room, images }) {
   const { data, setData, post, processing, errors } = useForm({
     amount: "",
     voucher: "",
+    roomId: room.no,
   });
   const [price, setPrice] = useState(data.amount * room.price);
 
@@ -25,9 +26,9 @@ export default function DetailService({ room, images }) {
 
   function submit(e) {
     e.preventDefault();
-    setCookie("roomId", room.no, { path: "/" });
-    setCookie("amount", data.amount, { path: "/" });
-    setCookie("voucher", data.voucher, { path: "/" });
+    // setCookie("roomId", room.no, { path: "/" });
+    // setCookie("amount", data.amount, { path: "/" });
+    // setCookie("voucher", data.voucher, { path: "/" });
     post("/service/checkout");
   }
 

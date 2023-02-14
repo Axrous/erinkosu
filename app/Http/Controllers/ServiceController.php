@@ -12,6 +12,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Cookie;
 use sirajcse\UniqueIdGenerator\UniqueIdGenerator;
 
 class ServiceController extends Controller
@@ -47,8 +48,8 @@ class ServiceController extends Controller
   public function checkout(Request $request)
   {
     $discount = 0;
-    $room = Room::where('no', $request->cookie("roomId"))->first();
-    $voucher = Voucher::where('voucher_name', $request->cookie("voucher"))->where('voucher_limit', ">", 0)->select("discount_amount")->first();
+    $room = Room::where('no', $request->roomId)->first();
+    $voucher = Voucher::where('voucher_name', $request->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
 
     $order_id = uniqid('TR-');
     $request->validate([
@@ -60,10 +61,11 @@ class ServiceController extends Controller
 
     if (!$room) {
       //return response redirect to service page with message "belum mengcheckout kamar"
-      return redirect()->route('dashboard',);
+      // return redirect()->route('dashboard',);
+      return response()->json(["message" => "gatau apaan nih", $request->all()], 200);
     }
 
-    $amount = $request->cookie("amount");
+    $amount = $request->amount;
     $price = $room->price * $amount;
     $discountPrice = $price * $discount;
     $totalPrice = $price - $discountPrice;
@@ -132,7 +134,6 @@ class ServiceController extends Controller
     if (!$payment->save()) {
       return false;
     }
-
     return redirect()->route('detailPayment', ['transactionId' => $response->order_id]);
   }
 
