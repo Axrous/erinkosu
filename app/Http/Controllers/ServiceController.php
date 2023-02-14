@@ -50,9 +50,9 @@ class ServiceController extends Controller
     $voucher = Voucher::where('voucher_name', $request->cookie("voucher"))->where('voucher_limit', ">", 0)->select("discount_amount")->first();
 
     $order_id = uniqid('TR-');
-    // $request->validate([
-    //   'amount' => 'required|in:3,6,12'
-    // ]);
+    $request->validate([
+      'amount' => 'required|in:3,6,12'
+    ]);
     if ($voucher) {
       $discount = $voucher->discount_amount / 100;
     }

@@ -44,8 +44,8 @@ Route::get('/', [HomeController::class,  'index'])->name('dashboard');
 Route::get('/about', [HomeController::class,  'about'])->name('about');
 Route::get('/services', [ServiceController::class,  'index']);
 Route::get('/services/transaction-history', [HomeController::class, 'historyTransactionCustomer'])->name('transactionPage')->middleware(['auth']);
+Route::post('/services/transaction', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
 Route::get('/services/{room_no}', [ServiceController::class,  'detailService'])->middleware('isBooked');
-Route::post('/services/transaction/', [ServiceController::class,  'postPayment'])->name('postPayment')->middleware(['auth']);
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
 Route::post('admin/create-room', [RoomController::class, 'addRoom']);
@@ -53,6 +53,6 @@ Route::get('/services/transaction-history/{transactionId}', [ServiceController::
 Route::get('/user', [HomeController::class, 'userProfile']);
 Route::post('/create-voucher', [VoucherController::class, 'createVoucher']);
 Route::post('/check-voucher', [VoucherController::class, 'checkVoucher']);
-Route::get('/service/checkout', [ServiceController::class, "checkout"]);
+Route::post('/service/checkout', [ServiceController::class, "checkout"]);
 
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
