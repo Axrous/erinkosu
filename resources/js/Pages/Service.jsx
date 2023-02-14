@@ -1,5 +1,5 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import React, { useState } from "react";
 import { FcOk, FcCancel } from "react-icons/fc";
 
@@ -42,14 +42,22 @@ export default function Service({ rooms }) {
                         <FcCancel className="ml-2 my-auto" />
                       )}
                     </span>
-                    <a
+                    {/* <a
                       href={`/services/${room.no}`}
                       className={`py-2 px-6 bg-black text-white rounded-lg inline-block mt-4 ${
                         room.is_booked ? "pointer-events-none opacity-25 " : ""
                       }`}
                     >
                       Detail
-                    </a>
+                    </a> */}
+                    <Link
+                      href={`/services/${room.no}`}
+                      className={`py-2 px-6 bg-black text-white rounded-lg inline-block mt-4 ${
+                        room.is_booked ? "pointer-events-none opacity-25 " : ""
+                      }`}
+                    >
+                      Detail
+                    </Link>
                   </div>
                 </div>
               </div>
