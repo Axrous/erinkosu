@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Room;
 use App\Models\RoomImage;
 use App\Models\Voucher;
+use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use GuzzleHttp\Client;
@@ -173,12 +174,14 @@ class ServiceController extends Controller
         ]);
       }
       if ($order->status == TransactionStatusEnum::SUCCESS) {
-        $room->is_booked = true;
+        // $room->is_booked = true;
+        // $room->update(['is_booked' => true]);
+        Room::where('no', $order->room_no)->update(['is_booked' => true]);
       }
-      $room->save();
+      // $room->save();
       return response()->json(['message' => "OK"], 200);
-    } catch (\Throwable $th) {
-      return response()->json(['message' => "Error"], 404);
+    } catch (Exception $e) {
+      return response()->json(['message' => "Error", $e->getMessage()], 500);
     }
   }
 
