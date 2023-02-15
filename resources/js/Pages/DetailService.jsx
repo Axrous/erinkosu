@@ -42,8 +42,8 @@ export default function DetailService({ room, images }) {
       <CustomersLayout>
         <div className="container mx-auto h-screen">
           <div className="w-8/12 mx-auto">
-            <section className="flex mt-10">
-              <div className="w-6/12">
+            <section className="flex mt-10 lg:flex-row flex-col">
+              <div className="xl:w-6/12">
                 <div className=" border-2 rounded-2xl p-2">
                   <img
                     src={`/${Image}`}
@@ -54,7 +54,7 @@ export default function DetailService({ room, images }) {
                 <ul className="flex mt-6">
                   {images.map((image) => {
                     return (
-                      <li className="w-2/12" key={image.id}>
+                      <li className="" key={image.id}>
                         <img
                           src={`/${image.url}`}
                           alt=""
@@ -66,7 +66,7 @@ export default function DetailService({ room, images }) {
                   })}
                 </ul>
               </div>
-              <div className="w-6/12 border-x-2 ml-16  border-black pl-4 my-auto">
+              <div className="lg:w-6/12 mt-4 border-x-2 lg:ml-16 border-black md:pl-4 px-2 py-2 md:py-0 lg:my-auto">
                 <h2 className="text-4xl tracking-wider">Kamar No. {room.no}</h2>
                 <span className="block mt-2 tracking-wider text-xl">
                   Rp. {room.price}/bulan
@@ -86,7 +86,7 @@ export default function DetailService({ room, images }) {
                   <a href={`/services/${room.no}/payment`}>Pesan sekarang</a>
                 </div> */}
                 <button
-                  className="block w-full mt-10 md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                  className="block w-full mt-10 md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   type="button"
                   onClick={() => setShowModal(true)}
                 >
