@@ -82,9 +82,6 @@ export default function DetailService({ room, images }) {
                     <li className="w-6/12">Meja & kursi</li>
                   </ul>
                 </div>
-                {/* <div className="w-6/12 mt-10">
-                  <a href={`/services/${room.no}/payment`}>Pesan sekarang</a>
-                </div> */}
                 <button
                   className="block w-full mt-10 md:w-auto text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                   type="button"
@@ -92,145 +89,131 @@ export default function DetailService({ room, images }) {
                 >
                   Pesan Kamar
                 </button>
-
-                {showModal ? (
-                  <>
-                    <div className="container mx-auto justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                      <div className="relative w-auto my-6 mx-auto">
-                        {/*content*/}
-                        <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                          {/*header*/}
-                          <div className="flex flex-col justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                            <h3 className="text-3xl font-semibold px-28">
-                              Kamar No. {room.no}
-                            </h3>
-                            <button
-                              className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                              onClick={() => setShowModal(false)}
-                            ></button>
-                          </div>
-                          {/*body*/}
-                          <h4 className="text-center">Lama waktu nge-Kost :</h4>
-                          <form
-                            onSubmit={checkVoucher}
-                            id="check_voucher"
-                          ></form>
-                          <form onSubmit={submit}>
-                            <div className="relative p-6 flex justify-between">
-                              {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
-                              <div className="flex items-center mb-4">
-                                <input
-                                  id="option-1"
-                                  type="radio"
-                                  name="durations"
-                                  value="3"
-                                  className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
-                                  onChange={radioHandleChange}
-                                />
-                                <label
-                                  htmlFor="option-1"
-                                  className="block ml-2 text-sm font-medium text-gray-900 "
-                                >
-                                  3 Bulan
-                                </label>
-                              </div>
-                              <div className="flex items-center mb-4">
-                                <input
-                                  id="option-2"
-                                  type="radio"
-                                  name="durations"
-                                  value="6"
-                                  className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
-                                  onChange={radioHandleChange}
-                                />
-                                <label
-                                  htmlFor="option-2"
-                                  className="block ml-2 text-sm font-medium text-gray-900 "
-                                >
-                                  6 Bulan
-                                </label>
-                              </div>
-                              <div className="flex items-center mb-4">
-                                <input
-                                  id="option-3"
-                                  type="radio"
-                                  name="durations"
-                                  value="12"
-                                  className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
-                                  onChange={radioHandleChange}
-                                />
-                                <label
-                                  htmlFor="option-3"
-                                  className="block ml-2 text-sm font-medium text-gray-900 "
-                                >
-                                  12 Bulan
-                                </label>
-                              </div>
-                            </div>
-                            <div>
-                              {flash.message && (
-                                <div className="p-2 bg-white rounded-lg">
-                                  {flash.message}
-                                </div>
-                              )}
-                              <input
-                                type="text"
-                                name="voucher_name"
-                                id=""
-                                form="check_voucher"
-                                onChange={(e) =>
-                                  setData("voucher", e.target.value)
-                                }
-                              />
-                              <button type="submit" form="check_voucher">
-                                check
-                              </button>
-                            </div>
-                            <div className="text-right mr-4">
-                              Total Bayar : {price}
-                            </div>
-                            {errors.amount && (
-                              <p className="text-red-500">{errors.amount}</p>
-                            )}
-                            {/*footer*/}
-                            <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                              <button
-                                className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                type="button"
-                                onClick={(e) => {
-                                  setShowModal(false);
-                                  setData("amount", "");
-                                  setPrice(0);
-                                  errors.amount = null;
-                                }}
-                              >
-                                Close
-                              </button>
-                              <button
-                                className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
-                                type="submit"
-                                // onClick={submit}
-                              >
-                                Pesan
-                              </button>
-                              {/* <Link
-                                href="/service/checkout"
-                                className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
-                                onClick={submit}
-                              >
-                                Pesan
-                              </Link> */}
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
-                  </>
-                ) : null}
               </div>
             </section>
           </div>
+          {showModal ? (
+            <>
+              <div className="container mx-auto justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                <div className="relative w-auto my-6 mx-auto">
+                  {/*content*/}
+                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col md:w-[500px] bg-white outline-none focus:outline-none mx-auto">
+                    {/*header*/}
+                    <div className="p-5 border-b border-solid border-slate-200 rounded-t px-12 text-center">
+                      <h3 className="text-3xl font-semibold">
+                        Kamar No. {room.no}
+                      </h3>
+                    </div>
+                    {/*body*/}
+                    <h4 className="text-center">Lama waktu nge-Kost :</h4>
+                    <form onSubmit={checkVoucher} id="check_voucher"></form>
+                    <form onSubmit={submit}>
+                      <div className="relative p-6 flex flex-col md:flex-row md:justify-evenly">
+                        {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
+                        <div className="flex items-center mb-4">
+                          <input
+                            id="option-1"
+                            type="radio"
+                            name="durations"
+                            value="3"
+                            className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                            onChange={radioHandleChange}
+                          />
+                          <label
+                            htmlFor="option-1"
+                            className="block ml-2 text-sm font-medium text-gray-900 "
+                          >
+                            3 Bulan
+                          </label>
+                        </div>
+                        <div className="flex items-center mb-4">
+                          <input
+                            id="option-2"
+                            type="radio"
+                            name="durations"
+                            value="6"
+                            className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                            onChange={radioHandleChange}
+                          />
+                          <label
+                            htmlFor="option-2"
+                            className="block ml-2 text-sm font-medium text-gray-900 "
+                          >
+                            6 Bulan
+                          </label>
+                        </div>
+                        <div className="flex  items-center mb-4">
+                          <input
+                            id="option-3"
+                            type="radio"
+                            name="durations"
+                            value="12"
+                            className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
+                            onChange={radioHandleChange}
+                          />
+                          <label
+                            htmlFor="option-3"
+                            className="block ml-2 text-sm font-medium text-gray-900 "
+                          >
+                            12 Bulan
+                          </label>
+                        </div>
+                      </div>
+                      <div className="text-center flex flex-col">
+                        {flash.message && (
+                          <div className="p-2 bg-white rounded-lg">
+                            {flash.message}
+                          </div>
+                        )}
+                        <input
+                          type="text"
+                          name="voucher_name"
+                          id=""
+                          form="check_voucher"
+                          className="w-7/12 mx-auto border-neutral-400 rounded-xl"
+                          onChange={(e) => setData("voucher", e.target.value)}
+                        />
+                        <button
+                          type="submit"
+                          form="check_voucher"
+                          className="border w-4/12 md:w-2/12 mx-auto mt-4 py-1 border-cyan-500"
+                        >
+                          check
+                        </button>
+                      </div>
+                      <div className="text-right mr-4">Harga : Rp. {price}</div>
+                      {errors.amount && (
+                        <p className="text-red-500">{errors.amount}</p>
+                      )}
+                      {/*footer*/}
+                      <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
+                        <button
+                          className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                          type="button"
+                          onClick={(e) => {
+                            setShowModal(false);
+                            setData("amount", "");
+                            setPrice(0);
+                            errors.amount = null;
+                          }}
+                        >
+                          Close
+                        </button>
+                        <button
+                          className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
+                          type="submit"
+                          // onClick={submit}
+                        >
+                          Pesan
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+            </>
+          ) : null}
         </div>
       </CustomersLayout>
     </>
