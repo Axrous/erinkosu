@@ -48,13 +48,14 @@ class ServiceController extends Controller
   public function checkout(Request $request)
   {
     $discount = 0;
-    $room = Room::where('no', $request->roomId)->first();
-    $voucher = Voucher::where('voucher_name', $request->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
+    $data = json_decode($request->cookie("dataCheckout"));
+    $room = Room::where('no', $data->roomId)->first();
+    $voucher = Voucher::where('voucher_name', $data->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
 
     $order_id = uniqid('TR-');
-    $request->validate([
-      'amount' => 'required|in:3,6,12'
-    ]);
+    // $request->validate([
+    //   'amount' => 'required|in:3,6,12'
+    // ]);
     if ($voucher) {
       $discount = $voucher->discount_amount / 100;
     }
@@ -65,10 +66,11 @@ class ServiceController extends Controller
       return response()->json(["message" => "gatau apaan nih", $request->all()], 200);
     }
 
-    $amount = $request->amount;
+    $amount = $data->amount;
     $price = $room->price * $amount;
     $discountPrice = $price * $discount;
     $totalPrice = $price - $discountPrice;
+
 
     return Inertia::render('Checkout', [
       "order_id" => $order_id,

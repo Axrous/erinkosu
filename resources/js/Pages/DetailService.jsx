@@ -10,10 +10,10 @@ export default function DetailService({ room, images }) {
   const { flash, setFlash } = usePage().props;
   const [Image, setImage] = useState(images[0].url);
   const [showModal, setShowModal] = useState(false);
-  const [cookies, setCookie] = useCookies(["roomId", "amount", "voucher"]);
+  const [cookies, setCookie] = useCookies(["dataCheckout"]);
 
   const { data, setData, post, processing, errors } = useForm({
-    amount: "",
+    amount: 3,
     voucher: "",
     roomId: room.no,
   });
@@ -25,11 +25,17 @@ export default function DetailService({ room, images }) {
   }
 
   function submit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     // setCookie("roomId", room.no, { path: "/" });
     // setCookie("amount", data.amount, { path: "/" });
     // setCookie("voucher", data.voucher, { path: "/" });
-    post("/service/checkout");
+    let datas = JSON.stringify({
+      roomId: room.no,
+      amount: data.amount,
+      voucher: data.voucher,
+    });
+    setCookie("dataCheckout", datas, { path: "/" });
+    // get("/service/checkout");
   }
 
   function checkVoucher(e) {
@@ -40,7 +46,7 @@ export default function DetailService({ room, images }) {
     <>
       <Head title={`Kamar No. ${room.no}`} />
       <CustomersLayout>
-        <div className="container mx-auto h-screen">
+        <div className="container mx-auto mb-2">
           <div className="w-8/12 mx-auto">
             <section className="flex mt-10 lg:flex-row flex-col">
               <div className="xl:w-6/12">
@@ -48,7 +54,7 @@ export default function DetailService({ room, images }) {
                   <img
                     src={`/${Image}`}
                     alt=""
-                    className=" w-full h-96 object-contain"
+                    className=" w-full md:h-96 object-contain"
                   />
                 </div>
                 <ul className="flex mt-6">
@@ -67,19 +73,21 @@ export default function DetailService({ room, images }) {
                 </ul>
               </div>
               <div className="lg:w-6/12 mt-4 border-x-2 lg:ml-16 border-black md:pl-4 px-2 py-2 md:py-0 lg:my-auto">
-                <h2 className="text-4xl tracking-wider">Kamar No. {room.no}</h2>
+                <h2 className="text-4xl tracking-wider text-center md:text-left">
+                  Kamar No. {room.no}
+                </h2>
                 <span className="block mt-2 tracking-wider text-xl">
                   Rp. {room.price}/bulan
                 </span>
                 <div>
                   <span className="mt-4">Fasilitas:</span>
-                  <ul className="flex flex-wrap w-10/12 ">
-                    <li className="w-6/12">K. Mandi Dalam</li>
-                    <li className="w-6/12">Listrik</li>
-                    <li className="w-6/12">Air</li>
-                    <li className="w-6/12">Kasur</li>
-                    <li className="w-6/12">Lemari</li>
-                    <li className="w-6/12">Meja & kursi</li>
+                  <ul className="flex flex-col md:flex-row md:flex-wrap list-inside w-full list-disc">
+                    <li className="md:w-6/12">K. Mandi Dalam</li>
+                    <li className="md:w-6/12">Listrik</li>
+                    <li className="md:w-6/12">Air</li>
+                    <li className="md:w-6/12">Kasur</li>
+                    <li className="md:w-6/12">Lemari</li>
+                    <li className="md:w-6/12">Meja & kursi</li>
                   </ul>
                 </div>
                 <button
@@ -108,7 +116,7 @@ export default function DetailService({ room, images }) {
                     <h4 className="text-center">Lama waktu nge-Kost :</h4>
                     <form onSubmit={checkVoucher} id="check_voucher"></form>
                     <form onSubmit={submit}>
-                      <div className="relative p-6 flex flex-col md:flex-row md:justify-evenly">
+                      <div className="relative px-6 pt-2 flex flex-col md:flex-row md:justify-evenly">
                         {/* <p className="my-4 text-slate-500 text-lg leading-relaxed"></p> */}
                         <div className="flex items-center mb-4">
                           <input
@@ -118,6 +126,7 @@ export default function DetailService({ room, images }) {
                             value="3"
                             className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
                             onChange={radioHandleChange}
+                            checked={data.amount === "3"}
                           />
                           <label
                             htmlFor="option-1"
@@ -176,7 +185,7 @@ export default function DetailService({ room, images }) {
                         <button
                           type="submit"
                           form="check_voucher"
-                          className="border w-4/12 md:w-2/12 mx-auto mt-4 py-1 border-cyan-500"
+                          className="border w-4/12 md:w-2/12 mx-auto mt-2 py-1 border-cyan-500"
                         >
                           check
                         </button>
@@ -199,13 +208,20 @@ export default function DetailService({ room, images }) {
                         >
                           Close
                         </button>
-                        <button
+                        {/* <button
                           className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
                           type="submit"
                           // onClick={submit}
                         >
                           Pesan
-                        </button>
+                        </button> */}
+                        <Link
+                          href="/service/checkout"
+                          onClick={submit}
+                          className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
+                        >
+                          Pesan
+                        </Link>
                       </div>
                     </form>
                   </div>

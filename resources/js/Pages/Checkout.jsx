@@ -58,7 +58,6 @@ export default function Checkout({
     post("/services/transaction");
     // console.log(data);
   }
-  // console.log(data);
   return (
     <CustomersLayout>
       <div className="container mx-auto border mt-10">
