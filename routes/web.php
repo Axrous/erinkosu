@@ -54,6 +54,6 @@ Route::get('/user', [HomeController::class, 'userProfile']);
 Route::post('/create-voucher', [VoucherController::class, 'createVoucher']);
 Route::post('/check-voucher', [VoucherController::class, 'checkVoucher']);
 // Route::post('/service/checkout', [ServiceController::class, "checkout"]);
-Route::get('/service/checkout', [ServiceController::class, "checkout"]);
+Route::get('/service/checkout', [ServiceController::class, "checkout"])->middleware(['auth']);
 
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);

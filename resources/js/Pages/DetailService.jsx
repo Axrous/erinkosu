@@ -14,7 +14,7 @@ export default function DetailService({ room, images }) {
 
   const { data, setData, post, processing, errors } = useForm({
     amount: 3,
-    voucher: "",
+    voucher: "0",
     roomId: room.no,
   });
   const [price, setPrice] = useState(data.amount * room.price);
@@ -25,10 +25,6 @@ export default function DetailService({ room, images }) {
   }
 
   function submit(e) {
-    // e.preventDefault();
-    // setCookie("roomId", room.no, { path: "/" });
-    // setCookie("amount", data.amount, { path: "/" });
-    // setCookie("voucher", data.voucher, { path: "/" });
     let datas = JSON.stringify({
       roomId: room.no,
       amount: data.amount,
@@ -36,6 +32,7 @@ export default function DetailService({ room, images }) {
     });
     setCookie("dataCheckout", datas, { path: "/" });
     // get("/service/checkout");
+    // e.preventDefault();
   }
 
   function checkVoucher(e) {
@@ -126,7 +123,7 @@ export default function DetailService({ room, images }) {
                             value="3"
                             className="w-4 h-4 border-gray-300 focus:ring-2 focus:ring-blue-300"
                             onChange={radioHandleChange}
-                            checked={data.amount === "3"}
+                            checked={data.amount == "3"}
                           />
                           <label
                             htmlFor="option-1"

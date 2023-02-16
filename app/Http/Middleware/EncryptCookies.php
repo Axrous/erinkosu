@@ -14,6 +14,7 @@ class EncryptCookies extends Middleware
   protected $except = [
     "roomId",
     "amount",
-    "voucher"
+    "voucher",
+    "dataCheckout"
   ];
 }

@@ -56,30 +56,34 @@ class ServiceController extends Controller
     // $request->validate([
     //   'amount' => 'required|in:3,6,12'
     // ]);
-    if ($voucher) {
-      $discount = $voucher->discount_amount / 100;
+
+    if ($data->amount == 3 || $data->amount == 6 || $data->amount == 12) {
+      if ($voucher) {
+        $discount = $voucher->discount_amount / 100;
+      }
+
+      if (!$room) {
+        //return response redirect to service page with message "belum mengcheckout kamar"
+        // return redirect()->route('dashboard',);
+        return response()->json(["message" => "gatau apaan nih", $request->all()], 200);
+      }
+
+      $amount = $data->amount;
+      $price = $room->price * $amount;
+      $discountPrice = $price * $discount;
+      $totalPrice = $price - $discountPrice;
+
+
+      return Inertia::render('Checkout', [
+        "order_id" => $order_id,
+        "amount" => $amount,
+        "price" => $price,
+        "discount" => $discountPrice,
+        "room_no" => $room->no,
+        "totalPrice" => $totalPrice,
+      ]);
     }
-
-    if (!$room) {
-      //return response redirect to service page with message "belum mengcheckout kamar"
-      // return redirect()->route('dashboard',);
-      return response()->json(["message" => "gatau apaan nih", $request->all()], 200);
-    }
-
-    $amount = $data->amount;
-    $price = $room->price * $amount;
-    $discountPrice = $price * $discount;
-    $totalPrice = $price - $discountPrice;
-
-
-    return Inertia::render('Checkout', [
-      "order_id" => $order_id,
-      "amount" => $amount,
-      "price" => $price,
-      "discount" => $discountPrice,
-      "room_no" => $room->no,
-      "totalPrice" => $totalPrice,
-    ]);
+    return redirect()->back()->with("message", "Gaboleh ya!");
 
     // $roomId = $request->cookie("roomId");
     // $amount = $request->cookie("amount");
