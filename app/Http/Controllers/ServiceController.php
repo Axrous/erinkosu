@@ -72,8 +72,7 @@ class ServiceController extends Controller
     if ($data == null) {
       return redirect('/services')->with("message", "Pilih dulu atuh kamarnya");
     }
-
-    $room = Room::where('no', $data->roomId)->first();
+    $room = Room::join('room_images', 'rooms.no', '=', 'room_images.room_no')->select('rooms.no', 'room_images.url', 'price')->groupBy('no')->where('no', $data->roomId)->first();
     $voucher = Voucher::where('voucher_name', $data->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
 
     $order_id = uniqid('TR-');
@@ -96,9 +95,9 @@ class ServiceController extends Controller
       "price" => $price,
       "discount" => $discountPrice,
       "room_no" => $room->no,
+      "roomUrl" => $room->url,
       "totalPrice" => $totalPrice,
     ]);
-    // return response()->json($data, 200);
   }
 
   public function postPayment(Request $request)

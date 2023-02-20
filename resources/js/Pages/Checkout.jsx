@@ -9,6 +9,7 @@ export default function Checkout({
   discount,
   totalPrice,
   room_no,
+  roomUrl,
 }) {
   const { data, setData, post, processing, errors } = useForm({
     amount: "",
@@ -18,17 +19,10 @@ export default function Checkout({
     room_no: "",
     order_id: "",
   });
-
+  const [clicked, setClicked] = useState("bca");
   const [checked, setChecked] = useState(false);
   const handleChange = () => {
     setChecked(!checked);
-    // setData("amount", amount);
-    // setData("discount", discount);
-    // setData("orderId", order_id);
-    // // setOrderId(order_id);
-    // setData("price", price);
-    // setData("totalPrice", totalPrice);
-    // setData("room_no", room_no);
     setData({
       amount: amount,
       discount: discount,
@@ -39,44 +33,97 @@ export default function Checkout({
     });
   };
 
-  // const [orderId, setOrderId] = useState("");
-
-  // useEffect(() => {
-  //   setData("amount", amount);
-  //   setData("discount", discount);
-  //   // setData("orderId");
-  //   setOrderId(order_id);
-  //   setData("price", price);
-  //   setData("totalPrice", totalPrice);
-  //   setData("room_no", room_no);
-  //   console.log(data);
-  //   console.log(orderId);
-  // }, []);
-
   function submit(e) {
     e.preventDefault();
     post("/services/transaction");
-    // console.log(data);
   }
   return (
     <CustomersLayout>
-      <div className="container mx-auto border mt-10">
-        <h1>Checkout</h1>
-        <h2>Kamar No. {room_no}</h2>
-        <h3>Harga Kamar {price}</h3>
-        <h3>Lama waktu nge-kost {amount} Bulan</h3>
-        <p>Diskon {discount}</p>
-        <p>Total Harga {totalPrice}</p>
-        <form onSubmit={submit}>
-          <input type="checkbox" name="terms" id="" onChange={handleChange} />
-          <label htmlFor="terms">
-            Dengan ini menyatakan setuju dengan syarat dan ketentuan
-          </label>
-          <br />
-          <button type="submit" disabled={checked == false}>
-            Pesan
-          </button>
-        </form>
+      <div className="container mx-auto">
+        <div className="w-6/12 mx-auto">
+          <h1 className="text-center text-2xl my-10">Complete Your Purchase</h1>
+          <div className="mx-auto bg-white border border-white drop-shadow-2xl">
+            <div className="flex justify-between m-1 py-2 rounded-t-xl bg-slate-200 ">
+              <span className="w-7/12 pl-10">Room</span>
+              <span className="w-2/12">Price</span>
+              <span className="w-2/12">Duration</span>
+            </div>
+            <div className="flex justify-between mt-3 pb-10 border-b">
+              <div className="flex w-7/12 justify-evenly">
+                <img src={`/${roomUrl}`} alt="" className="h-32 rounded-xl" />
+                <p className="my-auto w-6/12">Kamar No. {room_no}</p>
+              </div>
+              <span className="w-2/12 my-auto">Rp. {price}</span>
+              <span className="w-2/12 my-auto">{amount} Months</span>
+            </div>
+            <div className="text-end m-6">
+              {discount !== 0 ? (
+                <>
+                  <span className="text-sm">Discount</span>
+                  <p className="text-md font-semibold">Rp. {discount}</p>
+                </>
+              ) : (
+                ""
+              )}
+              <span className="text-sm">Total</span>
+              <p className="text-md font-semibold">Rp. {totalPrice}</p>
+            </div>
+          </div>
+
+          <div className="mt-20">
+            <h3 className="text-xl">Payment Method</h3>
+            <div className="mt-10">
+              <div className="flex justify-evenly flex-wrap">
+                {/* <input type="button" className="" value="check" /> */}
+                <button
+                  className={`cursor-pointer border w-5/12 py-8 bg-white rounded-xl ${
+                    clicked == "bca" ? "border-cyan-400" : "border-slate-200"
+                  }`}
+                  onClick={(e) => setClicked("bca")}
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Bank_Central_Asia.svg/2560px-Bank_Central_Asia.svg.png"
+                    alt=""
+                    className="w-24 mx-auto"
+                  />
+                </button>
+                <button
+                  className={`cursor-pointer border w-5/12 py-8 border-slate-200 bg-white rounded-xl ${
+                    clicked == "bni" ? "border-cyan-400" : "border-slate-200"
+                  }`}
+                  onClick={(e) => setClicked("bni")}
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png"
+                    alt=""
+                    className="w-24 mx-auto"
+                  />
+                </button>
+              </div>
+            </div>
+          </div>
+          <form onSubmit={submit} className="mt-12 w-full flex flex-col">
+            <div>
+              <input
+                type="checkbox"
+                name="terms"
+                id="terms"
+                className="mr-2"
+                onChange={handleChange}
+              />
+              <label htmlFor="terms">
+                Dengan ini menyatakan setuju dengan syarat dan ketentuan
+              </label>
+            </div>
+            <button
+              type="submit"
+              disabled={checked == false}
+              className="py-3 mt-6 bg-cyan-600 rounded-lg text-white"
+            >
+              Pesan
+            </button>
+          </form>
+        </div>
       </div>
     </CustomersLayout>
   );
