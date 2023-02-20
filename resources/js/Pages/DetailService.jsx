@@ -25,14 +25,8 @@ export default function DetailService({ room, images }) {
   }
 
   function submit(e) {
-    let datas = JSON.stringify({
-      roomId: room.no,
-      amount: data.amount,
-      voucher: data.voucher,
-    });
-    setCookie("dataCheckout", datas, { path: "/" });
-    // get("/service/checkout");
-    // e.preventDefault();
+    e.preventDefault();
+    post("/service/checkout");
   }
 
   function checkVoucher(e) {
@@ -205,20 +199,20 @@ export default function DetailService({ room, images }) {
                         >
                           Close
                         </button>
-                        {/* <button
+                        <button
                           className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
                           type="submit"
-                          // onClick={submit}
+                          onClick={submit}
                         >
                           Pesan
-                        </button> */}
-                        <Link
+                        </button>
+                        {/* <Link
                           href="/service/checkout"
                           onClick={submit}
                           className={`bg-emerald-500 font-bold uppercase text-sm px-6 py-3 rounded shadow outline-none  mr-1 mb-1 ease-linear transition-all duration-150`}
                         >
                           Pesan
-                        </Link>
+                        </Link> */}
                       </div>
                     </form>
                   </div>

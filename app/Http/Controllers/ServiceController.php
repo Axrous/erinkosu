@@ -45,51 +45,59 @@ class ServiceController extends Controller
     return Inertia::render('Payment', []);
   }
 
+  public function toCheckout(Request $request)
+  {
+    $request->validate([
+      'amount' => 'required|in:3,6,12'
+    ]);
+
+    $cookie = [
+      "roomId" => $request->roomId,
+      "amount" => $request->amount,
+      "voucher" => $request->voucher
+    ];
+
+    // cookie()->create("dataCheckout", json_encode($cookie));
+    setcookie("dataCheckout", json_encode($cookie));
+    return redirect('/service/checkout');
+  }
+
+
+
   public function checkout(Request $request)
   {
     $discount = 0;
     $data = json_decode($request->cookie("dataCheckout"));
+
+    if ($request->roomId == null) {
+      return redirect('/services');
+    }
+
     $room = Room::where('no', $data->roomId)->first();
     $voucher = Voucher::where('voucher_name', $data->voucher)->where('voucher_limit', ">", 0)->select("discount_amount")->first();
 
     $order_id = uniqid('TR-');
-    // $request->validate([
-    //   'amount' => 'required|in:3,6,12'
-    // ]);
 
-    if ($data->amount == 3 || $data->amount == 6 || $data->amount == 12) {
-      if ($voucher) {
-        $discount = $voucher->discount_amount / 100;
-      }
-
-      if (!$room) {
-        //return response redirect to service page with message "belum mengcheckout kamar"
-        // return redirect()->route('dashboard',);
-        return response()->json(["message" => "gatau apaan nih", $request->all()], 200);
-      }
-
-      $amount = $data->amount;
-      $price = $room->price * $amount;
-      $discountPrice = $price * $discount;
-      $totalPrice = $price - $discountPrice;
-
-
-      return Inertia::render('Checkout', [
-        "order_id" => $order_id,
-        "amount" => $amount,
-        "price" => $price,
-        "discount" => $discountPrice,
-        "room_no" => $room->no,
-        "totalPrice" => $totalPrice,
-      ]);
+    if ($voucher) {
+      $discount = $voucher->discount_amount / 100;
     }
-    return redirect()->back()->with("message", "Gaboleh ya!");
 
-    // $roomId = $request->cookie("roomId");
-    // $amount = $request->cookie("amount");
-    // $voucher = $request->cookie("voucher");
 
-    // return response()->json([$roomId, $amount, $voucher], 200);
+
+    $amount = $data->amount;
+    $price = $room->price * $amount;
+    $discountPrice = $price * $discount;
+    $totalPrice = $price - $discountPrice;
+
+
+    return Inertia::render('Checkout', [
+      "order_id" => $order_id,
+      "amount" => $amount,
+      "price" => $price,
+      "discount" => $discountPrice,
+      "room_no" => $room->no,
+      "totalPrice" => $totalPrice,
+    ]);
   }
 
   public function postPayment(Request $request)
