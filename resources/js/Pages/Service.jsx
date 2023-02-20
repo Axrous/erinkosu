@@ -1,10 +1,12 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Head, Link, usePage } from "@inertiajs/inertia-react";
 import React, { useState } from "react";
 import { FcOk, FcCancel } from "react-icons/fc";
 
 export default function Service({ rooms }) {
   const [isBooked, setIsBooked] = useState(false);
+  const { flash, setFlash } = usePage().props;
+  const [showModal, setShowModal] = useState(flash.message);
 
   return (
     <>
@@ -42,14 +44,6 @@ export default function Service({ rooms }) {
                         <FcCancel className="ml-2 my-auto" />
                       )}
                     </span>
-                    {/* <a
-                      href={`/services/${room.no}`}
-                      className={`py-2 px-6 bg-black text-white rounded-lg inline-block mt-4 ${
-                        room.is_booked ? "pointer-events-none opacity-25 " : ""
-                      }`}
-                    >
-                      Detail
-                    </a> */}
                     <Link
                       href={`/services/${room.no}`}
                       className={`py-2 px-6 bg-black text-white rounded-lg inline-block mt-4 ${
@@ -63,6 +57,36 @@ export default function Service({ rooms }) {
               </div>
             ))}
           </div>
+          {showModal ? (
+            <>
+              <div className="container mx-auto justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+                <div className="relative w-auto my-6 mx-auto">
+                  {/*content*/}
+                  <div className="border-0 rounded-lg shadow-lg relative flex flex-col md:w-[500px] bg-white outline-none focus:outline-none mx-auto">
+                    {/*header*/}
+                    <div className="p-5 border-b border-solid border-slate-200 rounded-t px-12 text-center">
+                      <h3 className="text-3xl font-semibold">
+                        {flash.message}
+                      </h3>
+                    </div>
+                    {/*body*/}
+                    <button
+                      className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                      type="button"
+                      onClick={(e) => {
+                        setShowModal(false);
+                      }}
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
+            </>
+          ) : (
+            ""
+          )}
         </div>
       </CustomersLayout>
     </>

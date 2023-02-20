@@ -69,8 +69,8 @@ class ServiceController extends Controller
     $discount = 0;
     $data = json_decode($request->cookie("dataCheckout"));
 
-    if ($request->roomId == null) {
-      return redirect('/services');
+    if ($data == null) {
+      return redirect('/services')->with("message", "Pilih dulu atuh kamarnya");
     }
 
     $room = Room::where('no', $data->roomId)->first();
@@ -98,6 +98,7 @@ class ServiceController extends Controller
       "room_no" => $room->no,
       "totalPrice" => $totalPrice,
     ]);
+    // return response()->json($data, 200);
   }
 
   public function postPayment(Request $request)
