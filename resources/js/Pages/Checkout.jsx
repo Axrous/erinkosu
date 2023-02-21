@@ -40,21 +40,25 @@ export default function Checkout({
   return (
     <CustomersLayout>
       <div className="container mx-auto">
-        <div className="w-6/12 mx-auto">
+        <div className="w-11/12 md:w-8/12 lg:w-7/12 xl:w-6/12 mx-auto">
           <h1 className="text-center text-2xl my-10">Complete Your Purchase</h1>
           <div className="mx-auto bg-white border border-white drop-shadow-2xl">
-            <div className="flex justify-between m-1 py-2 rounded-t-xl bg-slate-200 ">
-              <span className="w-7/12 pl-10">Room</span>
-              <span className="w-2/12">Price</span>
-              <span className="w-2/12">Duration</span>
+            <div className="flex justify-between m-1 py-2 rounded-t-xl bg-slate-200 px-4 ">
+              <span className="md:w-7/12  md:pl-10">Room</span>
+              <span className="md:w-2/12">Price</span>
+              <span className="md:w-2/12">Duration</span>
             </div>
             <div className="flex justify-between mt-3 pb-10 border-b">
-              <div className="flex w-7/12 justify-evenly">
-                <img src={`/${roomUrl}`} alt="" className="h-32 rounded-xl" />
+              <div className="flex md:w-7/12 justify-evenly">
+                <img
+                  src={`/${roomUrl}`}
+                  alt=""
+                  className="h-32 rounded-xl hidden md:block"
+                />
                 <p className="my-auto w-6/12">Kamar No. {room_no}</p>
               </div>
-              <span className="w-2/12 my-auto">Rp. {price}</span>
-              <span className="w-2/12 my-auto">{amount} Months</span>
+              <span className="md:w-2/12 my-auto">Rp. {price}</span>
+              <span className="md:w-2/12 my-auto mr-4">{amount} Months</span>
             </div>
             <div className="text-end m-6">
               {discount !== 0 ? (
