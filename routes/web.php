@@ -49,6 +49,7 @@ Route::get('/services/{room_no}', [ServiceController::class,  'detailService'])-
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
 Route::post('admin/create-room', [RoomController::class, 'addRoom'])->middleware('admin');
+Route::post('admin/edit-room/{room_no}', [RoomController::class, 'editRoom']);
 Route::get('/services/transaction-history/{transactionId}', [ServiceController::class, 'detailHistory'])->name("detailPayment");
 Route::get('/user', [HomeController::class, 'userProfile']);
 Route::post('/create-voucher', [VoucherController::class, 'createVoucher'])->middleware(['auth', 'admin']);

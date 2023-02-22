@@ -33,4 +33,11 @@ class RoomController extends Controller
       ]);
     }
   }
+
+  public function editRoom(Request $request, $room_no)
+  {
+    $room = Room::where('no', $room_no)->update(["price" => $request->newPrice]);
+
+    return response()->json($room, 200);
+  }
 }
