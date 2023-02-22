@@ -48,10 +48,10 @@ Route::post('/services/transaction', [ServiceController::class,  'postPayment'])
 Route::get('/services/{room_no}', [ServiceController::class,  'detailService'])->middleware('isBooked');
 // Route::post('/services/payment', [ServiceController::class,  'postPayment']);
 Route::post('services/notification-handle', [ServiceController::class, 'notifHandle']);
-Route::post('admin/create-room', [RoomController::class, 'addRoom']);
+Route::post('admin/create-room', [RoomController::class, 'addRoom'])->middleware('admin');
 Route::get('/services/transaction-history/{transactionId}', [ServiceController::class, 'detailHistory'])->name("detailPayment");
 Route::get('/user', [HomeController::class, 'userProfile']);
-Route::post('/create-voucher', [VoucherController::class, 'createVoucher']);
+Route::post('/create-voucher', [VoucherController::class, 'createVoucher'])->middleware(['auth', 'admin']);
 Route::post('/check-voucher', [VoucherController::class, 'checkVoucher']);
 // Route::post('/service/checkout', [ServiceController::class, "checkout"]);
 Route::post('/service/checkout', [ServiceController::class, "toCheckout"])->middleware(['auth']);
