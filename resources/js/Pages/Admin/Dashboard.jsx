@@ -8,7 +8,20 @@ export default function Dashboard() {
     <>
       <Head title="Dashboard" />
       <AdminLayout>
-        <h1>Ini adalah halaman admin</h1>
+        <div class="grid grid-cols-3 gap-4 mb-4">
+          <div class="flex flex-col items-center justify-evenly h-52 rounded text-white bg-gray-50 dark:bg-gray-800">
+            <p className="md:text-3xl text-center">Kamar Kosong</p>
+            <p className="text-6xl">5</p>
+          </div>
+          <div class="flex flex-col items-center justify-evenly h-52 rounded text-white bg-gray-50 dark:bg-gray-800">
+            <p className="md:text-3xl text-center">Kamar Terisi</p>
+            <p className="text-6xl">11</p>
+          </div>
+          <div class="flex flex-col items-center justify-evenly h-52 rounded text-white bg-gray-50 dark:bg-gray-800">
+            <p className="md:text-3xl text-center">Total Kamar</p>
+            <p className="text-6xl">16</p>
+          </div>
+        </div>
       </AdminLayout>
     </>
   );
