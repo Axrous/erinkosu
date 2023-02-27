@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoomController;
@@ -59,4 +60,6 @@ Route::post('/service/checkout', [ServiceController::class, "toCheckout"])->midd
 Route::get('/service/checkout', [ServiceController::class, "checkout"])->middleware(['auth']);
 Route::delete("/admin/delete-image/{id}", [RoomController::class, "deleteRoomImage"]);
 
+
+Route::get("/admin/dashboard", [AdminHomeController::class, "renderHome"]);
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
