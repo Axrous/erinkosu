@@ -13,4 +13,9 @@ class HomeController extends Controller
   {
     return Inertia::render("Admin/Dashboard", []);
   }
+
+  public function renderRoomList()
+  {
+    return Inertia::render('Admin/RoomList');
+  }
 }
