@@ -63,4 +63,5 @@ Route::delete("/admin/delete-image/{id}", [RoomController::class, "deleteRoomIma
 
 Route::get("/admin/dashboard", [AdminHomeController::class, "renderHome"]);
 Route::get("/admin/room-list", [AdminHomeController::class, "renderRoomList"]);
+Route::get("/admin/tenant-list", [AdminHomeController::class, "renderTenantList"]);
 // Route::post('try/services/{room_no}/payment', [ServiceController::class,  'getFormData']);
