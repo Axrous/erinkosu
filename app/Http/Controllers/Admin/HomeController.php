@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Room;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -11,7 +12,18 @@ class HomeController extends Controller
 
   public function renderHome()
   {
-    return Inertia::render("Admin/Dashboard", []);
+
+    $sumAvailableRoom = Room::where("is_booked", false)->count();
+    $sumBookedRoom = Room::where("is_booked", true)->count();
+    $sumRoom = Room::count();
+
+    return Inertia::render("Admin/Dashboard", [
+      "room" => [
+        "availableRoom" => $sumAvailableRoom,
+        "bookedRoom" => $sumBookedRoom,
+        "sumRoom" => $sumRoom
+      ]
+    ]);
   }
 
   public function renderRoomList()

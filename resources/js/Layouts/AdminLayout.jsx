@@ -111,7 +111,7 @@ export default function AdminLayout({ children }) {
                 </span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <a
                 href="#"
                 className="flex items-center p-2 text-base font-normal  rounded-lg text-white  hover:bg-gray-700"
@@ -133,7 +133,7 @@ export default function AdminLayout({ children }) {
                   History Transaction
                 </span>
               </a>
-            </li>
+            </li> */}
             <li>
               <a
                 href="#"
