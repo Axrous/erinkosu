@@ -1,5 +1,5 @@
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import { React } from "react";
 
 export default function RoomList() {
@@ -7,10 +7,21 @@ export default function RoomList() {
     <>
       <Head title="Room" />
       <AdminLayout>
+        <div className="mb-6 mt-2">
+          <Link
+            href="/admin/create-room"
+            className="border px-6 py-2 rounded-lg bg-gray-700 text-gray-400"
+          >
+            ADD ROOM
+          </Link>
+        </div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs uppercase bg-gray-700 text-gray-400">
               <tr>
+                <th scope="col" class="px-6 py-3">
+                  No.
+                </th>
                 <th scope="col" class="px-6 py-3">
                   Room Number
                 </th>
@@ -27,12 +38,14 @@ export default function RoomList() {
             </thead>
             <tbody>
               <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th
+                <th className="px-6 py-4">1.</th>
+
+                <td
                   scope="row"
                   class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   Kamar No. 1
-                </th>
+                </td>
                 <td class="px-6 py-4">Available</td>
                 <td class="px-6 py-4">Rp. 300000</td>
                 <td class="px-6 py-4">

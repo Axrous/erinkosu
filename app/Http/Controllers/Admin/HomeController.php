@@ -23,4 +23,9 @@ class HomeController extends Controller
   {
     return Inertia::render("Admin/TenantList");
   }
+
+  public function renderCreateRoom()
+  {
+    return Inertia::render("Admin/CreateRoom");
+  }
 }

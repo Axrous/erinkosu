@@ -40,6 +40,9 @@ export default function TenantList(params) {
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" class="px-6 py-3">
+                  No.
+                </th>
+                <th scope="col" class="px-6 py-3">
                   Name
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -55,7 +58,8 @@ export default function TenantList(params) {
             </thead>
             <tbody>
               <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                <th
+                <th className="px-6 py-4">1</th>
+                <td
                   scope="row"
                   class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"
                 >
@@ -70,7 +74,7 @@ export default function TenantList(params) {
                       argasatya16@gmail.com
                     </div>
                   </div>
-                </th>
+                </td>
                 <td class="px-6 py-4">087811008278</td>
                 {/* <td class="px-6 py-4">
                   <div class="flex items-center">

@@ -75,10 +75,12 @@ class AuthController extends Controller
     ]);
     if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
       $request->session()->regenerate();
-      // return Inertia::render('Dashboard', []);
+      $user = Auth::user();
+      if ($user->role == UserRoleEnum::ADMIN) {
+        return Inertia::location('/admin/dashboard');
+      }
       return Inertia::location('/');
     }
-
     return back()->withErrors([
       'wrong' => 'Wrong Email or Password'
     ]);
