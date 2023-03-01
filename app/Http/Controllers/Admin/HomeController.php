@@ -28,4 +28,9 @@ class HomeController extends Controller
   {
     return Inertia::render("Admin/CreateRoom");
   }
+
+  public function renderEditRoom()
+  {
+    return Inertia::render("Admin/EditRoom");
+  }
 }
