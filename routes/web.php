@@ -59,6 +59,7 @@ Route::post('/check-voucher', [VoucherController::class, 'checkVoucher']);
 Route::post('/service/checkout', [ServiceController::class, "toCheckout"])->middleware(['auth']);
 Route::get('/service/checkout', [ServiceController::class, "checkout"])->middleware(['auth']);
 Route::delete("/admin/delete-image/{id}", [RoomController::class, "deleteRoomImage"]);
+Route::post("/admin/add-image/{roomNo}", [RoomController::class, "addImage"]);
 
 
 Route::get("/admin/dashboard", [AdminHomeController::class, "renderHome"]);

@@ -66,4 +66,14 @@ class RoomController extends Controller
     return redirect()->back()->with("message", "Berhasil dihapus");
     // return response()->json($result, 200);
   }
+
+  public function addImage(Request $request, $roomNo)
+  {
+    $imageFile = $request->file('image');
+    $path = $imageFile->store('/images/resource', ['disk' => 'my_files']);
+    $image = RoomImage::create([
+      'url' => $path,
+      'room_no' => $roomNo,
+    ]);
+  }
 }

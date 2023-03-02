@@ -1,6 +1,6 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Inertia } from "@inertiajs/inertia";
-import { Head, usePage } from "@inertiajs/inertia-react";
+import { Head, useForm, usePage } from "@inertiajs/inertia-react";
 import { React, useState } from "react";
 
 export default function EditRoom({ roomPrice, roomNo, images }) {
@@ -8,9 +8,16 @@ export default function EditRoom({ roomPrice, roomNo, images }) {
   const [newPrice, setNewPrice] = useState({
     price: roomPrice,
   });
+  const { data, setData, post, process } = useForm({
+    image: undefined,
+  });
   function submitPrice(e) {
     e.preventDefault();
     Inertia.post(`/admin/edit-room/${roomNo}}`, newPrice);
+  }
+  function addImage(e) {
+    e.preventDefault();
+    post(`/admin/add-image/${roomNo}`);
   }
   function deleteImage(e, imageId) {
     e.preventDefault();
@@ -53,16 +60,22 @@ export default function EditRoom({ roomPrice, roomNo, images }) {
               Submit
             </button>
           </form>
-          <div className="mb-4 flex flex-row">
-            <input
-              className="block px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-              id="user_avatar"
-              type="file"
-            />
-            <button className="px-7 ml-6 bg-blue-500 rounded-lg text-gray-200">
-              Add
-            </button>
-          </div>
+          <form onSubmit={addImage}>
+            <div className="mb-4 flex flex-row">
+              <input
+                className="block px-4 py-2 text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                id="user_avatar"
+                type="file"
+                onChange={(e) => setData("image", e.target.files[0])}
+              />
+              <button
+                className="px-7 ml-6 bg-blue-500 rounded-lg text-gray-200"
+                on
+              >
+                Add
+              </button>
+            </div>
+          </form>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
