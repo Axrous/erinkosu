@@ -9,7 +9,8 @@ class VoucherController extends Controller
 {
   public function createVoucher(Request $request)
   {
-    $date = strtotime($request->expires_at);
+    $date = strtotime($request->date);
+    $date = strtotime(date('Y-m-d', $date));
 
     $voucher = Voucher::create([
       'voucher_name' => $request->voucher_name,
