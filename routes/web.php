@@ -65,4 +65,4 @@ Route::get("/admin/dashboard", [AdminHomeController::class, "renderHome"]);
 Route::get("/admin/room-list", [AdminHomeController::class, "renderRoomList"]);
 Route::get("/admin/tenant-list", [AdminHomeController::class, "renderTenantList"]);
 Route::get("/admin/create-room", [AdminHomeController::class, "renderCreateRoom"]);
-Route::get("/admin/edit-room", [AdminHomeController::class, "renderEditRoom"]);
+Route::get("/admin/edit-room/{roomNo}", [AdminHomeController::class, "renderEditRoom"]);

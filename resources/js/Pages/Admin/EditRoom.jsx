@@ -1,23 +1,44 @@
 import AdminLayout from "@/Layouts/AdminLayout";
-import { Head } from "@inertiajs/inertia-react";
-import { React } from "react";
+import { Inertia } from "@inertiajs/inertia";
+import { Head, usePage } from "@inertiajs/inertia-react";
+import { React, useState } from "react";
 
-export default function EditRoom() {
+export default function EditRoom({ roomPrice, roomNo, images }) {
+  const { flash, setFlash } = usePage().props;
+  const [newPrice, setNewPrice] = useState({
+    price: roomPrice,
+  });
+  function submitPrice(e) {
+    e.preventDefault();
+    Inertia.post(`/admin/edit-room/${roomNo}}`, newPrice);
+  }
+  function deleteImage(e, imageId) {
+    e.preventDefault();
+    Inertia.delete(`/admin/delete-image/${imageId}`);
+    // console.log(imageId);
+  }
   return (
     <>
       <Head title="Edit Room" />
       <AdminLayout>
         <div className="p-4 mx-auto w-8/12">
           <h1 className="m-4 mb-10 text-2xl">Kamar No. 1</h1>
-          <form className="p-4 border-b mb-4 rounded-lg shadow-xl">
+          <h3 className="my-2 p-1 pl-4 bg-green-300 rounded-xl">
+            {flash.message}
+          </h3>
+          <form
+            className="p-4 border-b mb-4 rounded-lg shadow-xl mt-4"
+            onSubmit={submitPrice}
+          >
             <div className="relative z-0 w-full mb-6 group">
               <input
                 type="text"
                 id="floating_price"
                 className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
-                defaultValue="200000"
+                value={newPrice.price}
                 required
+                onChange={(e) => setNewPrice({ price: e.target.value })}
               />
               <label
                 htmlFor="floating_price"
@@ -26,7 +47,10 @@ export default function EditRoom() {
                 Harga Kamar
               </label>
             </div>
-            <button className="bg-blue-500 text-gray-200 px-5 py-2 rounded-md">
+            <button
+              className="bg-blue-500 text-gray-200 px-5 py-2 rounded-md"
+              type="submit"
+            >
               Submit
             </button>
           </form>
@@ -49,22 +73,28 @@ export default function EditRoom() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                  <td className="p-4">
-                    <img
-                      src="/docs/images/products/apple-watch.png"
-                      alt="Apple Watch"
-                    />
-                  </td>
-                  <td className="px-6 py-4">
-                    <a
-                      href="#"
-                      className="font-medium text-red-600 dark:text-red-500 hover:underline"
-                    >
-                      Remove
-                    </a>
-                  </td>
-                </tr>
+                {images.map((image) => (
+                  <tr
+                    className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+                    key={image.id}
+                  >
+                    <td className="p-4">
+                      <img
+                        src={`../../${image.url}`}
+                        alt="Apple Watch"
+                        className="w-40"
+                      />
+                    </td>
+                    <td className="px-6 py-4">
+                      <button
+                        className="font-medium text-red-600 dark:text-red-500 hover:underline"
+                        onClick={(e) => deleteImage(e, image.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

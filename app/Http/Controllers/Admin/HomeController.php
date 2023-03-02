@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Enum\TransactionStatusEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
+use App\Models\RoomImage;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -35,7 +36,11 @@ class HomeController extends Controller
 
   public function renderRoomList()
   {
-    return Inertia::render('Admin/RoomList');
+    $rooms = Room::select("no", "is_booked", "price")->get();
+
+    return Inertia::render('Admin/RoomList', [
+      "rooms" => $rooms
+    ]);
   }
 
   public function renderTenantList()
@@ -48,8 +53,14 @@ class HomeController extends Controller
     return Inertia::render("Admin/CreateRoom");
   }
 
-  public function renderEditRoom()
+  public function renderEditRoom($roomNo)
   {
-    return Inertia::render("Admin/EditRoom");
+    $roomPrice = Room::select("price")->where("no", $roomNo)->first();
+    $roomImages = RoomImage::select("url", "id")->where("room_no", $roomNo)->get();
+    return Inertia::render("Admin/EditRoom", [
+      "roomPrice" => $roomPrice->price,
+      "roomNo" => $roomNo,
+      "images" => $roomImages
+    ]);
   }
 }

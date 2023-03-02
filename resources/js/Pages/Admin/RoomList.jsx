@@ -2,7 +2,8 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { React } from "react";
 
-export default function RoomList() {
+export default function RoomList({ rooms }) {
+  let no = 1;
   return (
     <>
       <Head title="Room" />
@@ -37,33 +38,40 @@ export default function RoomList() {
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                <th className="px-6 py-4">1.</th>
-
-                <td
-                  scope="row"
-                  className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              {rooms.map((room) => (
+                <tr
+                  className="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
+                  key={room.no}
                 >
-                  Kamar No. 1
-                </td>
-                <td className="px-6 py-4">Available</td>
-                <td className="px-6 py-4">Rp. 300000</td>
-                <td className="px-6 py-4">
-                  <a
-                    href="#"
-                    className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  <th className="px-6 py-4">{no++}</th>
+
+                  <td
+                    scope="row"
+                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    Edit
-                  </a>
-                  <span className="mx-2">|</span>
-                  <a
-                    href="#"
-                    className="font-medium text-red-600 dark:text-blue-500 hover:underline"
-                  >
-                    Remove
-                  </a>
-                </td>
-              </tr>
+                    Kamar No. {room.no}
+                  </td>
+                  <td className="px-6 py-4">
+                    {!room.is_booked == 1 ? "available" : "booked"}
+                  </td>
+                  <td className="px-6 py-4">Rp. {room.price}</td>
+                  <td className="px-6 py-4">
+                    <Link
+                      href={`/admin/edit-room/${room.no}`}
+                      className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </Link>
+                    <span className="mx-2">|</span>
+                    <a
+                      href="#"
+                      className="font-medium text-red-600 dark:text-blue-500 hover:underline"
+                    >
+                      Remove
+                    </a>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

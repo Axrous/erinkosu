@@ -46,9 +46,10 @@ class RoomController extends Controller
 
   public function editRoom(Request $request, $room_no)
   {
-    $room = Room::where('no', $room_no)->update(["price" => $request->newPrice]);
+    Room::where('no', $room_no)->update(["price" => $request->price]);
 
-    return response()->json($room, 200);
+    // return response()->json($request, 200);
+    return redirect()->back()->with("message", "Harga Berhasil dirubah");
   }
 
   public function deleteRoomImage($id)
@@ -61,7 +62,8 @@ class RoomController extends Controller
     }
     Storage::disk('my_files')->delete($image->url);
     $image->delete();
-    return response()->json("Success", 200);
+    // return response()->json("Success", 200);
+    return redirect()->back()->with("message", "Berhasil dihapus");
     // return response()->json($result, 200);
   }
 }

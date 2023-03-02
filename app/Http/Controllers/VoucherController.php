@@ -24,15 +24,14 @@ class VoucherController extends Controller
 
   public function checkVoucher(Request $request)
   {
-
+    $today = strtotime(date('Y-m-d', time()));
     $voucher = Voucher::where('voucher_name', $request->voucher)->first();
-
 
     if (!$voucher) {
       // return response()->json(["message" => "Voucher tidak ada", "voucher" => $request->voucher], 200);
       return redirect()->back()->with("message", "Voucher tidak ada!");
     }
-    if ($voucher->voucher_limit < 1) {
+    if ($voucher->voucher_limit < 1 || $voucher->expires_at > $today) {
       // return response()->json(["message" => "Voucher sudah habis/tidak bisa digunakan"], 200);
       return redirect()->back()->with("message", "Voucher sudah habis/tidak bisa digunakan");
     }
