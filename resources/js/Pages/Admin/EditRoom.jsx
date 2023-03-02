@@ -15,7 +15,6 @@ export default function EditRoom({ roomPrice, roomNo, images }) {
   function deleteImage(e, imageId) {
     e.preventDefault();
     Inertia.delete(`/admin/delete-image/${imageId}`);
-    // console.log(imageId);
   }
   return (
     <>
@@ -89,6 +88,7 @@ export default function EditRoom({ roomPrice, roomNo, images }) {
                       <button
                         className="font-medium text-red-600 dark:text-red-500 hover:underline"
                         onClick={(e) => deleteImage(e, image.id)}
+                        disabled={images.length <= 1}
                       >
                         Delete
                       </button>

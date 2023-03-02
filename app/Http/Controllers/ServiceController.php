@@ -26,7 +26,7 @@ class ServiceController extends Controller
     // $rooms = Room::leftJoin('room_images', function ($join) {
     //   $join->on('rooms.no', '=', 'room_images.room_id');
     // })->orderBy('no')->get();
-    $rooms = Room::join('room_images', 'rooms.no', '=', 'room_images.room_no')->select('rooms.no', 'room_images.url', 'rooms.is_booked')->groupBy('no')->get();
+    $rooms = Room::leftJoin('room_images', 'rooms.no', '=', 'room_images.room_no')->select('rooms.no', 'room_images.url', 'rooms.is_booked')->groupBy('no')->get();
 
     return Inertia::render('Service', ['rooms' => $rooms]);
   }
