@@ -28,7 +28,7 @@ export default function EditRoom({ roomPrice, roomNo, images }) {
       <Head title="Edit Room" />
       <AdminLayout>
         <div className="p-4 mx-auto w-8/12">
-          <h1 className="m-4 mb-10 text-2xl">Kamar No. 1</h1>
+          <h1 className="m-4 mb-10 text-2xl">Kamar No. {roomNo}</h1>
           <h3 className="my-2 p-1 pl-4 bg-green-300 rounded-xl">
             {flash.message}
           </h3>
