@@ -76,4 +76,18 @@ class RoomController extends Controller
       'room_no' => $roomNo,
     ]);
   }
+
+  public function deleteRoom($roomNo)
+  {
+    $room = Room::where("no", $roomNo)->delete();
+    $images = RoomImage::where("room_no", $roomNo)->select("url")->get();
+
+    foreach ($images as $image) {
+      if (!Storage::disk('my_files')->exists($image->url)) {
+        return response()->json("Failed", 404);
+      }
+      Storage::disk('my_files')->delete($image->url);
+    }
+    RoomImage::where("room_no", $roomNo)->delete();
+  }
 }

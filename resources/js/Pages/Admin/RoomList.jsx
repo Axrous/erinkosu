@@ -1,9 +1,15 @@
 import AdminLayout from "@/Layouts/AdminLayout";
+import { Inertia } from "@inertiajs/inertia";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { React } from "react";
 
 export default function RoomList({ rooms }) {
   let no = 1;
+
+  function deleteRoom(e, roomNo) {
+    e.preventDefault();
+    Inertia.delete(`/admin/delete-room/${roomNo}`);
+  }
   return (
     <>
       <Head title="Room" />
@@ -63,12 +69,12 @@ export default function RoomList({ rooms }) {
                       Edit
                     </Link>
                     <span className="mx-2">|</span>
-                    <a
-                      href="#"
+                    <button
                       className="font-medium text-red-600 dark:text-blue-500 hover:underline"
+                      onClick={(e) => deleteRoom(e, room.no)}
                     >
                       Remove
-                    </a>
+                    </button>
                   </td>
                 </tr>
               ))}

@@ -60,6 +60,7 @@ Route::post('/service/checkout', [ServiceController::class, "toCheckout"])->midd
 Route::get('/service/checkout', [ServiceController::class, "checkout"])->middleware(['auth']);
 Route::delete("/admin/delete-image/{id}", [RoomController::class, "deleteRoomImage"]);
 Route::post("/admin/add-image/{roomNo}", [RoomController::class, "addImage"]);
+Route::delete("/admin/delete-room/{roomNo}", [RoomController::class, "deleteRoom"]);
 
 
 Route::get("/admin/dashboard", [AdminHomeController::class, "renderHome"]);
