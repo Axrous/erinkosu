@@ -55,4 +55,5 @@ Route::prefix("admin")->middleware(["auth", "admin"])->group(function () {
   Route::post("/add-image/{roomNo}", [RoomController::class, "addImage"]);
   Route::delete("/delete-image/{id}", [RoomController::class, "deleteRoomImage"]);
   Route::delete("/delete-room/{roomNo}", [RoomController::class, "deleteRoom"]);
+  Route::delete("/delete-user/{idUser}", [AdminHomeController::class, "deleteUser"]);
 });

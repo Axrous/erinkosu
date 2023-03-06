@@ -1,9 +1,15 @@
 import AdminLayout from "@/Layouts/AdminLayout";
+import { Inertia } from "@inertiajs/inertia";
 import { Head } from "@inertiajs/inertia-react";
 import { React } from "react";
 
 export default function TenantList({ tenants }) {
   let no = 1;
+
+  function deleteUser(e, userId) {
+    e.preventDefault();
+    Inertia.delete(`/admin/delete-user/${userId}`);
+  }
   return (
     <>
       <Head title="Tenant" />
@@ -83,12 +89,12 @@ export default function TenantList({ tenants }) {
                   </td>
                   <td className="px-6 py-4">{tenant.phone_number}</td>
                   <td className="px-6 py-4">
-                    <a
-                      href="#"
+                    <button
+                      onClick={(e) => deleteUser(e, tenant.id)}
                       className="font-medium text-red-600 dark:text-blue-500 hover:underline"
                     >
-                      Delete user
-                    </a>
+                      Delete User
+                    </button>
                   </td>
                 </tr>
               ))}

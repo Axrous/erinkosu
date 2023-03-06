@@ -10,6 +10,8 @@ use App\Models\RoomImage;
 use App\Models\User;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class HomeController extends Controller
@@ -48,7 +50,7 @@ class HomeController extends Controller
   public function renderTenantList()
   {
 
-    $tenants = User::where("role", UserRoleEnum::CUSTOMER)->select("photo_profile", "first_name", "email", "phone_number")->get();
+    $tenants = User::where("role", UserRoleEnum::CUSTOMER)->select("photo_profile", "first_name", "email", "phone_number", "id")->get();
 
     return Inertia::render("Admin/TenantList", [
       "tenants" => $tenants
@@ -69,5 +71,17 @@ class HomeController extends Controller
       "roomNo" => $roomNo,
       "images" => $roomImages
     ]);
+  }
+
+  public function deleteUser($idUser)
+  {
+    $user = User::where("id", $idUser)->first();
+    $filePath = public_path("storage/users/");
+
+    if (File::exists($filePath . $user->photo_profile)) {
+      File::delete($filePath . $user->photo_profile);
+      return response()->json("DONE", 200);
+      $user->delete();
+    }
   }
 }
