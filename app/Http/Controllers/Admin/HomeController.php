@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enum\TransactionStatusEnum;
+use App\Enum\UserRoleEnum;
 use App\Http\Controllers\Controller;
 use App\Models\Room;
 use App\Models\RoomImage;
+use App\Models\User;
 use Illuminate\Database\Query\JoinClause;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -45,7 +47,12 @@ class HomeController extends Controller
 
   public function renderTenantList()
   {
-    return Inertia::render("Admin/TenantList");
+
+    $tenants = User::where("role", UserRoleEnum::CUSTOMER)->select("photo_profile", "first_name", "email", "phone_number")->get();
+
+    return Inertia::render("Admin/TenantList", [
+      "tenants" => $tenants
+    ]);
   }
 
   public function renderCreateRoom()
