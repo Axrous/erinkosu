@@ -80,8 +80,8 @@ class HomeController extends Controller
 
     if (File::exists($filePath . $user->photo_profile)) {
       File::delete($filePath . $user->photo_profile);
-      return response()->json("DONE", 200);
       $user->delete();
+      return redirect()->back();
     }
   }
 }
