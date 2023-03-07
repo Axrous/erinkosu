@@ -35,7 +35,7 @@ export default function Dashboard({ room, roomDetail }) {
         <div>
           <h3 className="text-xl mb-1 tracking-wide">Create Voucher</h3>
           <form action="" onSubmit={submitVoucher}>
-            <div className="flex justify-between border p-6 mb-4 items-end shadow-md rounded-md">
+            <div className="flex justify-between border p-6 mb-4 shadow-md rounded-md flex-col lg:flex-row">
               <div>
                 <label htmlFor="" className="text-sm">
                   Nama Voucher
@@ -87,7 +87,7 @@ export default function Dashboard({ room, roomDetail }) {
                   onChange={(e) => setData("date", e.target.value)}
                 />
               </div>
-              <div className="">
+              <div className="mt-6">
                 <button
                   type="submit"
                   className="px-6 py-1 rounded-md bg-blue-500 text-gray-200"
