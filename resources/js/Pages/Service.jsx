@@ -16,14 +16,14 @@ export default function Service({ rooms }) {
           <h1 className="text-4xl text-center mt-6 tracking-wider">
             Kamar Kost
           </h1>
-          <p className="text-center text-xl mt-4">
+          {/* <p className="text-center text-xl mt-4">
             Di sini tersedia 2 tempat kost, yaitu Kost 1 untuk Laki-laki dan
             Kost 2 untuk Perempuan.
-          </p>
-          <ul className="flex justify-evenly mt-16">
+          </p> */}
+          {/* <ul className="flex justify-evenly mt-16">
             <li className="text-2xl">Kost 1</li>
             <li className="text-2xl hover:cursor-not-allowed">Kost 2</li>
-          </ul>
+          </ul> */}
 
           <div className="flex justify-evenly mt-20 flex-wrap">
             {rooms.map((room) => (

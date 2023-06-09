@@ -87,7 +87,7 @@ export default function About({ images }) {
         <section className="container mx-auto mt-20 pb-20">
           <h2 className="text-4xl uppercase text-center">gallery</h2>
           <p className="text-center mt-4">
-            Berikut adalah beberapa foto kamar dan lingkungan sekitar ErinKosu.
+            Berikut adalah beberapa foto kamar dan lingkungan sekitar Mae Kos.
           </p>
           <div className="w-10/12 xl:w-8/12 mx-auto mt-10">
             <Slide {...properties}>

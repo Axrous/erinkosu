@@ -14,7 +14,7 @@ export default function Navbar({ auth }) {
   return (
     <nav className=" flex container mx-auto text-white py-2 items-center">
       <span className="w-6/12 md:w-3/12 text-2xl my-auto font-semibold tracking-widest">
-        <Link href="/">ErinKosu</Link>
+        <Link href="/">Mae Kos</Link>
       </span>
       <div
         className={`md:w-6/12 my-auto md:block ${navbar ? "block" : "hidden"}`}

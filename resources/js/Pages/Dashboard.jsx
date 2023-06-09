@@ -42,7 +42,7 @@ export default function Dashboard() {
           </div>
 
           <section className="xl:rounded-2xl w-full text-center mt-20 bg-[#EEEEEE] container mx-auto">
-            <h2 className="text-4xl tracking-wider py-2">ErinKosu!</h2>
+            <h2 className="text-4xl tracking-wider py-2">MaeKos!</h2>
             <p className="w-full md:w-10/12 lg:w-7/12 mx-auto leading-normal italic mb-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
               itaque rem, delectus architecto debitis quam neque animi
@@ -55,11 +55,11 @@ export default function Dashboard() {
           <section className="pt-28 mb-20 container mx-auto" id="advantage">
             <div className="text-center border-b-2 pb-4">
               <h2 className="text-4xl mb-2 tracking-wide">
-                Kenapa harus Erinkosu?
+                Kenapa harus MaeKos?
               </h2>
               <p className="text-lg">
-                Ada banyak keuntungan kalau kamu nge-kost di Erinkosu! Apa aja
-                sih keuntungannya?
+                Ada banyak keuntungan kalau kamu nge-kost di MaeKos! Apa aja sih
+                keuntungannya?
               </p>
             </div>
             <div className="flex flex-wrap flex-col md:flex-row  justify-evenly mt-16">
@@ -69,8 +69,8 @@ export default function Dashboard() {
                 </div>
                 <h3 className="mt-4 text-xl">Dekat dengan Universitas.</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
-                  Erinkosu dekat dengan salah satu Universitas terkenal di
-                  Isekai, sangat cocok untuk para mahasiswa yang berkuliah di
+                  MaeKos dekat dengan salah satu Universitas terkenal di Isekai,
+                  sangat cocok untuk para mahasiswa yang berkuliah di
                   Universitas tersebut.
                 </p>
               </div>
@@ -91,7 +91,7 @@ export default function Dashboard() {
                 <h3 className="mt-4 text-xl">Kamar Mandi Dalam</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
                   Ini nih, yang paling mantap kalau nge-kost itu kamar mandinya
-                  di dalem. bisa brot brot brot sepuasnya wkwkw.
+                  di dalem.
                 </p>
               </div>
               <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
@@ -111,8 +111,8 @@ export default function Dashboard() {
                 <h3 className="mt-4 text-xl">Harga Murah</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
                   Siapa sih ya kan yang gamau nge-kost dengan harga murah? coba
-                  bayangin kamu cuman perlu bayar Rp. XXX udah bisa tidur 24/7
-                  tanpa kendala.
+                  bayangin kamu cuman perlu bayar mulai dari Rp. XXX udah bisa
+                  tidur 24/7 tanpa kendala.
                 </p>
               </div>
             </div>
@@ -132,10 +132,10 @@ export default function Dashboard() {
                   Tunggu Apalagi!
                 </h2>
                 <p className="w-full xl:w-2/3 text-base leading-relaxed mb-10">
-                  Ayo Nge-Kost di Erinkosu, Lorem ipsum dolor sit amet
-                  consectetur adipisicing elit. Quos, eos commodi animi tempora
-                  illum, expedita sed ratione quidem cum in quo recusandae natus
-                  ab iste aperiam facilis.
+                  Ayo Nge-Kost di MaeKos, Lorem ipsum dolor sit amet consectetur
+                  adipisicing elit. Quos, eos commodi animi tempora illum,
+                  expedita sed ratione quidem cum in quo recusandae natus ab
+                  iste aperiam facilis.
                 </p>
 
                 <PrimaryButton>
