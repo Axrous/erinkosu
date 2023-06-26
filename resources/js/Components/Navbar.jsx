@@ -107,7 +107,7 @@ export default function Navbar({ auth }) {
             <div className="py-1">
               <Link
                 href="/logout"
-                className="py-2 px-4 inline-block"
+                className="py-2 px-4 inline-block text-black"
                 onClick={deleteCookies}
               >
                 Logout

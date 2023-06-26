@@ -1,7 +1,7 @@
 import React from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import CustomersLayout from "@/Layouts/CustomersLayout";
-// import heroImage from "../../../public/build/assets/anime-tidur.png";
+import heroImage from "../../../public/build/assets/dorm.jpg";
 // import inviteImage from "../../../public/build/assets/letmein.png";
 import PrimaryButton from "@/Components/PrimaryButton";
 import {
@@ -23,13 +23,12 @@ export default function Dashboard() {
           <div className="container mx-auto flex mt-10 lg:mt-24 2xl:px-0 px-10 lg:flex-row flex-col-reverse">
             <div className="w-full lg:w-6/12 my-auto lg:text-left text-center">
               <h1 className="text-4xl md:text-6xl mb-4 leading-snug">
-                Rebahan 24/7? <br />
-                Siapa bilang gabisa.
+                Mae Kos <br />
+                Rumah kos siap huni.
               </h1>
               <p className="w-full md:w-10/12 xl:w-8/12 lg:mx-0 mx-auto">
-                Daripada di rumah terus keliatan beban & dimarahin Orang Tua,
-                mending nge-kost bisa rebahan sepuasnya 24/7. Tapi bayar ya!
-                hehehe.
+                Temukan kenyamanan dan kehangatan rumah di Mae Kos! Dengan
+                fasilitas lengkap, lingkungan yang aman, dan harga terjangkau.
               </p>
               <PrimaryButton className="mt-8">
                 <Link href="#advantage">Selengkapnya</Link>
@@ -37,11 +36,11 @@ export default function Dashboard() {
               </PrimaryButton>
             </div>
             <div className="lg:w-6/12 ">
-              <img src="" />
+              <img src={heroImage} className="w-8/12 lg:w-6/12 mx-auto" />
             </div>
           </div>
 
-          <section className="xl:rounded-2xl w-full text-center mt-20 bg-[#EEEEEE] container mx-auto">
+          {/* <section className="xl:rounded-2xl w-full text-center mt-20 bg-[#EEEEEE] container mx-auto">
             <h2 className="text-4xl tracking-wider py-2">MaeKos!</h2>
             <p className="w-full md:w-10/12 lg:w-7/12 mx-auto leading-normal italic mb-2">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat
@@ -50,7 +49,7 @@ export default function Dashboard() {
               perspiciatis est accusamus quasi ex.
             </p>
             <span className="inline-block pb-2">-Pemilik Kost</span>
-          </section>
+          </section> */}
 
           <section className="pt-28 mb-20 container mx-auto" id="advantage">
             <div className="text-center border-b-2 pb-4">
@@ -69,9 +68,8 @@ export default function Dashboard() {
                 </div>
                 <h3 className="mt-4 text-xl">Dekat dengan Universitas.</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
-                  MaeKos dekat dengan salah satu Universitas terkenal di Isekai,
-                  sangat cocok untuk para mahasiswa yang berkuliah di
-                  Universitas tersebut.
+                  MaeKos dekat dengan salah satu Universitas, sangat cocok untuk
+                  para mahasiswa yang berkuliah di Universitas tersebut.
                 </p>
               </div>
               <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
@@ -80,8 +78,7 @@ export default function Dashboard() {
                 </div>
                 <h3 className="mt-4 text-xl">Kost Gender Terpisah</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
-                  Harus dipisah dong, kan bukan muhrim. biar tidak canggung
-                  juga.
+                  Mae Kos memiliki kamar kos yang dipisahkan berdasarkan gender.
                 </p>
               </div>
               <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
@@ -90,8 +87,7 @@ export default function Dashboard() {
                 </div>
                 <h3 className="mt-4 text-xl">Kamar Mandi Dalam</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
-                  Ini nih, yang paling mantap kalau nge-kost itu kamar mandinya
-                  di dalem.
+                  Kamar mandi dalam dengan harga kamar yang terjangkau.
                 </p>
               </div>
               <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
@@ -100,8 +96,8 @@ export default function Dashboard() {
                 </div>
                 <h3 className="mt-4 text-xl">Luasnya 3x3</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
-                  Beuh ini sih udah pas banget, bisa naro banyak barang
-                  contohnya PC, Tv, Lemari, Dokumen Super Semar, dll.
+                  Dengan luas yang cukup untuk menyimpan barang-barang, dan
+                  tidak akan merasakan pengap.
                 </p>
               </div>
               <div className="md:w-5/12 lg:w-3/12 text-center rounded-xl shadow-xl bg-[#EEEEEE] py-10 m-4">
@@ -110,9 +106,7 @@ export default function Dashboard() {
                 </div>
                 <h3 className="mt-4 text-xl">Harga Murah</h3>
                 <p className="mt-4 text-base w-11/12 mx-auto">
-                  Siapa sih ya kan yang gamau nge-kost dengan harga murah? coba
-                  bayangin kamu cuman perlu bayar mulai dari Rp. XXX udah bisa
-                  tidur 24/7 tanpa kendala.
+                  Harga yang relative murah karena lokasi di tengah kota.
                 </p>
               </div>
             </div>
@@ -139,7 +133,9 @@ export default function Dashboard() {
                 </p>
 
                 <PrimaryButton>
-                  pesan kamar <BsFillDoorOpenFill className="ml-4" />
+                  <Link href="/services" className="flex">
+                    pesan kamar <BsFillDoorOpenFill className="ml-4" />
+                  </Link>
                 </PrimaryButton>
               </div>
             </div>

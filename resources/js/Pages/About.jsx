@@ -1,9 +1,9 @@
 import CustomersLayout from "@/Layouts/CustomersLayout";
 import { Head } from "@inertiajs/inertia-react";
 import React from "react";
-import yor from "../../../public/photos/yor2.jpg";
-import nero from "../../../public/photos/nero.jpg";
-import paimon from "../../../public/photos/paimon.png";
+import profile from "../../../public/photos/profile.jpg";
+import arga from "../../../public/photos/arga.jpeg";
+import paimon from "../../../public/photos/argaa.jpg";
 import "react-slideshow-image/dist/styles.css";
 import { Slide } from "react-slideshow-image";
 import {
@@ -28,21 +28,22 @@ export default function About({ images }) {
           <div className="flex flex-col md:flex-row lg:w-10/12 mx-auto mt-10 md:mt-16 border rounded-3xl shadow-2xl drop-shadow-xl">
             <div className="md:w-5/12">
               <img
-                src={yor}
+                src={profile}
                 alt=""
-                className="rounded-t-3xl md:rounded-l-3xl"
+                className="rounded-t-3xl md:rounded-l-3xl object-contain"
               />
             </div>
             <div className="md:w-7/12 lg:w-6/12 my-auto md:pl-10 xl:pl-20 px-2 pb-4 md:px-0">
               <h3 className=" text-center md:text-left text-4xl tracking-wide mb-4">
-                Yor Forger
+                Bu Mei
               </h3>
-              <p className="text-center text-lg leading-normal tracking-wide">
-                Yor is a very beautiful, graceful and fairly tall young woman
-                with fair skin, long black hair, and upturned red eyes. She
-                splits her hair into two parts and crosses it over her head,
-                securing it with a headband and forming two thick locks of hair
-                that reach below her chest.
+              <p className="text-justify text-lg leading-normal tracking-wide">
+                Ibu Mei adalah seorang Ibu Kos yang ramah dan perhatian. Ibu Mei
+                suka berbagi makanan dengan penghuni kosnya. Dengan sikapnya
+                yang penuh perhatian, Ibu Mei senantiasa mendengarkan dan
+                memberikan dukungan kepada para penghuni kos. Tinggal di kos Ibu
+                Mei adalah pengalaman yang menyenangkan, karena Anda akan
+                merasakan kebaikan dan kepedulian dari seorang Ibu yang ramah.
               </p>
             </div>
           </div>
@@ -54,14 +55,14 @@ export default function About({ images }) {
             <div className="flex flex-col md:flex-row mt-10 md:mt-20 text-center justify-evenly align-middle">
               <div className="md:w-4/12 lg:w-6/12 flex md:block mb-2">
                 <img
-                  src={nero}
+                  src={arga}
                   width={350}
                   alt=""
-                  className="rounded-full mx-auto md:mb-8 w-4/12 md:w-10/12 lg:w-6/12"
+                  className="rounded-full mx-auto md:mb-8 w-4/12 md:w-10/12 lg:w-5/12"
                 />
                 <div className="my-auto md:my-0 mx-auto md:mx-0 w-6/12 md:w-full">
                   <h3 className="text-2xl md:text-4xl tracking-wide md:mb-4">
-                    Secre Swallowtail
+                    Arga Satya
                   </h3>
                   <span className="italic">-Penjaga Kost Putra-</span>
                 </div>
@@ -71,11 +72,12 @@ export default function About({ images }) {
                   src={paimon}
                   alt=""
                   width={350}
-                  className="rounded-full mx-auto md:mb-8 w-4/12 md:w-10/12 lg:w-6/12"
+                  height={350}
+                  className="rounded-full mx-auto md:mb-8 w-4/12 md:w-10/12 lg:w-5/12"
                 />
                 <div className="my-auto md:my-0 mx-auto md:mx-0 w-6/12 md:w-full">
                   <h3 className="text-2xl md:text-4xl tracking-wide md:mb-4">
-                    Clown Paimon
+                    Mulyono
                   </h3>
                   <span className="italic">-Penjaga Kost Putri-</span>
                 </div>
@@ -116,10 +118,10 @@ export default function About({ images }) {
                 <li className="flex items-center mb-3">
                   <BsEnvelopeFill className="mr-4" /> argasatya16@gmail.com
                 </li>
-                <li className="flex items-center mb-3">
+                {/* <li className="flex items-center mb-3">
                   <BsFillPinMapFill className="mr-4" /> Jl. Kenangan no. 10 &
                   Jl. Kekasih no. 3 Garut.
-                </li>
+                </li> */}
               </ul>
             </div>
             <div className="md:w-6/12 lg:w-5/12 h-[450px] bg-white rounded-sm drop-shadow-2xl">

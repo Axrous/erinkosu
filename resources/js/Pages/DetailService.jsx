@@ -159,7 +159,7 @@ export default function DetailService({ room, images }) {
                           </label>
                         </div>
                       </div>
-                      <div className="text-center flex flex-col">
+                      {/* <div className="text-center flex flex-col">
                         {flash.message && (
                           <div className="p-2 bg-white rounded-lg">
                             {flash.message}
@@ -180,7 +180,7 @@ export default function DetailService({ room, images }) {
                         >
                           check
                         </button>
-                      </div>
+                      </div> */}
                       <div className="text-right mr-4">Harga : Rp. {price}</div>
                       {errors.amount && (
                         <p className="text-red-500">{errors.amount}</p>

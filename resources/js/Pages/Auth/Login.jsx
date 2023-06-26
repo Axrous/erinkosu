@@ -44,7 +44,7 @@ export default function Login() {
               {flash.message}
             </div>
           )}
-          <h1 className="text-2xl text-center mb-10">Login Dulu Bos!</h1>
+          <h1 className="text-2xl text-center mb-10">Login</h1>
           <div>
             <InputError message={errors.wrong} className="mb-2" />
           </div>

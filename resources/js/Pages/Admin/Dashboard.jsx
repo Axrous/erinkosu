@@ -33,8 +33,8 @@ export default function Dashboard({ room, roomDetail }) {
           </div>
         </div>
         <div>
-          <h3 className="text-xl mb-1 tracking-wide">Create Voucher</h3>
-          <form action="" onSubmit={submitVoucher}>
+          {/* <h3 className="text-xl mb-1 tracking-wide">Create Voucher</h3> */}
+          {/* <form action="" onSubmit={submitVoucher}>
             <div className="flex justify-between border p-6 mb-4 shadow-md rounded-md flex-col lg:flex-row">
               <div>
                 <label htmlFor="" className="text-sm">
@@ -96,7 +96,7 @@ export default function Dashboard({ room, roomDetail }) {
                 </button>
               </div>
             </div>
-          </form>
+          </form> */}
         </div>
         <div className="border bg-gray-800 rounded">
           <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-4 m-6">
