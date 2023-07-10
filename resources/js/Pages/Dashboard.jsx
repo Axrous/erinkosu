@@ -1,7 +1,7 @@
 import React from "react";
 import { Head, Link } from "@inertiajs/inertia-react";
 import CustomersLayout from "@/Layouts/CustomersLayout";
-import heroImage from "../../../public/build/assets/dorm.jpg";
+import heroImage from "../../../public/photos/dorm.jpg";
 // import inviteImage from "../../../public/build/assets/letmein.png";
 import PrimaryButton from "@/Components/PrimaryButton";
 import {
