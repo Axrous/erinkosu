@@ -19,13 +19,6 @@ class ServiceController extends Controller
 {
   public function index()
   {
-    // $rooms = Room::join('room_images', function ($join) {
-    //   $join->on('rooms.no', '=', 'room_images.room_id');
-    // })->get();
-
-    // $rooms = Room::leftJoin('room_images', function ($join) {
-    //   $join->on('rooms.no', '=', 'room_images.room_id');
-    // })->orderBy('no')->get();
     $rooms = Room::leftJoin('room_images', 'rooms.no', '=', 'room_images.room_no')->select('rooms.no', 'room_images.url', 'rooms.is_booked')->groupBy('no')->get();
 
     return Inertia::render('Service', ['rooms' => $rooms]);
@@ -34,7 +27,6 @@ class ServiceController extends Controller
   public function detailService($room_no)
   {
     $room = Room::where('rooms.no', $room_no)->first();
-    // $images = Room::find($room_no)->images;
     $images = RoomImage::where('room_no', $room_no)->get();
 
     return Inertia::render('DetailService', ['room' => $room, 'images' => $images]);
@@ -56,8 +48,6 @@ class ServiceController extends Controller
       "amount" => $request->amount,
       "voucher" => $request->voucher
     ];
-
-    // cookie()->create("dataCheckout", json_encode($cookie));
     setcookie("dataCheckout", json_encode($cookie));
     return redirect('/service/checkout');
   }
@@ -111,12 +101,6 @@ class ServiceController extends Controller
       ]
     ]);
 
-    // return response()->json([
-    //   $request->order_id,
-    //   $request->totalPrice,
-    //   $request->room_no
-    // ], 200);
-
     $charge = $client->request('POST', 'https://api.sandbox.midtrans.com/v2/charge', [
       "body" => json_encode([
         "payment_type" => "bank_transfer",
@@ -148,7 +132,7 @@ class ServiceController extends Controller
     if (!$payment->save()) {
       return false;
     }
-    return redirect()->route('detailPayment', ['transactionId' => $response->order_id]);
+    return redirect()->route('afterPay', ['transactionId' => $response->order_id]);
   }
 
   public function notifHandle(Request $request)
@@ -203,7 +187,6 @@ class ServiceController extends Controller
   public function detailHistory($transactionId)
   {
     $transaction = Payment::where('id', $transactionId)->first();
-    // return Inertia::render('HistoryTransactionDetail', ['transaction' => $transaction]);
-    return response()->json($transaction, 200);
+    return Inertia::render('HistoryTransactionDetail', ['transaction' => $transaction]);
   }
 }
