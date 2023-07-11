@@ -12,18 +12,6 @@ export default function HistoryTransaction({ transactions }) {
     const dateTime = new Date(timestamp * 1000);
     return dateTime;
   }
-
-  function showDataInModal(txId) {
-    get(`/services/after-pay/${txId}`);
-    // console.log(txId);
-    // fetch(`/services/transaction-history/${txId}`)
-    //   .then((res) => res.json())
-    //   .then((out) => setDataModal(out))
-    //   .then((e) => setShowModal(true))
-    //   .catch((err) => {
-    //     throw err;
-    //   });
-  }
   return (
     <CustomersLayout>
       <div className="container mx-auto">

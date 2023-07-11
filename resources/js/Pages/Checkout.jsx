@@ -18,6 +18,7 @@ export default function Checkout({
     totalPrice: "",
     room_no: "",
     order_id: "",
+    bank: "",
   });
   const [clicked, setClicked] = useState("bca");
   const [checked, setChecked] = useState(false);
@@ -30,6 +31,7 @@ export default function Checkout({
       price: price,
       totalPrice: totalPrice,
       room_no: room_no,
+      bank: clicked,
     });
   };
 
@@ -37,6 +39,7 @@ export default function Checkout({
     e.preventDefault();
     post("/services/transaction");
   }
+  console.log(clicked);
   return (
     <CustomersLayout>
       <div className="container mx-auto">
@@ -92,13 +95,25 @@ export default function Checkout({
                   />
                 </button>
                 <button
-                  className={`cursor-pointer border w-5/12 py-8 border-slate-200 bg-white rounded-xl ${
+                  className={`cursor-pointer border w-5/12 py-8  bg-white rounded-xl ${
                     clicked == "bni" ? "border-cyan-400" : "border-slate-200"
                   }`}
                   onClick={(e) => setClicked("bni")}
                 >
                   <img
                     src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/1200px-BNI_logo.svg.png"
+                    alt=""
+                    className="w-24 mx-auto"
+                  />
+                </button>
+                <button
+                  className={`mt-7 cursor-pointer border w-5/12 py-8  bg-white rounded-xl ${
+                    clicked == "bri" ? "border-cyan-400" : "border-slate-200"
+                  }`}
+                  onClick={(e) => setClicked("bri")}
+                >
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/1280px-BANK_BRI_logo.svg.png"
                     alt=""
                     className="w-24 mx-auto"
                   />
@@ -115,7 +130,7 @@ export default function Checkout({
                 className="mr-2"
                 onChange={handleChange}
               />
-              <label htmlFor="terms">
+              <label htmlFor="">
                 Dengan ini menyatakan setuju dengan syarat dan ketentuan
               </label>
             </div>

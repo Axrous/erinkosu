@@ -109,7 +109,7 @@ class ServiceController extends Controller
           "gross_amount" => $request->totalPrice
         ],
         "bank_transfer" => [
-          "bank" => "bca"
+          "bank" => $request->bank
         ]
       ])
     ]);
@@ -132,7 +132,7 @@ class ServiceController extends Controller
     if (!$payment->save()) {
       return false;
     }
-    return redirect()->route('afterPay', ['transactionId' => $response->order_id]);
+    return redirect()->route('detailPayment', ['transactionId' => $response->order_id]);
   }
 
   public function notifHandle(Request $request)
